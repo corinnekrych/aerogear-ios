@@ -14,21 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #import <Foundation/Foundation.h>
-#import "AGAuthConfig.h"
-#import "AGAuthenticationModule.h"
+#import "AFOAuth1Client.h"
 
-/**
- An internal AGAuthenticator module implementation that uses REST as the auth transport.
 
- *IMPORTANT:* Users are not required to instantiate this class directly, instead an instance of this class is returned automatically when an Authenticator with default configuration is constructed or with the _type_ config option set to _"REST"_. See AGAuthenticator and AGAuthenticationModule class documentation for more information.
+@interface AGOAuth1HttpClient: AFOAuth1Client
 
- */
-@interface AGRestAuthentication : NSObject <AGAuthenticationModule>
-
--(id) initWithConfig:(id<AGAuthConfig>) authConfig;
-+(id) moduleWithConfig:(id<AGAuthConfig>) authConfig;
-
++ (AFOAuth1Client *)clientFor:(NSURL *)url;
++ (AFOAuth1Client *)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval;
 
 @end

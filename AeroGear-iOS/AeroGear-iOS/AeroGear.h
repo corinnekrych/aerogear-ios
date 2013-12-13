@@ -32,10 +32,14 @@
 #import "AGDataManager.h"
 #import "AGStoreConfig.h"
 
-// Security
+// Security: AG-Security
 #import "AGAuthenticationModule.h"
 #import "AGAuthenticator.h"
 #import "AGAuthConfig.h"
+// Security: OAuth
+#import "AGOAuth1AuthenticationModule.h"
+#import "AGOAuth1Config.h"
+// Security: Encryption
 #import "AGCryptoConfig.h"
 #import "AGKeyStoreCryptoConfig.h"
 #import "AGPassphraseCryptoConfig.h"

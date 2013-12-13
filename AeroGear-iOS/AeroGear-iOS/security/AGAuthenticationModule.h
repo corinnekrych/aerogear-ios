@@ -16,6 +16,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AGBaseAuthenticationModule.h"
 
 /**
 AGAuthenticationModule represents an authentication module and provides the authentication and enrollment API. The default implementation uses REST as the auth transport. Similar to the [Pipe](AGPipe), technical details of the underlying system are not exposed.
@@ -99,17 +100,16 @@ The default (REST) auth module issues for the above a request against _https://t
 
 As with the case of Pipe, configured timeout interval (in the config object) and cancel operation in _AGAuthenticationModule_ is supported too.  
  */
-@protocol AGAuthenticationModule <NSObject>
-
-/**
- * Returns the type of the underlying 'auth module implementation'
- */
-@property (nonatomic, readonly) NSString* type;
-
-/**
- * Returns the baseURL string of the underlying 'auth module implementation'
- */
-@property (nonatomic, readonly) NSString* baseURL;
+@protocol AGAuthenticationModule <AGBaseAuthenticationModule>
+///**
+// * Returns the type of the underlying 'auth module implementation'
+// */
+//@property (nonatomic, readonly) NSString* type;
+//
+///**
+// * Returns the baseURL string of the underlying 'auth module implementation'
+// */
+//@property (nonatomic, readonly) NSString* baseURL;
 
 /**
  * Returns the 'login endpoint' of the underlying 'auth module implementation'
@@ -126,6 +126,20 @@ As with the case of Pipe, configured timeout interval (in the config object) and
  */
 @property (nonatomic, readonly) NSString* enrollEndpoint;
 
+/**
+*  A key/value pair of the authentication tokens.
+*/
+@property (nonatomic, readonly) NSMutableDictionary* authTokens;
+
+/**
+ * Performs a simple check if the user of the module impl. is authenticated.
+ */
+- (BOOL)isAuthenticated;
+
+/**
+ * Performs deauthorization, after logout.
+ */
+- (void)deauthorize;
 
 /**
  * Performs a signup of a new user. The request accepts a NSDictionary which will be translated to JSON 
@@ -207,5 +221,6 @@ As with the case of Pipe, configured timeout interval (in the config object) and
  * code set to NSURLErrorCancelled so that you can perform your 'cancel' logic.
  */
 -(void) cancel;
+
 
 @end

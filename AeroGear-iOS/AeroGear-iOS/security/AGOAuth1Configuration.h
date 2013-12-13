@@ -16,19 +16,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGAuthConfig.h"
-#import "AGAuthenticationModule.h"
+#import "AGOAuth1Config.h"
 
 /**
- An internal AGAuthenticator module implementation that uses REST as the auth transport.
+* The internal implementation of the AGAuthConfig to configure AGOAuth1AuthenticationModule objects.
+* This class initialize all required endpoint for OAuth.
+*/
 
- *IMPORTANT:* Users are not required to instantiate this class directly, instead an instance of this class is returned automatically when an Authenticator with default configuration is constructed or with the _type_ config option set to _"REST"_. See AGAuthenticator and AGAuthenticationModule class documentation for more information.
-
- */
-@interface AGRestAuthentication : NSObject <AGAuthenticationModule>
-
--(id) initWithConfig:(id<AGAuthConfig>) authConfig;
-+(id) moduleWithConfig:(id<AGAuthConfig>) authConfig;
-
-
+@interface AGOAuth1Configuration : NSObject <AGOAuth1Config>
 @end

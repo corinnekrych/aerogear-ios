@@ -16,20 +16,15 @@
  */
 
 #import "AGRESTPipe.h"
-#import "AGAuthenticationModuleAdapter.h"
-
 #import "AGHttpClient.h"
-
 #import "AGPageHeaderExtractor.h"
-#import "AGPageBodyExtractor.h"
 #import "AGPageWebLinkingExtractor.h"
-
 //category:
 #import "AGNSMutableArray+Paging.h"
+#import "AGOAuth1AuthenticationModule.h"
 
 @implementation AGRESTPipe {
-    // TODO make properties on a PRIVATE category...
-    id<AGAuthenticationModuleAdapter> _authModule;
+    id<AGAuthenticationModule> _authModule;
     NSString* _recordId;
     
     AGPipeConfiguration* _config;
@@ -66,7 +61,12 @@
         
         _URL = finalURL;
         _recordId = _config.recordId;
-        _authModule = (id<AGAuthenticationModuleAdapter>) _config.authModule;
+        if ([_config.name isEqualToString:@"AG_SECURITY"]) {
+            _authModule = (id<AGAuthenticationModule>) _config.authModule;
+        } else if ([_config.name isEqualToString:@"AG_OAUTH1"]) {
+            _authModule = (id<AGOAuth1AuthenticationModule>) _config.authModule;
+        }
+
         
         _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout];
         _restClient.parameterEncoding = AFJSONParameterEncoding;

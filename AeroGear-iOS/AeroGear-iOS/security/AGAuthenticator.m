@@ -18,6 +18,8 @@
 #import "AGAuthenticator.h"
 #import "AGRestAuthentication.h"
 #import "AGAuthConfiguration.h"
+#import "AGOAuth1AuthenticationModule.h"
+#import "AGOAuth1Authentication.h"
 
 @implementation AGAuthenticator {
     NSMutableDictionary* _modules;
@@ -42,14 +44,18 @@
         config(authConfig);
     }
 
-    // TODO check ALL supported types...
-    if (! [authConfig.type isEqualToString:@"AG_SECURITY"]) {
+    if ([authConfig.type isEqualToString:@"AG_SECURITY"]) {
+        id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:authConfig];
+        [_modules setValue:module forKey:[authConfig name]];
+        return module;
+    } else if ([authConfig.type isEqualToString:@"AG_OAUTH1"]) {
+        id<AGOAuth1AuthenticationModule> module = [AGOAuth1Authentication moduleWithConfig:authConfig];
+        [_modules setValue:module forKey:[authConfig name]];
+        return module;
+    } else {
         return nil;
     }
-    
-    id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:authConfig];
-    [_modules setValue:module forKey:[authConfig name]];
-    return module;
+
 }
 
 -(id<AGAuthenticationModule>)remove:(NSString*) moduleName {

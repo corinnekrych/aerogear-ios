@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		08D43362329A46488E585071 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D1DA06FAB24A18AB6A5963 /* libPods.a */; };
 		1D0A1358119648AFB949959A /* libPods-AeroGear-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E065C8DDD305422BBB3237D5 /* libPods-AeroGear-iOSTests.a */; };
+		38EAB42F733BC5C144175FA7 /* AGPasswordKeyServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EABFA42138EEBCAF50E1D8 /* AGPasswordKeyServices.m */; };
+		38EAB6ACDBF7CF1A8066213A /* AGOAuth1HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EABB7497FFA6DBC49B33DA /* AGOAuth1HttpClient.m */; };
+		38EAB8D52C9961962DF9EFDE /* AGOAuth1Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAB80A10D9AA9548B3D4DC /* AGOAuth1Authentication.m */; };
+		38EABF30D6FF38CC297719B4 /* AGOAuth1Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAB06A5DFE17214DEF70D2 /* AGOAuth1Configuration.m */; };
 		3A3FA0F7DE3FD6E3C9B77946 /* AGPageBaseExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */; };
 		3A3FA1B99E5E1EBF301778DA /* AGPageWebLinkingExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA7B7F632A59A9D4C53F1 /* AGPageWebLinkingExtractorSpec.m */; };
 		3A3FA2A2DD7A17FFCE0B9510 /* AGPageHeaderExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA907DCCCFBA82B64DE9D /* AGPageHeaderExtractorSpec.m */; };
@@ -79,7 +83,6 @@
 		6FE3D13A1834E3F100C3A09A /* AGKeyStoreCryptoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1311834E3F100C3A09A /* AGKeyStoreCryptoConfig.m */; };
 		6FE3D13B1834E3F100C3A09A /* AGPassphraseCryptoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */; };
 		6FE3D13C1834E3F100C3A09A /* AGPassphraseKeyServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1351834E3F100C3A09A /* AGPassphraseKeyServices.m */; };
-		6FE3D13D1834E3F100C3A09A /* AGPasswordKeyServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1371834E3F100C3A09A /* AGPasswordKeyServices.m */; };
 		6FE3D1431834E44200C3A09A /* AGKeyManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D13F1834E44200C3A09A /* AGKeyManagerSpec.m */; };
 		6FE3D1471834E4C300C3A09A /* AGBaseStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1461834E4C300C3A09A /* AGBaseStorageSpec.m */; };
 		6FE55675169DE7C800E6188E /* AGPropertyListStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE55674169DE7C800E6188E /* AGPropertyListStorage.m */; };
@@ -122,6 +125,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		38EAB06A5DFE17214DEF70D2 /* AGOAuth1Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGOAuth1Configuration.m; path = security/AGOAuth1Configuration.m; sourceTree = "<group>"; };
+		38EAB3847233867AE56AC770 /* AGOAuth1Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGOAuth1Authentication.h; path = security/AGOAuth1Authentication.h; sourceTree = "<group>"; };
+		38EAB3D7DFA253772C75E963 /* AGOAuth1HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGOAuth1HttpClient.h; path = core/AGOAuth1HttpClient.h; sourceTree = "<group>"; };
+		38EAB471E32E20C59FB04CBA /* AGBaseAuthenticationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGBaseAuthenticationModule.h; path = security/AGBaseAuthenticationModule.h; sourceTree = "<group>"; };
+		38EAB4F1FEFABCB1AA79B1F4 /* AGPasswordKeyServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPasswordKeyServices.h; path = security/AGPasswordKeyServices.h; sourceTree = "<group>"; };
+		38EAB54530A28EF3B15A4E7A /* AGOAuth1Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGOAuth1Config.h; path = security/AGOAuth1Config.h; sourceTree = "<group>"; };
+		38EAB80A10D9AA9548B3D4DC /* AGOAuth1Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGOAuth1Authentication.m; path = security/AGOAuth1Authentication.m; sourceTree = "<group>"; };
+		38EAB8EB4B220E2C8CAFA185 /* AGOAuth1AuthenticationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGOAuth1AuthenticationModule.h; path = security/AGOAuth1AuthenticationModule.h; sourceTree = "<group>"; };
+		38EABB7497FFA6DBC49B33DA /* AGOAuth1HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGOAuth1HttpClient.m; path = core/AGOAuth1HttpClient.m; sourceTree = "<group>"; };
+		38EABBE70801A85BAFFE0E60 /* AGOAuth1Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGOAuth1Configuration.h; path = security/AGOAuth1Configuration.h; sourceTree = "<group>"; };
+		38EABFA42138EEBCAF50E1D8 /* AGPasswordKeyServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPasswordKeyServices.m; path = security/AGPasswordKeyServices.m; sourceTree = "<group>"; };
 		3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthenticatorSpec.m; sourceTree = "<group>"; };
 		3A3FA5F4C5D127CFCD4C15D9 /* AGPageBodyExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageBodyExtractorSpec.m; sourceTree = "<group>"; };
 		3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageBaseExtractorSpec.m; sourceTree = "<group>"; };
@@ -157,7 +171,6 @@
 		573B709A161DA29A009F0452 /* AGAuthenticationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticationModule.h; path = security/AGAuthenticationModule.h; sourceTree = "<group>"; };
 		573B709B161DA2AE009F0452 /* AGAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticator.h; path = security/AGAuthenticator.h; sourceTree = "<group>"; };
 		573B709C161DA2AE009F0452 /* AGAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGAuthenticator.m; path = security/AGAuthenticator.m; sourceTree = "<group>"; };
-		573B709E161DDB5E009F0452 /* AGAuthenticationModuleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticationModuleAdapter.h; path = security/AGAuthenticationModuleAdapter.h; sourceTree = "<group>"; };
 		573B709F161DDD1C009F0452 /* AGRestAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGRestAuthentication.h; path = security/AGRestAuthentication.h; sourceTree = "<group>"; };
 		573B70A0161DDD1C009F0452 /* AGRestAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGRestAuthentication.m; path = security/AGRestAuthentication.m; sourceTree = "<group>"; };
 		573CBD9615E3ECA80071E7A6 /* AGPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPipe.h; path = pipeline/AGPipe.h; sourceTree = "<group>"; };
@@ -221,8 +234,6 @@
 		6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPassphraseCryptoConfig.m; path = security/AGPassphraseCryptoConfig.m; sourceTree = "<group>"; };
 		6FE3D1341834E3F100C3A09A /* AGPassphraseKeyServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPassphraseKeyServices.h; path = security/AGPassphraseKeyServices.h; sourceTree = "<group>"; };
 		6FE3D1351834E3F100C3A09A /* AGPassphraseKeyServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPassphraseKeyServices.m; path = security/AGPassphraseKeyServices.m; sourceTree = "<group>"; };
-		6FE3D1361834E3F100C3A09A /* AGPasswordKeyServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPasswordKeyServices.h; path = security/AGPasswordKeyServices.h; sourceTree = "<group>"; };
-		6FE3D1371834E3F100C3A09A /* AGPasswordKeyServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPasswordKeyServices.m; path = security/AGPasswordKeyServices.m; sourceTree = "<group>"; };
 		6FE3D13F1834E44200C3A09A /* AGKeyManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGKeyManagerSpec.m; sourceTree = "<group>"; };
 		6FE3D1461834E4C300C3A09A /* AGBaseStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBaseStorageSpec.m; sourceTree = "<group>"; };
 		6FE55673169DE5D900E6188E /* AGPropertyListStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPropertyListStorage.h; path = datamanager/AGPropertyListStorage.h; sourceTree = "<group>"; };
@@ -277,7 +288,6 @@
 				573B709B161DA2AE009F0452 /* AGAuthenticator.h */,
 				573B709C161DA2AE009F0452 /* AGAuthenticator.m */,
 				573B709A161DA29A009F0452 /* AGAuthenticationModule.h */,
-				573B709E161DDB5E009F0452 /* AGAuthenticationModuleAdapter.h */,
 				573B709F161DDD1C009F0452 /* AGRestAuthentication.h */,
 				573B70A0161DDD1C009F0452 /* AGRestAuthentication.m */,
 				57277E0D1641362D00C50DC5 /* AGAuthConfig.h */,
@@ -295,8 +305,13 @@
 				6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */,
 				6FE3D1341834E3F100C3A09A /* AGPassphraseKeyServices.h */,
 				6FE3D1351834E3F100C3A09A /* AGPassphraseKeyServices.m */,
-				6FE3D1361834E3F100C3A09A /* AGPasswordKeyServices.h */,
-				6FE3D1371834E3F100C3A09A /* AGPasswordKeyServices.m */,
+				38EAB06A5DFE17214DEF70D2 /* AGOAuth1Configuration.m */,
+				38EABBE70801A85BAFFE0E60 /* AGOAuth1Configuration.h */,
+				38EAB54530A28EF3B15A4E7A /* AGOAuth1Config.h */,
+				38EAB8EB4B220E2C8CAFA185 /* AGOAuth1AuthenticationModule.h */,
+				38EAB471E32E20C59FB04CBA /* AGBaseAuthenticationModule.h */,
+				38EAB80A10D9AA9548B3D4DC /* AGOAuth1Authentication.m */,
+				38EAB3847233867AE56AC770 /* AGOAuth1Authentication.h */,
 			);
 			name = Security;
 			sourceTree = "<group>";
@@ -386,6 +401,8 @@
 			isa = PBXGroup;
 			children = (
 				57737FE015E3D01D006B97BB /* AeroGear-iOS-Prefix.pch */,
+				38EAB4F1FEFABCB1AA79B1F4 /* AGPasswordKeyServices.h */,
+				38EABFA42138EEBCAF50E1D8 /* AGPasswordKeyServices.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -468,6 +485,8 @@
 			children = (
 				57345BD615E3D18600B74FEB /* AGHttpClient.h */,
 				57345BD715E3D18600B74FEB /* AGHttpClient.m */,
+				38EABB7497FFA6DBC49B33DA /* AGOAuth1HttpClient.m */,
+				38EAB3D7DFA253772C75E963 /* AGOAuth1HttpClient.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -659,7 +678,6 @@
 				6FE3D1391834E3F100C3A09A /* AGKeyManager.m in Sources */,
 				6F14F191170EDA02001E14BA /* AGPageBodyExtractor.m in Sources */,
 				6F14F192170EDA02001E14BA /* AGPageHeaderExtractor.m in Sources */,
-				6FE3D13D1834E3F100C3A09A /* AGPasswordKeyServices.m in Sources */,
 				6FE3D13A1834E3F100C3A09A /* AGKeyStoreCryptoConfig.m in Sources */,
 				6FE3D13B1834E3F100C3A09A /* AGPassphraseCryptoConfig.m in Sources */,
 				6F14F193170EDA02001E14BA /* AGPageWebLinkingExtractor.m in Sources */,
@@ -670,6 +688,10 @@
 				6F7B5EED17325A7D00ED4F83 /* AGPageConfiguration.m in Sources */,
 				489F47BB17DDFFF40072DE0F /* AGSQLiteStorage.m in Sources */,
 				489BC19E17E0B7820008DAEF /* AGSQLiteStatementBuilder.m in Sources */,
+				38EABF30D6FF38CC297719B4 /* AGOAuth1Configuration.m in Sources */,
+				38EAB6ACDBF7CF1A8066213A /* AGOAuth1HttpClient.m in Sources */,
+				38EAB42F733BC5C144175FA7 /* AGPasswordKeyServices.m in Sources */,
+				38EAB8D52C9961962DF9EFDE /* AGOAuth1Authentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +839,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -839,6 +862,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

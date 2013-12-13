@@ -16,26 +16,20 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGAuthenticationModule.h"
+#import "AGBaseAuthenticationModule.h"
 
-/**
- * AGAuthenticationModuleAdapter represents the _internal_ authentication module 'interface'
- */
-@protocol AGAuthenticationModuleAdapter <AGAuthenticationModule>
+@protocol AGOAuth1AuthenticationModule <AGBaseAuthenticationModule>
+//@property (nonatomic, readonly) NSString* type;
+//@property (nonatomic, readonly) NSString* baseURL;
+@property (nonatomic, readonly) NSString* requestTokenEndpoint;
+@property (nonatomic, readonly) NSString* authEndpoint;
+@property (nonatomic, readonly) NSString* callbackAuthEndpoint;
+@property (nonatomic, readonly) NSString* accessTokenEndpoint;
 
-/**
- *  A key/value pair of the authentication tokens.
- */
-@property (nonatomic, readonly) NSMutableDictionary* authTokens;
+@property (nonatomic, readonly) NSString* accessMethod;
 
-/**
- * Performs a simple check if the user of the module impl. is authenticated.
- */
-- (BOOL)isAuthenticated;
-
-/**
- * Performs deauthorization, after logout.
- */
-- (void)deauthorize;
+-(void) authorize:(NSDictionary*) userData
+       success:(void (^)(id object))success
+       failure:(void (^)(NSError *error))failure;
 
 @end
