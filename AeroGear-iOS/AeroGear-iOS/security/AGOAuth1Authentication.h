@@ -17,12 +17,10 @@
 
 #import <Foundation/Foundation.h>
 #import "AGOAuth1AuthenticationModule.h"
-
-@protocol AGOAuth1Config;
-
+#import "AGCryptoConfig.h"
 
 @interface AGOAuth1Authentication : NSObject <AGOAuth1AuthenticationModule>
 
--(id) initWithConfig:(id<AGOAuth1Config>) authConfig;
-+(id) moduleWithConfig:(id<AGOAuth1Config>) authConfig;
+-(id) initWithConfig:(id<AGConfig>) authConfig;
++(id) moduleWithConfig:(id<AGConfig>) authConfig;
 @end

@@ -31,12 +31,12 @@
 /**
  * TODO key to identify app id.
  */
-@property (strong, nonatomic) NSURL* key;
+@property (strong, nonatomic) NSString* key;
 
 /**
  * TODO Secret.
  */
-@property (strong, nonatomic) NSURL* secret;
+@property (strong, nonatomic) NSString* secret;
 
 /**
  * Applies the "request token endpoint" to the configuration. This URL is used to start the OAuth dance, requesting

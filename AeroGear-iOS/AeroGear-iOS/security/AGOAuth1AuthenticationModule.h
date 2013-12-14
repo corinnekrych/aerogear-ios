@@ -19,8 +19,9 @@
 #import "AGBaseAuthenticationModule.h"
 
 @protocol AGOAuth1AuthenticationModule <AGBaseAuthenticationModule>
-//@property (nonatomic, readonly) NSString* type;
-//@property (nonatomic, readonly) NSString* baseURL;
+
+@property (nonatomic, readonly) NSString* key;
+@property (nonatomic, readonly) NSString* secret;
 @property (nonatomic, readonly) NSString* requestTokenEndpoint;
 @property (nonatomic, readonly) NSString* authEndpoint;
 @property (nonatomic, readonly) NSString* callbackAuthEndpoint;
@@ -29,7 +30,7 @@
 @property (nonatomic, readonly) NSString* accessMethod;
 
 -(void) authorize:(NSDictionary*) userData
-       success:(void (^)(id object))success
+       success:(void (^)(id token, id object))success
        failure:(void (^)(NSError *error))failure;
 
 @end

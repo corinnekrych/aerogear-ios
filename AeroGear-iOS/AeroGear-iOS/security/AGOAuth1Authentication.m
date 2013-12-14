@@ -16,12 +16,92 @@
  */
 
 #import "AGOAuth1Authentication.h"
+#import "AFOAuth1Client.h"
+#import "AGOAuth1Config.h"
 
 @implementation AGOAuth1Authentication {
+    AFOAuth1Client* _httpClient;
 
 }
-- (void)authorize:(NSDictionary *)userData success:(void (^)(id object))success failure:(void (^)(NSError *error))failure {
+// =====================================================
+// ======== public API (AGOAuth1AuthenticationModule) ==
+// =====================================================
+@synthesize type = _type;
+@synthesize baseURL = _baseURL;
+@synthesize key = _key;
+@synthesize secret = _secret;
+@synthesize requestTokenEndpoint = _requestTokenEndpoint;
+@synthesize callbackAuthEndpoint = _callbackAuthEndpoint;
+@synthesize authEndpoint = _authEndpoint;
+@synthesize accessMethod = _accessMethod;
+@synthesize accessTokenEndpoint = _accessTokenEndpoint;
+
+
+-(id) initWithConfig:(id<AGConfig>) authConfig {
+    if(self = [super init]) {
+        id<AGOAuth1Config> conf = (id<AGOAuth1Config>)authConfig;
+        _type = conf.type;
+        _baseURL = conf.baseURL.absoluteString;
+        _key = conf.key;
+        _requestTokenEndpoint = conf.requestTokenEndpoint;
+        _callbackAuthEndpoint = conf.callbackAuthEndpoint;
+        _authEndpoint = conf.authEndpoint;
+        _accessTokenEndpoint = conf.accessTokenEndpoint;
+        _accessMethod = @"POST";
+        
+        _httpClient = [[AFOAuth1Client alloc] initWithBaseURL:[[NSURL alloc] initWithString:_baseURL] key:_key secret:_secret];
+        _httpClient.parameterEncoding = AFJSONParameterEncoding;
+    }
+    return self;
+}
+
++(id) moduleWithConfig:(id<AGConfig>) authConfig {
+    return [[self alloc] initWithConfig:authConfig];
+}
+
+-(void)dealloc {
+    _httpClient = nil;
+}
+
+
+// =====================================================
+// ======== public API (AGAuthenticationModule) ========
+// =====================================================
+-(void) authorize:(NSDictionary*) userData
+          success:(void (^)(id token, id object))success
+          failure:(void (^)(NSError *error))failure {
+    [_httpClient authorizeUsingOAuthWithRequestTokenPath:_requestTokenEndpoint
+                                  userAuthorizationPath:_authEndpoint
+                                            callbackURL:[NSURL URLWithString:_callbackAuthEndpoint]
+                                        accessTokenPath:_accessTokenEndpoint
+                                           accessMethod:_accessMethod
+                                                  scope:nil
+                                                success:success
+                                                failure:failure];
 
 }
+//-(void) enroll:(NSDictionary*) userData
+//       success:(void (^)(id object))success
+//       failure:(void (^)(NSError *error))failure {
+//    
+//    
+//    [_restClient postPath:_enrollEndpoint parameters:userData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        // stash the auth token...:
+//        [self readAndStashToken:operation];
+//        
+//        if (success) {
+//            //TODO: NSLog(@"Invoking successblock....");
+//            success(responseObject);
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        if (failure) {
+//            //TODO: NSLog(@"Invoking failure block....");
+//            failure(error);
+//        }
+//    }];
+//    
+//}
 
 @end

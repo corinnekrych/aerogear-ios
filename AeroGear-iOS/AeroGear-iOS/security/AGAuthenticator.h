@@ -57,7 +57,7 @@ Below is an example that creates an Authenticator that points to the remote Aero
  *
  * @return the newly created AGAuthenticationModule object
  */
--(id<AGAuthenticationModule>) auth:(void (^)(id<AGAuthConfig> config)) config;
+-(id<AGAuthenticationModule>) auth:(void (^)(id<AGConfig> config)) config;
 
 /**
  * Removes a AGAuthenticationModule implementation from the AGAuthenticator. The auth module,

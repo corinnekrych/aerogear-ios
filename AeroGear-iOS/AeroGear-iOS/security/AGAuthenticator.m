@@ -37,7 +37,7 @@
     return [[self alloc] init];
 }
 
--(id<AGAuthenticationModule>) auth:(void (^)(id<AGAuthConfig> config)) config {
+-(id<AGBaseAuthenticationModule>) auth:(void (^)(id<AGConfig> config)) config {
     AGAuthConfiguration* authConfig = [[AGAuthConfiguration alloc] init];
     
     if (config) {
@@ -45,11 +45,11 @@
     }
 
     if ([authConfig.type isEqualToString:@"AG_SECURITY"]) {
-        id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:authConfig];
+        id<AGBaseAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:authConfig];
         [_modules setValue:module forKey:[authConfig name]];
         return module;
     } else if ([authConfig.type isEqualToString:@"AG_OAUTH1"]) {
-        id<AGOAuth1AuthenticationModule> module = [AGOAuth1Authentication moduleWithConfig:authConfig];
+        id<AGBaseAuthenticationModule> module = [AGOAuth1Authentication moduleWithConfig:authConfig];
         [_modules setValue:module forKey:[authConfig name]];
         return module;
     } else {
