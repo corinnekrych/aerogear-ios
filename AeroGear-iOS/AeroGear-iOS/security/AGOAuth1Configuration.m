@@ -21,6 +21,8 @@
 
 // private getters...
 @synthesize baseURL = _baseURL;
+@synthesize key = _key;
+@synthesize secret = _secret;
 @synthesize requestTokenEndpoint = _requestTokenEndpoint;
 @synthesize authEndpoint = _authEndpoint;
 @synthesize callbackAuthEndpoint = _callbackAuthEndpoint;

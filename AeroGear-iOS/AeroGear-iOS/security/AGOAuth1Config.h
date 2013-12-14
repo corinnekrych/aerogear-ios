@@ -29,6 +29,16 @@
 @property (strong, nonatomic) NSURL* baseURL;
 
 /**
+ * TODO key to identify app id.
+ */
+@property (strong, nonatomic) NSURL* key;
+
+/**
+ * TODO Secret.
+ */
+@property (strong, nonatomic) NSURL* secret;
+
+/**
  * Applies the "request token endpoint" to the configuration. This URL is used to start the OAuth dance, requesting
  * access tokens.
  */
