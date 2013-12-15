@@ -18,9 +18,9 @@
 #import "AGAuthenticator.h"
 #import "AGRestAuthentication.h"
 #import "AGAuthConfiguration.h"
-#import "AGOAuth1Configuration.h"
 #import "AGOAuth1AuthenticationModule.h"
 #import "AGOAuth1Authentication.h"
+#import "AGBaseAuthenticationModule.h"
 
 @implementation AGAuthenticator {
     NSMutableDictionary* _modules;
@@ -38,23 +38,37 @@
     return [[self alloc] init];
 }
 
--(id<AGBaseAuthenticationModule>) auth:(void (^)(id<AGConfig> config)) config {
-    
-    if (config && [config conformsToProtocol:@protocol(AGAuthConfig)]) {
-        AGAuthConfiguration* authConfig =[[AGAuthConfiguration alloc] init];
-        config(authConfig);
-        AGRestAuthentication* module = [AGRestAuthentication moduleWithConfig:authConfig];
-        [_modules setValue:module forKey:[authConfig name]];
+-(id<AGBaseAuthenticationModule>) auth:(id<AGBaseAuthConfig>) config {
+
+    if ([config.type isEqualToString:@"AG_SECURITY"]) {
+        id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:config];
+        [_modules setValue:module forKey:[config name]];
         return module;
-    } else if (config && [config conformsToProtocol:@protocol(AGAuthConfig)]) {
-        AGOAuth1Configuration* authConfig =[[AGOAuth1Configuration alloc] init];
-        config(authConfig);
-        AGOAuth1Authentication* module = [AGOAuth1Authentication moduleWithConfig:authConfig];
-        [_modules setValue:module forKey:[authConfig name]];
+    } else if ([config.type isEqualToString:@"AG_OAUTH1"]) {
+        id<AGOAuth1AuthenticationModule> module = [AGOAuth1Authentication moduleWithConfig:config];
+        [_modules setValue:module forKey:[config name]];
         return module;
     } else {
         return nil;
     }
+    
+    
+//    if (config && [configParam conformsToProtocol:@protocol(AGAuthConfig)]) {
+//        AGAuthConfiguration* authConfig =[[AGAuthConfiguration alloc] init];
+//        config(authConfig);
+//        AGRestAuthentication* module = [AGRestAuthentication moduleWithConfig:authConfig];
+//        [_modules setValue:module forKey:[authConfig name]];
+//        return module;
+//    } else if (config && [config conformsToProtocol:@protocol(AGOAuth1Config)]) {
+//        AGOAuth1Configuration* authConfig =[[AGOAuth1Configuration alloc] init];
+//        config(authConfig);
+//        AGOAuth1Authentication* module = [AGOAuth1Authentication moduleWithConfig:authConfig];
+//        [_modules setValue:module forKey:[authConfig name]];
+//        return module;
+//    } else {
+//        return nil;
+//    }
+
 }
 
 -(id<AGAuthenticationModule>)remove:(NSString*) moduleName {

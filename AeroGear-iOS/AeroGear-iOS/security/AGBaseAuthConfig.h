@@ -16,26 +16,21 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGBaseAuthConfig.h"
+#import "AGConfig.h"
 
 /**
- * Represents the public API to configure AGAuthenticationModule objects.
+ * Represents the public common API to configure AGAuthenticationModule, AGOAuth1AuthenticationModule objects.
  */
-@protocol AGAuthConfig <AGBaseAuthConfig>
+@protocol AGBaseAuthConfig <AGConfig>
 
 /**
- * Applies the "login endpoint" to the configuration.
+ * Applies the baseURL to the configuration.
  */
-@property (copy, nonatomic) NSString* loginEndpoint;
+@property (strong, nonatomic) NSURL* baseURL;
 
 /**
- * Applies the "logout endpoint" to the configuration.
+ * The timeout interval for a request to complete.
  */
-@property (copy, nonatomic) NSString* logoutEndpoint;
-
-/**
- * Applies the "enroll endpoint" to the configuration.
- */
-@property (copy, nonatomic) NSString* enrollEndpoint;
+@property (assign, nonatomic) NSTimeInterval timeout;
 
 @end

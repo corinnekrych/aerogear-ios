@@ -16,17 +16,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGConfig.h"
+#import "AGBaseAuthConfig.h"
 
 /**
  * Represents the public API to configure AGOAuth1AuthenticationModule, AGOAuth2AuthenticationModule objects.
  */
-@protocol AGOAuth1Config <AGConfig>
-
-/**
- * Applies the baseURL to the configuration.
- */
-@property (strong, nonatomic) NSURL* baseURL;
+@protocol AGOAuth1Config <AGBaseAuthConfig>
 
 /**
  * TODO key to identify app id.
@@ -60,11 +55,6 @@
  * Applies the exchange your request token with "access token endpoint" to the configuration.
  */
 @property (copy, nonatomic) NSString* accessTokenEndpoint;
-
-/**
- * The timeout interval for a request to complete.
- */
-@property (assign, nonatomic) NSTimeInterval timeout;
 
 
 @end

@@ -52,13 +52,12 @@ Below is an example that creates an Authenticator that points to the remote Aero
 /**
  * Adds a new AGAuthenticationModule object, based on the given configuration object.
  *
- * @param config A block object which passes in an implementation of the AGAuthConfig protocol.
+ * @param config which implement AGBaseAuthConfig protocol.
  * the object is used to configure the AGAuthenticationModule object.
  *
  * @return the newly created AGAuthenticationModule object
  */
--(id<AGAuthenticationModule>) auth:(void (^)(id<AGConfig> config)) config;
-
+-(id<AGBaseAuthenticationModule>) auth:(id<AGBaseAuthConfig>) config;
 /**
  * Removes a AGAuthenticationModule implementation from the AGAuthenticator. The auth module,
  * to be removed is determined by the moduleName argument.
