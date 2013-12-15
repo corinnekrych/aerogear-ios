@@ -51,7 +51,6 @@
         _accessMethod = @"POST";
         
         _httpClient = [[AFOAuth1Client alloc] initWithBaseURL:[[NSURL alloc] initWithString:_baseURL] key:_key secret:_secret];
-        _httpClient.parameterEncoding = AFJSONParameterEncoding;
     }
     return self;
 }
