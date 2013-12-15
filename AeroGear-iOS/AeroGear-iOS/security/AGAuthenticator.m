@@ -18,6 +18,7 @@
 #import "AGAuthenticator.h"
 #import "AGRestAuthentication.h"
 #import "AGAuthConfiguration.h"
+#import "AGOAuth1Configuration.h"
 #import "AGOAuth1AuthenticationModule.h"
 #import "AGOAuth1Authentication.h"
 
@@ -38,24 +39,22 @@
 }
 
 -(id<AGBaseAuthenticationModule>) auth:(void (^)(id<AGConfig> config)) config {
-    AGAuthConfiguration* authConfig = [[AGAuthConfiguration alloc] init];
     
-    if (config) {
+    if (config && [config conformsToProtocol:@protocol(AGAuthConfig)]) {
+        AGAuthConfiguration* authConfig =[[AGAuthConfiguration alloc] init];
         config(authConfig);
-    }
-
-    if ([authConfig.type isEqualToString:@"AG_SECURITY"]) {
-        id<AGBaseAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:authConfig];
+        AGRestAuthentication* module = [AGRestAuthentication moduleWithConfig:authConfig];
         [_modules setValue:module forKey:[authConfig name]];
         return module;
-    } else if ([authConfig.type isEqualToString:@"AG_OAUTH1"]) {
-        id<AGBaseAuthenticationModule> module = [AGOAuth1Authentication moduleWithConfig:authConfig];
+    } else if (config && [config conformsToProtocol:@protocol(AGAuthConfig)]) {
+        AGOAuth1Configuration* authConfig =[[AGOAuth1Configuration alloc] init];
+        config(authConfig);
+        AGOAuth1Authentication* module = [AGOAuth1Authentication moduleWithConfig:authConfig];
         [_modules setValue:module forKey:[authConfig name]];
         return module;
     } else {
         return nil;
     }
-
 }
 
 -(id<AGAuthenticationModule>)remove:(NSString*) moduleName {
