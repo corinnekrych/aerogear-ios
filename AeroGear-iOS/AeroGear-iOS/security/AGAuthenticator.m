@@ -41,7 +41,7 @@
 -(id<AGBaseAuthenticationModule>) auth:(id<AGBaseAuthConfig>) config {
 
     if ([config.type isEqualToString:@"AG_SECURITY"]) {
-        id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:config];
+        id<AGAuthenticationModule> module = [AGRestAuthentication moduleWithConfig:(id<AGAuthConfig>)config];
         [_modules setValue:module forKey:[config name]];
         return module;
     } else if ([config.type isEqualToString:@"AG_OAUTH1"]) {
@@ -51,24 +51,6 @@
     } else {
         return nil;
     }
-    
-    
-//    if (config && [configParam conformsToProtocol:@protocol(AGAuthConfig)]) {
-//        AGAuthConfiguration* authConfig =[[AGAuthConfiguration alloc] init];
-//        config(authConfig);
-//        AGRestAuthentication* module = [AGRestAuthentication moduleWithConfig:authConfig];
-//        [_modules setValue:module forKey:[authConfig name]];
-//        return module;
-//    } else if (config && [config conformsToProtocol:@protocol(AGOAuth1Config)]) {
-//        AGOAuth1Configuration* authConfig =[[AGOAuth1Configuration alloc] init];
-//        config(authConfig);
-//        AGOAuth1Authentication* module = [AGOAuth1Authentication moduleWithConfig:authConfig];
-//        [_modules setValue:module forKey:[authConfig name]];
-//        return module;
-//    } else {
-//        return nil;
-//    }
-
 }
 
 -(id<AGAuthenticationModule>)remove:(NSString*) moduleName {

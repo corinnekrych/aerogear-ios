@@ -43,6 +43,7 @@
         _type = conf.type;
         _baseURL = conf.baseURL.absoluteString;
         _key = conf.key;
+        _secret = conf.secret;
         _requestTokenEndpoint = conf.requestTokenEndpoint;
         _callbackAuthEndpoint = conf.callbackAuthEndpoint;
         _authEndpoint = conf.authEndpoint;
