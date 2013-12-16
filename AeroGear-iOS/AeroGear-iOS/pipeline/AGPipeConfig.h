@@ -17,7 +17,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AGPageConfig.h"
-#import "AGAuthenticationModule.h"
+#import "AGBaseAuthenticationModule.h"
 
 /**
  * Represents the public API to configure AGPipe objects.
@@ -43,7 +43,7 @@
 /**
  * The Authentication Module configured for this Pipe.
  */
-@property (strong, nonatomic) id<AGAuthenticationModule> authModule;
+@property (strong, nonatomic) id<AGBaseAuthenticationModule> authModule;
 
 /**
  * The timeout interval for a request to complete.

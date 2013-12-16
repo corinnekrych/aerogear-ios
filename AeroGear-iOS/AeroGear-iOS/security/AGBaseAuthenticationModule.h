@@ -16,4 +16,15 @@
  */
 @property (nonatomic, readonly) NSString* baseURL;
 
+
+/**
+*  A key/value pair of the authentication tokens.
+*/
+@property (nonatomic, readonly) NSMutableDictionary* authTokens;
+
+/**
+ * Performs a simple check if the user of the module impl. is authenticated.
+ */
+- (BOOL)isAuthenticated;
+
 @end

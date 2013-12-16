@@ -22,9 +22,11 @@
 //category:
 #import "AGNSMutableArray+Paging.h"
 #import "AGOAuth1AuthenticationModule.h"
+#import "AGAuthenticationModule.h"
+#import "AGOAuth1HttpClient.h"
 
 @implementation AGRESTPipe {
-    id<AGAuthenticationModule> _authModule;
+    id<AGBaseAuthenticationModule> _authModule;
     NSString* _recordId;
     
     AGPipeConfiguration* _config;
@@ -63,13 +65,17 @@
         _recordId = _config.recordId;
         if ([_config.name isEqualToString:@"AG_SECURITY"]) {
             _authModule = (id<AGAuthenticationModule>) _config.authModule;
+            _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout];
+            _restClient.parameterEncoding = AFJSONParameterEncoding;
         } else if ([_config.name isEqualToString:@"AG_OAUTH1"]) {
             _authModule = (id<AGOAuth1AuthenticationModule>) _config.authModule;
+            _restClient = [AGOAuth1HttpClient clientFor:finalURL timeout:_config.timeout];
+            //_restClient.parameterEncoding = AFJSONParameterEncoding;
         }
 
         
-        _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout];
-        _restClient.parameterEncoding = AFJSONParameterEncoding;
+//        _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout];
+//        _restClient.parameterEncoding = AFJSONParameterEncoding;
         
         // if NSURLCredential object is set on the config
         if (_config.credential) {

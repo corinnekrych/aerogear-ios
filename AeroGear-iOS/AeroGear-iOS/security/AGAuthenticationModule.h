@@ -126,15 +126,7 @@ As with the case of Pipe, configured timeout interval (in the config object) and
  */
 @property (nonatomic, readonly) NSString* enrollEndpoint;
 
-/**
-*  A key/value pair of the authentication tokens.
-*/
-@property (nonatomic, readonly) NSMutableDictionary* authTokens;
 
-/**
- * Performs a simple check if the user of the module impl. is authenticated.
- */
-- (BOOL)isAuthenticated;
 
 /**
  * Performs deauthorization, after logout.
