@@ -18,6 +18,7 @@
 #import <Kiwi/Kiwi.h>
 #import "AGRESTPipe.h"
 #import "AGHTTPMockHelper.h"
+#import "AGPipeConfiguration.h"
 #import "AGNSMutableArray+Paging.h"
 
 SPEC_BEGIN(AGPaginationSpec)

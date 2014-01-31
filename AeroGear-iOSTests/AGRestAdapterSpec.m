@@ -19,6 +19,7 @@
 #import "AGRESTPipe.h"
 #import "AGMultipart.h"
 #import "AGHTTPMockHelper.h"
+#import "AGPipeConfiguration.h"
 
 // useful macro to check iOS version
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)

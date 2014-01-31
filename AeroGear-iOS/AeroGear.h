@@ -24,6 +24,7 @@
 #pragma mark - Pipeline
 #import "AGPipe.h"
 #import "AGRESTPipe.h"
+#import "AGBaseAdapter.h"
 #import "AGPipeline.h"
 #import "AGPipeConfig.h"
 #import "AGNSMutableArray+Paging.h"
