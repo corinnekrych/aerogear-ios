@@ -47,7 +47,7 @@
 
 #pragma mark - Encryption
 #import "AGCryptoConfig.h"
-#import "AGKeyStoreCryptoConfig.h"
+#import "AGPasswordProtectedKeyChainCryptoConfig.h"
 #import "AGPassphraseCryptoConfig.h"
 #import "AGKeyManager.h"
 #import "AGEncryptionService.h"

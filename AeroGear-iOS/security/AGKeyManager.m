@@ -39,7 +39,7 @@
 - (id<AGEncryptionService>)keyService:(id<AGCryptoConfig>)config {
     id<AGEncryptionService> keyService;
     
-    if ([config isKindOfClass:[AGKeyStoreCryptoConfig class]]) {
+    if ([config isKindOfClass:[AGPasswordProtectedKeyChainCryptoConfig class]]) {
         keyService = [[AGPasswordEncryptionServices alloc] initWithConfig:config];
     } else if ([config isKindOfClass:[AGPassphraseCryptoConfig class]]) {
         keyService = [[AGPassphraseEncryptionServices alloc] initWithConfig:config];

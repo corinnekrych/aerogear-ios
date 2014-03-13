@@ -15,29 +15,23 @@
  * limitations under the License.
  */
 
-#import "AGKeyStoreCryptoConfig.h"
+#import <Foundation/Foundation.h>
 
-@implementation AGKeyStoreCryptoConfig
+#import "AGCryptoConfig.h"
 
-@synthesize name = _name;
-@synthesize type = _type;
+/**
+ * Configuration object for an AGPasswordEncryptionServices provider.
+ */
+@interface AGPasswordProtectedKeyChainCryptoConfig : NSObject <AGCryptoConfig>
 
-@synthesize alias = _alias;
-@synthesize password = _password;
+/**
+ * Applies the alias to the configuration.
+ */
+@property (nonatomic, copy) NSString *alias;
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        _type = @"AGKeyStoreCryptoConfig";
-         #if TARGET_IPHONE_SIMULATOR
-            _alias = @"alias";
-         #else
-            _alias = [[NSBundle mainBundle] bundleIdentifier];
-         #endif
-        _name = _alias;
-    }
-    
-    return self;
-}
+/**
+ * Applies the password to the configuration.
+ */
+@property (nonatomic, copy) NSString *password;
 
 @end

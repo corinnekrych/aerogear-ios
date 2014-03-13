@@ -20,7 +20,7 @@
 #import "AGConfig.h"
 
 /**
-  Marker class for the different Crypto configuration objects. See AGKeyStoreCryptoConfig and
+  Marker class for the different Crypto configuration objects. See AGPasswordProtectedKeyChainCryptoConfig and
   AGPassphraseCryptoConfig class documentation for concrete implementations.
  */
 @protocol AGCryptoConfig <AGConfig>

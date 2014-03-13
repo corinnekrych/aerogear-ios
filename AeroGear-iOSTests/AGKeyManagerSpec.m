@@ -17,7 +17,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import "AGKeyManager.h"
-#import "AGKeyStoreCryptoConfig.h"
+#import "AGPasswordProtectedKeyChainCryptoConfig.h"
 
 SPEC_BEGIN(AGKeyManagerSpec)
 
@@ -35,7 +35,7 @@ describe(@"AGKeyManagerSpec", ^{
         });
         
         it(@"should allow add of an AGEncryptionService object", ^{
-            AGKeyStoreCryptoConfig *config = [[AGKeyStoreCryptoConfig alloc] init];
+            AGPasswordProtectedKeyChainCryptoConfig *config = [[AGPasswordProtectedKeyChainCryptoConfig alloc] init];
             [config setAlias:@"alias"];
             [config setPassword:@"passphrase"];
             
@@ -44,7 +44,7 @@ describe(@"AGKeyManagerSpec", ^{
         });
         
         it(@"should _not_ add a nil AGEncryptionService object ", ^{
-            AGKeyStoreCryptoConfig *config = [[AGKeyStoreCryptoConfig alloc] init];
+            AGPasswordProtectedKeyChainCryptoConfig *config = [[AGPasswordProtectedKeyChainCryptoConfig alloc] init];
             [config setAlias:@"alias"];
             [config setPassword:@"passphrase"];
             
@@ -53,7 +53,7 @@ describe(@"AGKeyManagerSpec", ^{
         });
 
         it(@"should be able to add and remove an AGEncryptionService", ^{
-            AGKeyStoreCryptoConfig *config = [[AGKeyStoreCryptoConfig alloc] init];
+            AGPasswordProtectedKeyChainCryptoConfig *config = [[AGPasswordProtectedKeyChainCryptoConfig alloc] init];
             [config setAlias:@"alias"];
             [config setPassword:@"passphrase"];
             
@@ -71,7 +71,7 @@ describe(@"AGKeyManagerSpec", ^{
         });
         
         it(@"should not remove a non existing AGEncryptionService", ^{
-            AGKeyStoreCryptoConfig *config = [[AGKeyStoreCryptoConfig alloc] init];
+            AGPasswordProtectedKeyChainCryptoConfig *config = [[AGPasswordProtectedKeyChainCryptoConfig alloc] init];
             [config setAlias:@"alias"];
             [config setPassword:@"passphrase"];
             

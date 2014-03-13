@@ -84,7 +84,7 @@
  * Return an implementation of an AGEncryptionService based on the AGCryptoConfig configuration object passed in.
  * See AGPasswordKeyServices and AGPassphraseKeyServices for the different encyption providers.
  *
- * @param config The CryptoConfig object. See AGKeyStoreCryptoConfig and AGPassphraseCryptoConfig configuration objects.
+ * @param config The CryptoConfig object. See AGPasswordProtectedKeyChainCryptoConfig and AGPassphraseCryptoConfig configuration objects.
  *
  * @return the newly created AGEncryptionService object.
  */

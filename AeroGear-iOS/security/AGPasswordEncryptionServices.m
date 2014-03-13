@@ -25,7 +25,7 @@
     NSString *_symmetricKeyTag;
 }
 
-- (id)initWithConfig:(AGKeyStoreCryptoConfig *)config {
+- (id)initWithConfig:(AGPasswordProtectedKeyChainCryptoConfig *)config {
     self = [super init];
 
     // TODO

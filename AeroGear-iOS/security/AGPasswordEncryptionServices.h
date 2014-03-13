@@ -16,7 +16,7 @@
  */
 
 #import "AGBaseEncryptionService.h"
-#import "AGKeyStoreCryptoConfig.h"
+#import "AGPasswordProtectedKeyChainCryptoConfig.h"
 
 /**
   An AGEncryptionService that uses Apple's keychain for storing and retrieving
@@ -27,10 +27,10 @@
 /**
  * Initialize the provider with the given config
  *
- * @param config An AGKeyStoreCryptoConfig configuration object.
+ * @param config An AGPasswordProtectedKeyChainCryptoConfig configuration object.
  *
  * @return the newly created AGPasswordEncryptionServices object.
  */
-- (id)initWithConfig:(AGKeyStoreCryptoConfig *)config;
+- (id)initWithConfig:(AGPasswordProtectedKeyChainCryptoConfig *)config;
 
 @end
