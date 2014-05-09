@@ -28,7 +28,7 @@
     if (accessTokensExpirationDate == 0)
         return YES;
     
-    return accessTokensExpirationDate > [NSDate date];
+    return [accessTokensExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
 }
 
 - (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration {
