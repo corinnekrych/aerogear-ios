@@ -16,7 +16,7 @@
  */
 
 #import "AGAuthorizer.h"
-#import "AGRestAuthzModule.h"
+#import "AGRestOAuth2Module.h"
 #import "AGAuthzConfiguration.h"
 
 @implementation AGAuthorizer {
@@ -46,7 +46,7 @@
         return nil;
     }
     
-    id<AGAuthzModule> module = [AGRestAuthzModule moduleWithConfig:authzConfig];
+    id<AGAuthzModule> module = [AGRestOAuth2Module moduleWithConfig:authzConfig];
     [_modules setValue:module forKey:[authzConfig name]];
     return module;
 }

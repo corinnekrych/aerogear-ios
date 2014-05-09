@@ -22,7 +22,7 @@
 
     // auth/autz configuration
     @property (nonatomic, strong) id<AGAuthenticationModuleAdapter> authModule;
-    @property (nonatomic, strong) id<AGAuthzModuleAdapter> authzModule;
+    @property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
 
 @end
 
@@ -49,7 +49,7 @@
     if (self.authModule && [self.authModule isAuthenticated]) {
         headers = [self.authModule authTokens];
     } else if (self.authzModule && [self.authzModule isAuthorized]) {
-        headers = [self.authzModule accessTokens];
+        headers = [self.authzModule getAuthorizationFields];
     }
 
     // apply them
@@ -81,13 +81,13 @@
 
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration
                authModule:(id<AGAuthenticationModuleAdapter>) authModule
-              authzModule:(id<AGAuthzModuleAdapter>)authzModule {
+              authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule {
     return [[[self class] alloc] initWithBaseURL:url timeout:interval sessionConfiguration:configuration authModule:authModule authzModule:authzModule];
 }
 
 - (instancetype)initWithBaseURL:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration
                      authModule:(id<AGAuthenticationModuleAdapter>) authModule
-                    authzModule:(id<AGAuthzModuleAdapter>)authzModule {
+                    authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule {
 
     self = [super initWithBaseURL:url sessionConfiguration:configuration];
 

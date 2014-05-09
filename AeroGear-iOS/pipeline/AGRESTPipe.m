@@ -60,7 +60,7 @@
         _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout
                          sessionConfiguration:_config.sessionConfiguration
                                    authModule:(id <AGAuthenticationModuleAdapter>) _config.authModule
-                                  authzModule:(id <AGAuthzModuleAdapter>) _config.authzModule];
+                                  authzModule:(id <AGOAuth2AuthzModuleAdapter>) _config.authzModule];
 
 
         // if NSURLCredential object is set on the config

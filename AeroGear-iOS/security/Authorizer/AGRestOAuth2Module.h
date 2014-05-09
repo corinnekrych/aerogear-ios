@@ -17,7 +17,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AGAuthzConfig.h"
-#import "AGAuthzModuleAdapter.h"
+#import "AGOAuth2AuthzModuleAdapter.h"
 
 /**
  An internal AGAuthorization module implementation that uses REST as the auth transport.
@@ -27,7 +27,7 @@
  _"REST"_. See AGAuthorizer and AGAuthzModule class documentation for more information.
 
  */
-@interface AGRestAuthzModule : NSObject <AGAuthzModuleAdapter>
+@interface AGRestOAuth2Module : NSObject <AGOAuth2AuthzModuleAdapter>
 
 -(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig;
 +(instancetype) moduleWithConfig:(id<AGAuthzConfig>) authzConfig;

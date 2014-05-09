@@ -19,19 +19,19 @@
 #import "AGHTTPMockHelper.h"
 #import "AGHttpClient.h"
 #import "AGAuthzConfiguration.h"
-#import "AGRestAuthzModule.h"
+#import "AGRestOAuth2Module.h"
 
 // useful macro to check iOS version
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
-SPEC_BEGIN(AGRestAuthzModuleSpec)
+SPEC_BEGIN(AGRestOAuth2ModuleSpec)
 
 describe(@"AGRestAuthzModule", ^{
     context(@"when newly created", ^{
 
         __block NSString *ACCESS_TOKEN_RESPONSE = nil;
 
-        __block AGRestAuthzModule* restAuthzModule = nil;
+        __block AGRestOAuth2Module* restAuthzModule = nil;
 
         __block BOOL finishedFlag;
         
@@ -55,7 +55,7 @@ describe(@"AGRestAuthzModule", ^{
             config.scopes = @[@"https://www.googleapis.com/auth/drive"];
             config.timeout = 1; // this is just for testing of timeout methods
 
-            restAuthzModule = [AGRestAuthzModule moduleWithConfig:config];
+            restAuthzModule = [AGRestOAuth2Module moduleWithConfig:config];
         });
 
         afterEach(^{

@@ -16,20 +16,20 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "AGRestAuthzModule.h"
+#import "AGRestOAuth2Module.h"
 #import "AGAuthzConfiguration.h"
 #import "AGHttpClient.h"
 
 NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotification";
 
-@implementation AGRestAuthzModule {
+@implementation AGRestOAuth2Module {
     // ivars
     AGHttpClient* _restClient;
     id _applicationLaunchNotificationObserver;
 }
 
 // =====================================================
-// ======== public API (AGAuthenticationModule) ========
+// ======== public API (AGAuthzModule) ========
 // =====================================================
 @synthesize type = _type;
 @synthesize baseURL = _baseURL;
@@ -41,9 +41,9 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 @synthesize scopes = _scopes;
 
 // ==============================================================
-// ======== internal API (AGAuthenticationModuleAdapter) ========
+// ======== internal API (AGAuthzModuleAdapter) ========
 // ==============================================================
-@synthesize accessTokens = _accessTokens;
+@synthesize session = _session;
 
 // ==============================================
 // ======== 'factory' and 'init' section ========
@@ -51,6 +51,14 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 +(instancetype) moduleWithConfig:(id<AGAuthzConfig>) authzConfig {
     return [[[self class] alloc] initWithConfig:authzConfig];
+}
+
+-(instancetype) init {
+    self = [super init];
+    if (self) {
+        _session = [[AGOAuth2AuthzSession alloc] init];
+    }
+    return self;
 }
 
 -(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig {
@@ -71,6 +79,8 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
         // default to url serialization
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
+        _session = [[AGOAuth2AuthzSession alloc] init];
+        _session.clientId = _clientId;
     }
 
     return self;
@@ -85,25 +95,30 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 // =====================================================
 -(void) requestAccessSuccess:(void (^)(id object))success
               failure:(void (^)(NSError *error))failure {
-
-    // Form the URL string.
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+    if (self.session.accessTokens != nil && [self.session tokenIsNotExpired]) {
+        return;
+    } else if (self.session.refreshTokens != nil) { // need to refresh token
+        
+    } else {
+        // Form the URL string.
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
                                                                  self.baseURL,
                                                                  self.authzEndpoint,
                                                                  [self scope],
                                                                  [self urlEncodeString:_redirectURL],
                                                                  _clientId]];
 
-    // register with the notification system in order to be notified when the 'authorisation' process completes in the
-    // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
-    // from the server.
-    _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-        NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
-        NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
-        [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
-    }];
+        // register with the notification system in order to be notified when the 'authorisation' process completes in the
+        // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
+        // from the server.
+        _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+            NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+            NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
+            [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+        }];
 
-    [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 
@@ -121,8 +136,9 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
 
-        _accessTokens = @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", responseObject[@"access_token"]]};
-
+        //_accessTokens = @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", responseObject[@"access_token"]]};
+        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+        
         if (success) {
             success(responseObject[@"access_token"]);
         }
@@ -134,6 +150,9 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     }];
 }
 
+-(NSDictionary*) getAuthorizationFields {
+    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessTokens]};
+}
 
 -(NSDictionary *) parametersFromQueryString:(NSString *)queryString {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -185,11 +204,12 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 
 - (BOOL)isAuthorized {
-    return (nil != _accessTokens);
+    return self.session.accessTokens != nil && [self.session tokenIsNotExpired];
 }
 
 - (void)deauthorize {
-    _accessTokens = nil;
+    //TODO AGIOS-146
+    //_accessTokens = nil;
 }
 
 @end

@@ -17,22 +17,18 @@
 
 #import <Foundation/Foundation.h>
 #import "AGAuthzModule.h"
+#import "AGOAuth2AuthzSession.h"
 
 /**
- * AGAuthzModuleAdapter represents the _internal_ authentication module 'interface'
+ * AGAuthzModuleAdapter represents the _internal_ authorization module 'interface'
  */
-@protocol AGAuthzModuleAdapter <AGAuthzModule>
+@protocol AGOAuth2AuthzModuleAdapter <AGAuthzModule>
 
 /**
- *  A key/value pair of the authentication tokens.
+ *  A key/value store of the authz tokens.
  */
-@property (nonatomic, readonly) NSDictionary* accessTokens;
+@property (nonatomic, readonly) AGOAuth2AuthzSession* session;
 
-/**
- * check is accessTokens are present and not expired.
- * TODO AGIOS-145
- */
-- (BOOL)isAuthorized;
 
 
 @end
