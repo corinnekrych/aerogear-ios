@@ -98,7 +98,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     if (self.session.accessTokens != nil && [self.session tokenIsNotExpired]) {
         return;
     } else if (self.session.refreshTokens != nil) { // need to refresh token
-        
+        [self refreshAccessTokenSuccess:success failure:failure];
     } else {
         // Form the URL string.
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
@@ -136,13 +136,34 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
 
-        //_accessTokens = @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", responseObject[@"access_token"]]};
         [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
         
         if (success) {
             success(responseObject[@"access_token"]);
         }
 
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+-(void)refreshAccessTokenSuccess:(void (^)(id object))success
+                         failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"refresh_token":self.session.refreshTokens, @"client_id":_clientId, @"grant_type":@"refresh_token"}];
+    if (_clientSecret) {
+        paramDict[@"client_secret"] = _clientSecret;
+    }
+    
+    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:self.session.refreshTokens expiration:responseObject[@"expires_in"]];
+        
+        if (success) {
+            success(responseObject[@"access_token"]);
+        }
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
             failure(error);
