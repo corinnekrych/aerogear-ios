@@ -96,28 +96,13 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 -(void) requestAccessSuccess:(void (^)(id object))success
               failure:(void (^)(NSError *error))failure {
     if (self.session.accessTokens != nil && [self.session tokenIsNotExpired]) {
-        return;
+        if (success) {
+            success(self.session.accessTokens);
+        }
     } else if (self.session.refreshTokens != nil) { // need to refresh token
         [self refreshAccessTokenSuccess:success failure:failure];
     } else {
-        // Form the URL string.
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
-                                                                 self.baseURL,
-                                                                 self.authzEndpoint,
-                                                                 [self scope],
-                                                                 [self urlEncodeString:_redirectURL],
-                                                                 _clientId]];
-
-        // register with the notification system in order to be notified when the 'authorisation' process completes in the
-        // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
-        // from the server.
-        _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-            NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
-            NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
-            [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
-        }];
-
-        [[UIApplication sharedApplication] openURL:url];
+        [self requestAuthorizationCodeSucess:success failure:failure];
     }
 }
 
@@ -125,6 +110,27 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 // ==============================================================
 // ======== internal API (AGAuthenticationModuleAdapter) ========
 // ==============================================================
+-(void)requestAuthorizationCodeSucess:(void (^)(id object))success
+                              failure:(void (^)(NSError *error))failure {
+    // Form the URL string.
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+                                       self.baseURL,
+                                       self.authzEndpoint,
+                                       [self scope],
+                                       [self urlEncodeString:_redirectURL],
+                                       _clientId]];
+    
+    // register with the notification system in order to be notified when the 'authorisation' process completes in the
+    // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
+    // from the server.
+    _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+        NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+        NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
+        [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+    }];
+    
+    [[UIApplication sharedApplication] openURL:url];
+}
 
 -(void)exchangeAuthorizationCodeForAccessToken:(NSString*)code
                                        success:(void (^)(id object))success
