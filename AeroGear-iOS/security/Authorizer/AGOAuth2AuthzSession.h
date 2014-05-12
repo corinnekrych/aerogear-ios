@@ -19,16 +19,6 @@
 @interface AGOAuth2AuthzSession : NSObject
 
 /**
- *  Id of the app, also used as id of the session.
- */
-@property (nonatomic, strong) NSString* clientId;
-
-/**
- *  The authorization code. this code will need to be exchange to obtain an access token.
- */
-@property (nonatomic, strong) NSString* authorizationCode;
-
-/**
  *  The access token which expires.
  */
 @property (nonatomic, strong) NSString* accessTokens;
@@ -44,5 +34,6 @@
 @property (nonatomic, strong) NSString* refreshTokens;
 
 - (BOOL) tokenIsNotExpired;
+
 - (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration;
 @end

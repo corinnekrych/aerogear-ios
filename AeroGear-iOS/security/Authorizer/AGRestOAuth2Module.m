@@ -80,7 +80,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         // default to url serialization
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
         _session = [[AGOAuth2AuthzSession alloc] init];
-        _session.clientId = _clientId;
     }
 
     return self;

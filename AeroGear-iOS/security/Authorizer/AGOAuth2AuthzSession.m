@@ -18,10 +18,8 @@
 #import "AGOAuth2AuthzSession.h"
 
 @implementation AGOAuth2AuthzSession
-@synthesize clientId;
 @synthesize accessTokens;
 @synthesize accessTokensExpirationDate;
-@synthesize authorizationCode;
 @synthesize refreshTokens;
 
 - (BOOL)tokenIsNotExpired {
