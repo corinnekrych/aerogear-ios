@@ -95,12 +95,15 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 -(void) requestAccessSuccess:(void (^)(id object))success
               failure:(void (^)(NSError *error))failure {
     if (self.session.accessTokens != nil && [self.session tokenIsNotExpired]) {
+        // we already have a valid access token, nothing more to be done
         if (success) {
             success(self.session.accessTokens);
         }
-    } else if (self.session.refreshTokens != nil) { // need to refresh token
+    } else if (self.session.refreshTokens != nil) {
+        // need to refresh token
         [self refreshAccessTokenSuccess:success failure:failure];
     } else {
+        // ask for authorization code and once obtained exchange code for access token
         [self requestAuthorizationCodeSucess:success failure:failure];
     }
 }

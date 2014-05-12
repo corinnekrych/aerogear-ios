@@ -480,8 +480,6 @@ SPEC_BEGIN(AGHttpClientSpec)
                 authzModule.session.accessTokens = @"ACCESS_TOKEN";
                 authzModule.session.accessTokensExpirationDate = [[NSDate date] dateByAddingTimeInterval:3600];
                 
-                 //setValue:@{@"Token" : @"foo"} forKey:@"accessTokens"];
-
                 _restClient = [AGHttpClient clientFor:baseURL timeout:60 sessionConfiguration:nil authModule:nil authzModule:authzModule];
             });
 

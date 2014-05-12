@@ -19,21 +19,28 @@
 @interface AGOAuth2AuthzSession : NSObject
 
 /**
- *  The access token which expires.
+ * The access token which expires.
  */
 @property (nonatomic, strong) NSString* accessTokens;
 
 /**
- *  The access token's expiration date.
+ * The access token's expiration date.
  */
 @property (nonatomic, strong) NSDate* accessTokensExpirationDate;
 
 /**
- *  The refresh tokens. Does not expire.
+ * The refresh tokens. This toke does not expire and should be used to renew access token when expired.
  */
 @property (nonatomic, strong) NSString* refreshTokens;
 
+/**
+ * Check validity of accessToken. return true if still valid, false when expired.
+ */
 - (BOOL) tokenIsNotExpired;
 
+/**
+ * Save in memory tokens information. Saving tokens allow you to refresh accesstoken transparently for the user without prompting
+ * for grant access.
+ */
 - (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration;
 @end
