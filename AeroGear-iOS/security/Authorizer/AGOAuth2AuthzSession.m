@@ -23,9 +23,6 @@
 @synthesize refreshTokens;
 
 - (BOOL)tokenIsNotExpired {
-    if (accessTokensExpirationDate == 0)
-        return YES;
-    
     return [accessTokensExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
 }
 

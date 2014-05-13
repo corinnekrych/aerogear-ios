@@ -85,12 +85,21 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     return self;
 }
 
+// Used to inject mock
+-(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig client:(AGHttpClient*)client {
+    self = [self initWithConfig:authzConfig];
+    if (self) {
+        _restClient = client;
+    }
+    return self;
+}
+
 -(void)dealloc {
     _restClient = nil;
 }
 
 // =====================================================
-// ======== public API (AGAuthenticationModule) ========
+// ======== public API (AGAuthzModule)          ========
 // =====================================================
 -(void) requestAccessSuccess:(void (^)(id object))success
               failure:(void (^)(NSError *error))failure {
@@ -104,15 +113,15 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         [self refreshAccessTokenSuccess:success failure:failure];
     } else {
         // ask for authorization code and once obtained exchange code for access token
-        [self requestAuthorizationCodeSucess:success failure:failure];
+        [self requestAuthorizationCodeSuccess:success failure:failure];
     }
 }
 
 
 // ==============================================================
-// ======== internal API (AGAuthenticationModuleAdapter) ========
+// ======== internal API (AGAuthzModuleAdapter)          ========
 // ==============================================================
--(void)requestAuthorizationCodeSucess:(void (^)(id object))success
+-(void)requestAuthorizationCodeSuccess:(void (^)(id object))success
                               failure:(void (^)(NSError *error))failure {
     // Form the URL string.
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
