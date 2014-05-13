@@ -20,6 +20,7 @@
 #import "AGHttpClient.h"
 #import "AGAuthzConfiguration.h"
 #import "AGRestOAuth2Module.h"
+#import <OCMock/OCMock.h>
 
 // useful macro to check iOS version
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
@@ -35,27 +36,26 @@ describe(@"AGRestAuthzModule", ^{
 
         __block BOOL finishedFlag;
         
-        //NSInteger const TIMEOUT_ERROR_CODE = SYSTEM_VERSION_LESS_THAN(@"6")? -999: -1001;
+        __block AGAuthzConfiguration* config;
 
         beforeAll(^{
-            ACCESS_TOKEN_RESPONSE =  @"eee";
+            ACCESS_TOKEN_RESPONSE =  @"ACCESS_TOKEN";
         });
 
         beforeEach(^{
-            //NSURL* baseURL = [NSURL URLWithString:@"https://server.com/context/"];
 
             // setup REST Authenticator
-            AGAuthzConfiguration* config = [[AGAuthzConfiguration alloc] init];
+            config = [[AGAuthzConfiguration alloc] init];
             config.name = @"restAuthMod";
             config.baseURL = [[NSURL alloc] initWithString:@"https://accounts.google.com"];
             config.authzEndpoint = @"/o/oauth2/auth";
             config.accessTokenEndpoint = @"/o/oauth2/token";
             config.clientId = @"XXXXX";
-            config.redirectURL = @"org.aerogear.GoogleDrive:/oauth2Callback";
+            config.redirectURL = @"org.aerogear.GoogleDrive";
             config.scopes = @[@"https://www.googleapis.com/auth/drive"];
             config.timeout = 1; // this is just for testing of timeout methods
-
             restAuthzModule = [AGRestOAuth2Module moduleWithConfig:config];
+            
         });
 
         afterEach(^{
@@ -70,8 +70,120 @@ describe(@"AGRestAuthzModule", ^{
             [restAuthzModule shouldNotBeNil];
         });
 
-        // TODO AGIOS-144
+        it(@"should successfully request authorization code when no access token", ^{
+            
+            void (^callbackSuccess)(id obj) = ^ void (id object) {};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            // Create a partial mock of restAuthzModule
+            id mock = [OCMockObject partialMockForObject:restAuthzModule];
 
+            [[mock expect] requestAuthorizationCodeSuccess:[OCMArg any] failure:[OCMArg any]];
+            
+            [restAuthzModule requestAccessSuccess:callbackSuccess failure:callbackFailure];
+            
+            [mock verify];
+            [mock stopMocking];
+        });
+        
+        it(@"should issue a refresh request when access token has expired", ^{
+            
+            void (^callbackSuccess)(id obj) = ^ void (id object) {};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
+            restAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
+            restAuthzModule.session.accessTokensExpirationDate = 0;
+            
+            // Create a partial mock of restAuthzModule
+            id mock = [OCMockObject partialMockForObject:restAuthzModule];
+            
+            [[mock expect] refreshAccessTokenSuccess:[OCMArg any] failure:[OCMArg any]];
+            
+            [restAuthzModule requestAccessSuccess:callbackSuccess failure:callbackFailure];
+            
+            [mock verify];
+            [mock stopMocking];
+        });
+        
+        it(@"should just run success block if access token are still valid", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
+            restAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
+            restAuthzModule.session.accessTokensExpirationDate = [[NSDate date] dateByAddingTimeInterval:15000];            
+            
+            [restAuthzModule requestAccessSuccess:callbackSuccess failure:callbackFailure];
+            [[theValue(wasSuccessCallbackCalled) should] equal:theValue(YES)];
+        });
+        
+        it(@"should run authz access token well formatted for pipe call", ^{
+            
+            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
+            
+            NSDictionary* accessToken = [restAuthzModule getAuthorizationFields];
+            
+            [[accessToken should] equal:@{@"Authorization": @"Bearer ACCESS_TOKEN"}];
+        });
+        
+        it(@"should issue a request for authz code when no previous access grant was requested before", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            //given a mock UIApplication
+            id mockApplication = [OCMockObject niceMockForClass:[UIApplication class]];
+            [[[mockApplication stub] andReturn:mockApplication] sharedApplication];
+            [[mockApplication expect] openURL:[OCMArg any]];
+            
+            AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config];
+            [myRestAuthzModule requestAuthorizationCodeSuccess:callbackSuccess failure:callbackFailure];
+
+            [mockApplication verify];
+            [mockApplication stopMocking];
+        });
+        
+        it(@"should issue a request for exchanging authz code for access token when no previous access grant was requested before", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
+            NSString* code = @"CODE";
+            
+            AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
+            
+            NSMutableDictionary* paramDict = [@{@"code":code, @"client_id":config.clientId, @"redirect_uri": config.redirectURL, @"grant_type":@"authorization_code"} mutableCopy];
+            
+            [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
+            
+            [myRestAuthzModule exchangeAuthorizationCodeForAccessToken:code success:callbackSuccess failure:callbackFailure];
+            
+            [mockAGHTTPClient verify];
+            [mockAGHTTPClient stopMocking];
+        });
+        
+        it(@"should issue a request for refreshing access token with refresh token as param", ^{
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
+            
+            AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
+            myRestAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
+            
+            NSMutableDictionary* paramDict = [@{@"refresh_token":@"REFRESH_TOKEN", @"client_id":config.clientId, @"grant_type":@"refresh_token"} mutableCopy];
+            
+            [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
+            
+            [myRestAuthzModule refreshAccessTokenSuccess:callbackSuccess failure:callbackFailure];
+            
+            [mockAGHTTPClient verify];
+            [mockAGHTTPClient stopMocking];
+        });
 
     });
 });
