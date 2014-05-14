@@ -5,6 +5,7 @@ platform :ios, '7.0'
 pod 'AFNetworking', '2.2.1'
 pod 'FMDB', '2.1'
 pod 'AeroGear-Crypto', '0.2.3'
+pod 'SHXPromise'
 
 target 'AeroGear-iOSTests', :exclusive => true do
     pod 'OCMock', '2.1.1'
