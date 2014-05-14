@@ -21,6 +21,7 @@
 #import "AGPageHeaderExtractor.h"
 #import "AGPageBodyExtractor.h"
 #import "AGPageWebLinkingExtractor.h"
+#import "SHXPromise.h"
 
 //category:
 #import "AGNSMutableArray+Paging.h"
@@ -112,6 +113,9 @@
         return;
     }
 
+    
+    //SHXPromise *promise = [[SHXPromise alloc] init];
+    
     NSString* objectKey = [self getStringValue:value];
     [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
