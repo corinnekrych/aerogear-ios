@@ -22,9 +22,6 @@
 #import "AGRestOAuth2Module.h"
 #import <OCMock/OCMock.h>
 
-// useful macro to check iOS version
-#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-
 SPEC_BEGIN(AGRestOAuth2ModuleSpec)
 
 describe(@"AGRestAuthzModule", ^{
@@ -91,9 +88,9 @@ describe(@"AGRestAuthzModule", ^{
             void (^callbackSuccess)(id obj) = ^ void (id object) {};
             void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
             
-            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
-            restAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
-            restAuthzModule.session.accessTokensExpirationDate = 0;
+            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            restAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
+            restAuthzModule.session.accessTokenExpirationDate = 0;
             
             // Create a partial mock of restAuthzModule
             id mock = [OCMockObject partialMockForObject:restAuthzModule];
@@ -111,9 +108,9 @@ describe(@"AGRestAuthzModule", ^{
             void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
             void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
             
-            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
-            restAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
-            restAuthzModule.session.accessTokensExpirationDate = [[NSDate date] dateByAddingTimeInterval:15000];            
+            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            restAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
+            restAuthzModule.session.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:15000];
             
             [restAuthzModule requestAccessSuccess:callbackSuccess failure:callbackFailure];
             [[theValue(wasSuccessCallbackCalled) should] equal:theValue(YES)];
@@ -121,9 +118,9 @@ describe(@"AGRestAuthzModule", ^{
         
         it(@"should run authz access token well formatted for pipe call", ^{
             
-            restAuthzModule.session.accessTokens = @"ACCESS_TOKEN";
+            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
             
-            NSDictionary* accessToken = [restAuthzModule getAuthorizationFields];
+            NSDictionary* accessToken = [restAuthzModule authorizationFields];
             
             [[accessToken should] equal:@{@"Authorization": @"Bearer ACCESS_TOKEN"}];
         });
@@ -173,7 +170,7 @@ describe(@"AGRestAuthzModule", ^{
             id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
             
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
-            myRestAuthzModule.session.refreshTokens = @"REFRESH_TOKEN";
+            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
             
             NSMutableDictionary* paramDict = [@{@"refresh_token":@"REFRESH_TOKEN", @"client_id":config.clientId, @"grant_type":@"refresh_token"} mutableCopy];
             

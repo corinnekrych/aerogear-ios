@@ -103,12 +103,12 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 // =====================================================
 -(void) requestAccessSuccess:(void (^)(id object))success
               failure:(void (^)(NSError *error))failure {
-    if (self.session.accessTokens != nil && [self.session tokenIsNotExpired]) {
+    if (self.session.accessToken != nil && [self.session tokenIsNotExpired]) {
         // we already have a valid access token, nothing more to be done
         if (success) {
-            success(self.session.accessTokens);
+            success(self.session.accessToken);
         }
-    } else if (self.session.refreshTokens != nil) {
+    } else if (self.session.refreshToken != nil) {
         // need to refresh token
         [self refreshAccessTokenSuccess:success failure:failure];
     } else {
@@ -168,14 +168,14 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
                          failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"refresh_token":self.session.refreshTokens, @"client_id":_clientId, @"grant_type":@"refresh_token"}];
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"refresh_token":self.session.refreshToken, @"client_id":_clientId, @"grant_type":@"refresh_token"}];
     if (_clientSecret) {
         paramDict[@"client_secret"] = _clientSecret;
     }
     
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:self.session.refreshTokens expiration:responseObject[@"expires_in"]];
+        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:self.session.refreshToken expiration:responseObject[@"expires_in"]];
         
         if (success) {
             success(responseObject[@"access_token"]);
@@ -188,8 +188,8 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     }];
 }
 
--(NSDictionary*) getAuthorizationFields {
-    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessTokens]};
+-(NSDictionary*) authorizationFields {
+    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessToken]};
 }
 
 -(NSDictionary *) parametersFromQueryString:(NSString *)queryString {
@@ -242,12 +242,12 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 
 - (BOOL)isAuthorized {
-    return self.session.accessTokens != nil && [self.session tokenIsNotExpired];
+    return self.session.accessToken != nil && [self.session tokenIsNotExpired];
 }
 
 - (void)deauthorize {
     //TODO AGIOS-146
-    //_accessTokens = nil;
+    //_accessToken = nil;
 }
 
 @end

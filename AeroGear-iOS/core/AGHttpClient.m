@@ -49,7 +49,7 @@
     if (self.authModule && [self.authModule isAuthenticated]) {
         headers = [self.authModule authTokens];
     } else if (self.authzModule && [self.authzModule isAuthorized]) {
-        headers = [self.authzModule getAuthorizationFields];
+        headers = [self.authzModule authorizationFields];
     }
 
     // apply them

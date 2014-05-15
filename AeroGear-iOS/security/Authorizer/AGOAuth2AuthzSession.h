@@ -21,17 +21,17 @@
 /**
  * The access token which expires.
  */
-@property (nonatomic, strong) NSString* accessTokens;
+@property (nonatomic, strong) NSString* accessToken;
 
 /**
  * The access token's expiration date.
  */
-@property (nonatomic, strong) NSDate* accessTokensExpirationDate;
+@property (nonatomic, strong) NSDate* accessTokenExpirationDate;
 
 /**
  * The refresh tokens. This toke does not expire and should be used to renew access token when expired.
  */
-@property (nonatomic, strong) NSString* refreshTokens;
+@property (nonatomic, strong) NSString* refreshToken;
 
 /**
  * Check validity of accessToken. return true if still valid, false when expired.
