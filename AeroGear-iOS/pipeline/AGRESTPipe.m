@@ -158,38 +158,77 @@
 -(void) readWithParams:(NSDictionary*)parameterProvider
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure {
-
+    
     // if none has been passed, we use the "global" setting
     // which can be the default limit/offset OR what has
     // been configured on the PIPE level.....:
     if (!parameterProvider)
         parameterProvider = _pageConfig.parameterProvider;
-
-    [_restClient GET:_URL.path parameters:parameterProvider success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        NSMutableArray* pagingObject;
-
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            pagingObject = [NSMutableArray arrayWithObject:responseObject];
-        } else {
-            pagingObject = (NSMutableArray*) [responseObject mutableCopy];
+    
+    
+    if (_restClient.authzModule) { // when authz is required
+        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens
+            [_restClient.authzModule requestAccessSuccess:^(id object) {
+                [_restClient GET:_URL.path parameters:parameterProvider success:^(NSURLSessionDataTask *task, id responseObject) {
+                    
+                    NSMutableArray* pagingObject;
+                    
+                    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                        pagingObject = [NSMutableArray arrayWithObject:responseObject];
+                    } else {
+                        pagingObject = (NSMutableArray*) [responseObject mutableCopy];
+                    }
+                    
+                    // stash pipe reference:
+                    pagingObject.pipe = self;
+                    pagingObject.parameterProvider = [_pageConfig.pageExtractor parse:responseObject
+                                                                              headers:[(NSHTTPURLResponse *) [task response] allHeaderFields]
+                                                                                 next:_pageConfig.nextIdentifier
+                                                                                 prev:_pageConfig.previousIdentifier];
+                    if (success) {
+                        success(pagingObject);
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                } ];
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    // add error msg to wrap token fetching issue
+                    failure(error);
+                }
+            }];
         }
-
-        // stash pipe reference:
-        pagingObject.pipe = self;
-        pagingObject.parameterProvider = [_pageConfig.pageExtractor parse:responseObject
-                                                                  headers:[(NSHTTPURLResponse *) [task response] allHeaderFields]
-                                                                     next:_pageConfig.nextIdentifier
-                                                                     prev:_pageConfig.previousIdentifier];
-        if (success) {
-            success(pagingObject);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        if (failure) {
-            failure(error);
-        }
-    } ];
+    } else { // no authz required
+        [_restClient GET:_URL.path parameters:parameterProvider success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            NSMutableArray* pagingObject;
+            
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                pagingObject = [NSMutableArray arrayWithObject:responseObject];
+            } else {
+                pagingObject = (NSMutableArray*) [responseObject mutableCopy];
+            }
+            
+            // stash pipe reference:
+            pagingObject.pipe = self;
+            pagingObject.parameterProvider = [_pageConfig.pageExtractor parse:responseObject
+                                                                      headers:[(NSHTTPURLResponse *) [task response] allHeaderFields]
+                                                                         next:_pageConfig.nextIdentifier
+                                                                         prev:_pageConfig.previousIdentifier];
+            if (success) {
+                success(pagingObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+            if (failure) {
+                failure(error);
+            }
+        } ];
+    }
 }
 
 

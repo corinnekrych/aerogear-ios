@@ -100,7 +100,7 @@
     AGRequestSerializer *serializer = [AGRequestSerializer serializer];
     serializer.authModule = authModule;
     serializer.authzModule = authzModule;
-
+    self.authzModule = authzModule;
     self.requestSerializer = serializer;
     // apply json response serializer
     self.responseSerializer = [AFJSONResponseSerializer serializer];
