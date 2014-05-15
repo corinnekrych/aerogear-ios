@@ -30,4 +30,7 @@
                                     authModule:(id<AGAuthenticationModuleAdapter>) authModule
                                    authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule;
 
+// TODO 
+@property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
+
 @end

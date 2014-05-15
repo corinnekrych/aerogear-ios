@@ -105,23 +105,45 @@
 -(void) read:(id)value
      success:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure {
-
+    
     if (value == nil || [value isKindOfClass:[NSNull class]]) {
         [self raiseError:@"read" msg:@"read id value was nil" failure:failure];
         // do nothing
         return;
     }
-
-    NSString* objectKey = [self getStringValue:value];
-    [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (success) {
-            success(responseObject);
+    
+    if (_restClient.authzModule) { // when authz is required
+        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens
+            [_restClient.authzModule requestAccessSuccess:^(id object) {
+                NSString* objectKey = [self getStringValue:value];
+                [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    if (success) {
+                        success(responseObject);
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    if (failure) {
+                        failure(error);
+                    }
+                }];
+            } failure:^(NSError *error) {
+                if (failure) {
+                    // add error msg to wrap token fetching issue
+                    failure(error);
+                }
+            }];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    } else { // no authz required
+        NSString* objectKey = [self getStringValue:value];
+        [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (success) {
+                success(responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
+    }
 }
 
 // read all, via HTTP GET

@@ -66,6 +66,7 @@
 
 
 @implementation AGHttpClient
+@synthesize authzModule;
 
 + (instancetype)clientFor:(NSURL *)url {
     return [[[self class] alloc] initWithBaseURL:url timeout:60 sessionConfiguration:nil authModule:nil authzModule:nil];
