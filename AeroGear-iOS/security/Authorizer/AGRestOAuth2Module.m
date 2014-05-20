@@ -26,6 +26,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     // ivars
     AGHttpClient* _restClient;
     id _applicationLaunchNotificationObserver;
+    NSMutableData* responseData;
 }
 
 // =====================================================
@@ -58,6 +59,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     self = [super init];
     if (self) {
         _session = [[AGOAuth2AuthzSession alloc] init];
+        responseData = [NSMutableData data];
     }
     return self;
 }
@@ -76,14 +78,16 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         _clientId = config.clientId;
         _clientSecret = config.clientSecret;
         _scopes = config.scopes;
-
+        
         _restClient = [AGHttpClient clientFor:config.baseURL timeout:config.timeout];
-
+        
         // default to url serialization
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
         _session = [[AGOAuth2AuthzSession alloc] init];
+        
+        responseData = [NSMutableData data];
     }
-
+    
     return self;
 }
 
@@ -104,7 +108,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 // ======== public API (AGAuthzModule)          ========
 // =====================================================
 -(void) requestAccessSuccess:(void (^)(id object))success
-              failure:(void (^)(NSError *error))failure {
+                     failure:(void (^)(NSError *error))failure {
     if (self.session.accessToken != nil && [self.session tokenIsNotExpired]) {
         // we already have a valid access token, nothing more to be done
         if (success) {
@@ -120,7 +124,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 }
 
 -(void) revokeAccessSuccess:(void (^)(id object))success
-                     failure:(void (^)(NSError *error))failure {
+                    failure:(void (^)(NSError *error))failure {
     NSDictionary* paramDict = @{@"token":self.session.accessToken};
     
     [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -143,14 +147,9 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 // ======== internal API (AGAuthzModuleAdapter)          ========
 // ==============================================================
 -(void)requestAuthorizationCodeSuccess:(void (^)(id object))success
-                              failure:(void (^)(NSError *error))failure {
+                               failure:(void (^)(NSError *error))failure {
     // Form the URL string.
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
-                                       self.baseURL,
-                                       self.authzEndpoint,
-                                       [self scope],
-                                       [self urlEncodeString:_redirectURL],
-                                       _clientId]];
+    NSURL *url = [NSURL URLWithString:[self urlAsString]];
     
     // register with the notification system in order to be notified when the 'authorisation' process completes in the
     // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
@@ -167,25 +166,68 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 -(void)exchangeAuthorizationCodeForAccessToken:(NSString*)code
                                        success:(void (^)(id object))success
                                        failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": _redirectURL, @"grant_type":@"authorization_code"}];
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": [NSString stringWithFormat:@"%@", _redirectURL ]}];
     if (_clientSecret) {
         paramDict[@"client_secret"] = _clientSecret;
     }
-
-    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
-        
-        if (success) {
-            success(responseObject[@"access_token"]);
-        }
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest
+									requestWithURL:[NSURL URLWithString:self.accessTokenEndpoint]];
+    
+    
+    NSString *params = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", _clientId, _clientSecret,  code, [self urlEncodeString:_redirectURL] ];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    //    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+    //
+    //        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+    //
+    //        if (success) {
+    //            success(responseObject[@"access_token"]);
+    //        }
+    //
+    //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    //        if (failure) {
+    //            failure(error);
+    //        }
+    //    }];
 }
+- (NSString*) urlAsString {
+    if(self.baseURL) {
+        return [NSString stringWithFormat:@"%@%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+                self.baseURL,
+                self.authzEndpoint,
+                [self scope],
+                [self urlEncodeString:_redirectURL],
+                _clientId];
+    } else {
+        return [NSString stringWithFormat:@"%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+                self.authzEndpoint,
+                [self scope],
+                [self urlEncodeString:_redirectURL],
+                _clientId];
+    }
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"eee");
+    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSLog(@"eee%@", responseString);
+    
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [responseData appendData:data];
+}
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"error");
+}
+
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
                          failure:(void (^)(NSError *error))failure {
@@ -219,22 +261,22 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         NSScanner *parameterScanner = [[NSScanner alloc] initWithString:queryString];
         NSString *name = nil;
         NSString *value = nil;
-
+        
         while (![parameterScanner isAtEnd]) {
             name = nil;
             [parameterScanner scanUpToString:@"=" intoString:&name];
             [parameterScanner scanString:@"=" intoString:NULL];
-
+            
             value = nil;
             [parameterScanner scanUpToString:@"&" intoString:&value];
             [parameterScanner scanString:@"&" intoString:NULL];
-
+            
             if (name && value) {
                 parameters[[name stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             }
         }
     }
-
+    
     return parameters;
 }
 
@@ -243,7 +285,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     NSString *scope = @"";
     for (int i=0; i<[_scopes count]; i++) {
         scope = [scope stringByAppendingString:[self urlEncodeString:_scopes[i]]];
-
+        
         // If the current scope is other than the last one, then add the "+" sign to the string to separate the scopes.
         if (i < [_scopes count] - 1) {
             scope = [scope stringByAppendingString:@"+"];
@@ -254,10 +296,10 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 -(NSString *)urlEncodeString:(NSString *)stringToURLEncode{
     CFStringRef encodedURL = CFURLCreateStringByAddingPercentEscapes(NULL,
-            (__bridge CFStringRef) stringToURLEncode,
-            NULL,
-            (__bridge CFStringRef)@"!@#$%&*'();:=+,/?[]",
-            kCFStringEncodingUTF8);
+                                                                     (__bridge CFStringRef) stringToURLEncode,
+                                                                     NULL,
+                                                                     (__bridge CFStringRef)@"!@#$%&*'();:=+,/?[]",
+                                                                     kCFStringEncodingUTF8);
     return (NSString *)CFBridgingRelease(encodedURL);
 }
 
