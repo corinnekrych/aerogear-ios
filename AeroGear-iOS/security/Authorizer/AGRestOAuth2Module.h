@@ -28,7 +28,9 @@
  _"REST"_. See AGAuthorizer and AGAuthzModule class documentation for more information.
 
  */
-@interface AGRestOAuth2Module : NSObject <AGOAuth2AuthzModuleAdapter>
+@interface AGRestOAuth2Module : NSObject <AGOAuth2AuthzModuleAdapter> {
+    AGHttpClient* _restClient;
+}
 
 -(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig;
 +(instancetype) moduleWithConfig:(id<AGAuthzConfig>) authzConfig;

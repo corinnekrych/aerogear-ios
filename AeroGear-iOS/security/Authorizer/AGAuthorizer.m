@@ -17,6 +17,8 @@
 
 #import "AGAuthorizer.h"
 #import "AGRestOAuth2Module.h"
+//TODO to be removed with extensible adapter feature
+#import "AGRestOAuth2FacebookModule.h"
 #import "AGAuthzConfiguration.h"
 
 @implementation AGAuthorizer {
@@ -46,8 +48,15 @@
         return nil;
     }
     
-    id<AGAuthzModule> module = [AGRestOAuth2Module moduleWithConfig:authzConfig];
-    [_modules setValue:module forKey:[authzConfig name]];
+    id<AGAuthzModule> module = nil;
+    // TODO to be changed with AGIOS-XXX with extensible OAuth adapter
+    if (! [authzConfig.type isEqualToString:@"AG_OAUTH2_FACEBOOK"]) {
+        module = [AGRestOAuth2FacebookModule moduleWithConfig:authzConfig];
+        [_modules setValue:module forKey:[authzConfig name]];
+    } else {
+        module = [AGRestOAuth2Module moduleWithConfig:authzConfig];
+        [_modules setValue:module forKey:[authzConfig name]];
+    }
     return module;
 }
 

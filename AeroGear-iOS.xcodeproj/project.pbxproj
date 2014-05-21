@@ -22,6 +22,7 @@
 		3A3FAC6A723867E94FB16341 /* AGPaginationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA81DD1CD6812526D0D6A /* AGPaginationSpec.m */; };
 		3A3FAD31FC7EE80261D43F28 /* AGDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */; };
 		3A3FAF2C1A2BCEACF5DFC256 /* AGPropertyListStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */; };
+		4802A9FA192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */; };
 		480FD4DB185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */; };
 		480FD4DD185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */; };
 		480FD4E0185B08ED00D8CAD3 /* AGSQLiteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */; };
@@ -155,6 +156,8 @@
 		3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPropertyListStorageSpec.m; sourceTree = "<group>"; };
 		3A3FAD425C7D92793D443079 /* AGRestAuthenticationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAuthenticationSpec.m; sourceTree = "<group>"; };
 		3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDataManagerSpec.m; sourceTree = "<group>"; };
+		4802A9F8192CAB000019ABE1 /* AGRestOAuth2FacebookModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGRestOAuth2FacebookModule.h; sourceTree = "<group>"; };
+		4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestOAuth2FacebookModule.m; sourceTree = "<group>"; };
 		480FD4D9185B088500D8CAD3 /* AGEncryptedSQLiteStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncryptedSQLiteStorage.h; path = datamanager/AGEncryptedSQLiteStorage.h; sourceTree = "<group>"; };
 		480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGEncryptedSQLiteStorage.m; path = datamanager/AGEncryptedSQLiteStorage.m; sourceTree = "<group>"; };
 		480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedSQLiteStorageSpec.m; sourceTree = "<group>"; };
@@ -318,10 +321,12 @@
 				38EAB0A7B277164A8D63F747 /* AGAuthorizer.h */,
 				38EAB725EDD875FE3054B456 /* AGAuthzModule.h */,
 				38EABA4C6581856F7241CB57 /* AGAuthzConfiguration.m */,
-				38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */,
-				38EABEBAA0F7D219BD79AC96 /* AGRestOAuth2Module.h */,
 				487C2717191CC8F800C43B49 /* AGOAuth2AuthzSession.h */,
 				487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */,
+				38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */,
+				38EABEBAA0F7D219BD79AC96 /* AGRestOAuth2Module.h */,
+				4802A9F8192CAB000019ABE1 /* AGRestOAuth2FacebookModule.h */,
+				4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */,
 			);
 			name = Authorizer;
 			path = security/Authorizer;
@@ -710,6 +715,7 @@
 				57277E111641364300C50DC5 /* AGAuthConfiguration.m in Sources */,
 				6FE55675169DE7C800E6188E /* AGPropertyListStorage.m in Sources */,
 				480FD4DB185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m in Sources */,
+				4802A9FA192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m in Sources */,
 				48B5C59118521C7000FF7108 /* AGEncoder.m in Sources */,
 				A0A37ADA16AEAEDE00979868 /* AGNSMutableArray+Paging.m in Sources */,
 				6F573BBE1863080C000F4076 /* AGMultipart.m in Sources */,

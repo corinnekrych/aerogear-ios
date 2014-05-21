@@ -24,9 +24,8 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 @implementation AGRestOAuth2Module {
     // ivars
-    AGHttpClient* _restClient;
     id _applicationLaunchNotificationObserver;
-    NSMutableData* responseData;
+    //NSMutableData* responseData;
 }
 
 // =====================================================
@@ -59,7 +58,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     self = [super init];
     if (self) {
         _session = [[AGOAuth2AuthzSession alloc] init];
-        responseData = [NSMutableData data];
+        //responseData = [NSMutableData data];
     }
     return self;
 }
@@ -85,7 +84,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
         _session = [[AGOAuth2AuthzSession alloc] init];
         
-        responseData = [NSMutableData data];
+       // responseData = [NSMutableData data];
     }
     
     return self;
@@ -171,30 +170,31 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         paramDict[@"client_secret"] = _clientSecret;
     }
     
-    NSMutableURLRequest *request = [NSMutableURLRequest
-									requestWithURL:[NSURL URLWithString:self.accessTokenEndpoint]];
+//    NSMutableURLRequest *request = [NSMutableURLRequest
+//									requestWithURL:[NSURL URLWithString:self.accessTokenEndpoint]];
+//    
+//    
+//    NSString *params = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", _clientId, _clientSecret,  code, [self urlEncodeString:_redirectURL] ];
+//    
+//    [request setHTTPMethod:@"POST"];
+//    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+//    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
+    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
     
-    NSString *params = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", _clientId, _clientSecret,  code, [self urlEncodeString:_redirectURL] ];
+            [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
     
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (success) {
+                success(responseObject[@"access_token"]);
+            }
     
-    //    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
-    //
-    //        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
-    //
-    //        if (success) {
-    //            success(responseObject[@"access_token"]);
-    //        }
-    //
-    //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    //        if (failure) {
-    //            failure(error);
-    //        }
-    //    }];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
 }
+
 - (NSString*) urlAsString {
     if(self.baseURL) {
         return [NSString stringWithFormat:@"%@%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
@@ -211,22 +211,22 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
                 _clientId];
     }
 }
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"eee");
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    NSLog(@"eee%@", responseString);
-    
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"error");
-}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+//    NSLog(@"eee");
+//    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//    NSLog(@"eee%@", responseString);
+//    
+//    
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+//    [responseData appendData:data];
+//}
+//
+//
+//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+//    NSLog(@"error");
+//}
 
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
