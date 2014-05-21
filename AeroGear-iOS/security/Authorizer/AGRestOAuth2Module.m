@@ -23,9 +23,7 @@
 NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotification";
 
 @implementation AGRestOAuth2Module {
-    // ivars
     id _applicationLaunchNotificationObserver;
-    //NSMutableData* responseData;
 }
 
 // =====================================================
@@ -58,7 +56,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     self = [super init];
     if (self) {
         _session = [[AGOAuth2AuthzSession alloc] init];
-        //responseData = [NSMutableData data];
     }
     return self;
 }
@@ -83,8 +80,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         // default to url serialization
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
         _session = [[AGOAuth2AuthzSession alloc] init];
-        
-       // responseData = [NSMutableData data];
     }
     
     return self;
@@ -170,16 +165,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
         paramDict[@"client_secret"] = _clientSecret;
     }
     
-//    NSMutableURLRequest *request = [NSMutableURLRequest
-//									requestWithURL:[NSURL URLWithString:self.accessTokenEndpoint]];
-//    
-//    
-//    NSString *params = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&code=%@&redirect_uri=%@", _clientId, _clientSecret,  code, [self urlEncodeString:_redirectURL] ];
-//    
-//    [request setHTTPMethod:@"POST"];
-//    [request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-//    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
     
             [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
@@ -211,23 +196,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
                 _clientId];
     }
 }
-//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-//    NSLog(@"eee");
-//    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//    NSLog(@"eee%@", responseString);
-//    
-//    
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//    [responseData appendData:data];
-//}
-//
-//
-//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-//    NSLog(@"error");
-//}
-
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
                          failure:(void (^)(NSError *error))failure {
