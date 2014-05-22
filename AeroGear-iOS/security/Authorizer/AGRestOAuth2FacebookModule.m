@@ -34,18 +34,32 @@
     if (self.clientSecret) {
         paramDict[@"client_secret"] = self.clientSecret;
     }
-
+    
     
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
         NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@">>>%@", responseString);
         
-        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+        NSMutableCharacterSet* charSet = [[NSMutableCharacterSet alloc] init];
+        [charSet addCharactersInString:@"&="];
+        __block NSString* accessToken;
+        __block NSString* expiredIn;
+        NSArray* array = [responseString componentsSeparatedByCharactersInSet:charSet];
+        
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if([obj isEqualToString:@"access_token"]) {
+                accessToken = array[idx+1];
+            }
+            if([obj isEqualToString:@"expires"]) {
+                expiredIn = array[idx+1];
+            }
+        }];
+        
+        [self.session saveAccessToken:accessToken refreshToken:nil expiration:expiredIn];
         
         if (success) {
-            success(responseObject[@"access_token"]);
+            success(accessToken);
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
