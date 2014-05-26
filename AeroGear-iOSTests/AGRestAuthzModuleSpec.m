@@ -153,7 +153,7 @@ describe(@"AGRestAuthzModule", ^{
             
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
             
-            NSDictionary* paramDict = @{@"code":code, @"client_id":config.clientId, @"redirect_uri": config.redirectURL};
+            NSDictionary* paramDict = @{@"code":code, @"client_id":config.clientId, @"redirect_uri": config.redirectURL, @"grant_type":@"authorization_code"};
             
             [[mockAGHTTPClient expect] POST:config.accessTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             

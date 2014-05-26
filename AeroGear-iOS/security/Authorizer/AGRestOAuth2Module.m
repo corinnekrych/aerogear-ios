@@ -160,7 +160,8 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 -(void)exchangeAuthorizationCodeForAccessToken:(NSString*)code
                                        success:(void (^)(id object))success
                                        failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": [NSString stringWithFormat:@"%@", _redirectURL ]}];
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": _redirectURL, @"grant_type":@"authorization_code"}];
+
     if (_clientSecret) {
         paramDict[@"client_secret"] = _clientSecret;
     }
@@ -182,7 +183,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 - (NSString*) urlAsString {
     if(self.baseURL) {
-        return [NSString stringWithFormat:@"%@%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+        return [NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
                 self.baseURL,
                 self.authzEndpoint,
                 [self scope],
