@@ -46,7 +46,7 @@
 
     
     id<AGAuthzModule> module = nil;
-    // TODO to be changed with AGIOS-XXX with extensible OAuth adapter
+    // TODO to be changed with AGIOS-154 with extensible OAuth adapter
     if ([authzConfig.type isEqualToString:@"AG_OAUTH2_FACEBOOK"]) {
         module = [AGRestOAuth2FacebookModule moduleWithConfig:authzConfig];
         [_modules setValue:module forKey:[authzConfig name]];
