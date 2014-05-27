@@ -38,7 +38,7 @@
 }
 
 -(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> config)) config {
-    __block AGAuthzConfiguration* authzConfig = [[AGAuthzConfiguration alloc] init];
+    AGAuthzConfiguration* authzConfig = [[AGAuthzConfiguration alloc] init];
     
     if (config) {
         config(authzConfig);
