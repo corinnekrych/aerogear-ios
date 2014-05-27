@@ -44,7 +44,6 @@
         config(authzConfig);
     }
 
-    
     id<AGAuthzModule> module = nil;
     // TODO to be changed with AGIOS-154 with extensible OAuth adapter
     if ([authzConfig.type isEqualToString:@"AG_OAUTH2_FACEBOOK"]) {
