@@ -17,15 +17,18 @@
 
 #import <Foundation/Foundation.h>
 #import "AGOAuth2AuthzSession.h"
+#import "AGOAuth2AuthzModuleAdapter.h"
+#import "AGAuthzConfig.h"
 
-@interface AGOAuth2AuthzAccount : NSObject
+@interface AGAccountManager : NSObject
 
 /**
  * Put a session into the store.
  *
  * @param account a new session
+  * @error contains error message
  */
--(void)addAccount:(AGOAuth2AuthzSession*)account;
+-(void)addAccount:(AGOAuth2AuthzSession*)account error:(NSError**) error;
 
 /**
  * Will check if there is an account which has previously been granted an
@@ -40,9 +43,9 @@
  * Returns the OAuth2AuthzSession for accountId if any
  *
  * @param accountId the accountId to look up
- * @return an OAuth2AuthzSession or null
+ * @return an OAuth2AuthzSession or nil
  */
--(AGOAuth2AuthzSession*)account:(NSString*) accountId;
+-(AGOAuth2AuthzSession*)account:(NSString*)accountId;
 
 /**
  * Fetches all OAuth2AuthzSessions in the system.
@@ -50,4 +53,11 @@
  * @return all OAuth2AuthzSession's in the system
  */
 -(NSArray*)accounts;
+
+-(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf)) config account:(AGOAuth2AuthzSession*)account;
+
+-(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config accountId:(NSString*)accountId ;
+
++(instancetype) manager;
+
 @end
