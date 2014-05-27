@@ -38,12 +38,16 @@
 }
 
 -(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> config)) config {
-    AGAuthzConfiguration* authzConfig = [[AGAuthzConfiguration alloc] init];
+    __block AGAuthzConfiguration* authzConfig = [[AGAuthzConfiguration alloc] init];
     
     if (config) {
         config(authzConfig);
     }
-
+    
+    if(![authzConfig.type isEqualToString:@"AG_OAUTH2_FACEBOOK"] && ![authzConfig.type isEqualToString:@"AG_OAUTH2"])
+        return nil;
+    
+    authzConfig.type = [self oauth2Type:authzConfig];
     
     id<AGAuthzModule> module = nil;
     // TODO to be changed with AGIOS-154 with extensible OAuth adapter
@@ -69,6 +73,13 @@
 
 -(NSString *) description {
     return [NSString stringWithFormat: @"%@ %@", self.class, _modules];
+}
+
+- (NSString*)oauth2Type:(AGAuthzConfiguration*)config {
+    if ([config.authzEndpoint rangeOfString:@"facebook"].location != NSNotFound) {
+        return @"AG_OAUTH2_FACEBOOK";
+    }
+    return @"AG_OAUTH2";
 }
 
 @end
