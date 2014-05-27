@@ -56,7 +56,7 @@
             }
         }];
         
-        [self.session saveAccessToken:accessToken refreshToken:nil expiration:expiredIn];
+        [self.sessionStorage saveAccessToken:accessToken refreshToken:nil expiration:expiredIn];
         
         if (success) {
             success(accessToken);
