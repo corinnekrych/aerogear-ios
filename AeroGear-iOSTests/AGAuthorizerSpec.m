@@ -92,6 +92,18 @@ describe(@"AGAuthorizer", ^{
 
             [[module.type should] equal:@"AG_OAUTH2"];
         });
+        
+        it(@"should detect facebook OAuth2", ^{
+            id<AGAuthzModule> module = [authorizer authz:^(id<AGAuthzConfig> config) {
+                [config setName:@"SomeModule"];
+                [config setAuthzEndpoint:@"https://www.facebook.com/dialog/oauth"];
+                [config setBaseURL:nil];
+            }];
+            
+            [(id)module shouldNotBeNil];
+            
+            [[module.type should] equal:@"AG_OAUTH2_FACEBOOK"];
+        });
 
         it(@"should not allow an invalid type", ^{
             id<AGAuthzModule> module = [authorizer authz:^(id<AGAuthzConfig> config) {
