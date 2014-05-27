@@ -28,6 +28,7 @@
 		480FD4E0185B08ED00D8CAD3 /* AGSQLiteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */; };
 		483609CB18EED02300FD73B6 /* AGAuthorizerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */; };
 		483E6D3B188F1F61004AFA1F /* AGRestAuthzModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */; };
+		48462E21193399C400698A5A /* AGOAuth2AuthzAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 48462E20193399C400698A5A /* AGOAuth2AuthzAccount.m */; };
 		487C2719191CC8F800C43B49 /* AGOAuth2AuthzSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */; };
 		489BC1A017E0C1F80008DAEF /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */; };
 		489F47B817DDFF110072DE0F /* AGSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */; };
@@ -165,6 +166,8 @@
 		480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSQLiteCommand.m; path = datamanager/AGSQLiteCommand.m; sourceTree = "<group>"; };
 		483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthorizerSpec.m; sourceTree = "<group>"; };
 		483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAuthzModuleSpec.m; sourceTree = "<group>"; };
+		48462E1F193399C400698A5A /* AGOAuth2AuthzAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOAuth2AuthzAccount.h; sourceTree = "<group>"; };
+		48462E20193399C400698A5A /* AGOAuth2AuthzAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGOAuth2AuthzAccount.m; sourceTree = "<group>"; };
 		487C2717191CC8F800C43B49 /* AGOAuth2AuthzSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOAuth2AuthzSession.h; sourceTree = "<group>"; };
 		487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGOAuth2AuthzSession.m; sourceTree = "<group>"; };
 		489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -323,6 +326,8 @@
 				38EABA4C6581856F7241CB57 /* AGAuthzConfiguration.m */,
 				487C2717191CC8F800C43B49 /* AGOAuth2AuthzSession.h */,
 				487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */,
+				48462E1F193399C400698A5A /* AGOAuth2AuthzAccount.h */,
+				48462E20193399C400698A5A /* AGOAuth2AuthzAccount.m */,
 				38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */,
 				38EABEBAA0F7D219BD79AC96 /* AGRestOAuth2Module.h */,
 				4802A9F8192CAB000019ABE1 /* AGRestOAuth2FacebookModule.h */,
@@ -735,6 +740,7 @@
 				489F47BB17DDFFF40072DE0F /* AGSQLiteStorage.m in Sources */,
 				38EABEA20822C924B3E36AED /* AGAuthorizer.m in Sources */,
 				38EAB9B564447C63EDA4F3BD /* AGAuthzConfiguration.m in Sources */,
+				48462E21193399C400698A5A /* AGOAuth2AuthzAccount.m in Sources */,
 				487C2719191CC8F800C43B49 /* AGOAuth2AuthzSession.m in Sources */,
 				38EAB6DDCEDC350EEEB294DF /* AGRestOAuth2Module.m in Sources */,
 			);

@@ -19,6 +19,16 @@
 @interface AGOAuth2AuthzSession : NSObject
 
 /**
+ * The account id.
+ */
+@property (nonatomic, strong) NSString* accountId;
+
+/**
+ * The client id.
+ */
+@property (nonatomic, strong) NSString* clientId;
+
+/**
  * The access token which expires.
  */
 @property (nonatomic, strong) NSString* accessToken;
