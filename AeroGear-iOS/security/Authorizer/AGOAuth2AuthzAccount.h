@@ -16,31 +16,38 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGAuthzModule.h"
 #import "AGOAuth2AuthzSession.h"
 
-/**
- * AGAuthzModuleAdapter represents the _internal_ authorization module 'interface'
- */
-@protocol AGOAuth2AuthzModuleAdapter <AGAuthzModule>
-
-/*
- * The different states of the authz module
- */
-typedef NS_ENUM(NSUInteger, AGAuthorizationState) {
-    AGAuthorizationStatePendingExternalApproval,
-    AGAuthorizationStateApproved,
-    AGAuthorizationStateUnknown
-};
+@interface AGOAuth2AuthzAccount : NSObject
 
 /**
- *  AGOAuth2AuthzSession holding key/value of the authz tokens.
+ * Put a session into the store.
+ *
+ * @param account a new session
  */
-@property (nonatomic, readonly) AGOAuth2AuthzSession* sessionStorage;
+-(void)addAccount:(AGOAuth2AuthzSession*)account;
 
-/*
- * The current state of the authz module.
+/**
+ * Will check if there is an account which has previously been granted an
+ * authorization code and access code
+ *
+ * @param accountId
+ * @return true if there is a session for the account.
  */
-@property (nonatomic, readonly) AGAuthorizationState state;
+-(BOOL)hasAccount:(NSString*) accountId;
 
+/**
+ * Returns the OAuth2AuthzSession for accountId if any
+ *
+ * @param accountId the accountId to look up
+ * @return an OAuth2AuthzSession or null
+ */
+-(AGOAuth2AuthzSession*)account:(NSString*) accountId;
+
+/**
+ * Fetches all OAuth2AuthzSessions in the system.
+ *
+ * @return all OAuth2AuthzSession's in the system
+ */
+-(NSArray*)accounts;
 @end

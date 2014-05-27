@@ -44,7 +44,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 // ==============================================================
 // ======== internal API (AGAuthzModuleAdapter) ========
 // ==============================================================
-@synthesize session = _session;
+@synthesize sessionStorage = _sessionStorage;
 
 // ==============================================
 // ======== 'factory' and 'init' section ========
@@ -57,7 +57,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 -(instancetype) init {
     self = [super init];
     if (self) {
-        _session = [[AGOAuth2AuthzSession alloc] init];
+        _sessionStorage = [[AGOAuth2AuthzSession alloc] init];
     }
     return self;
 }
@@ -81,7 +81,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
         
         // default to url serialization
         _restClient.requestSerializer = [AFHTTPRequestSerializer serializer];
-        _session = [[AGOAuth2AuthzSession alloc] init];
+        _sessionStorage = [[AGOAuth2AuthzSession alloc] init];
     }
     
     return self;
@@ -106,12 +106,12 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 // =====================================================
 -(void) requestAccessSuccess:(void (^)(id object))success
                      failure:(void (^)(NSError *error))failure {
-    if (self.session.accessToken != nil && [self.session tokenIsNotExpired]) {
+    if (self.sessionStorage.accessToken != nil && [self.sessionStorage tokenIsNotExpired]) {
         // we already have a valid access token, nothing more to be done
         if (success) {
-            success(self.session.accessToken);
+            success(self.sessionStorage.accessToken);
         }
-    } else if (self.session.refreshToken != nil) {
+    } else if (self.sessionStorage.refreshToken != nil) {
         // need to refresh token
         [self refreshAccessTokenSuccess:success failure:failure];
     } else {
@@ -124,14 +124,14 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
                     failure:(void (^)(NSError *error))failure {
 
     // return if not yet initialized
-    if (!self.session.accessToken)
+    if (!self.sessionStorage.accessToken)
         return;
     
-    NSDictionary* paramDict = @{@"token":self.session.accessToken};
-    
+    NSDictionary* paramDict = @{@"token":self.sessionStorage.accessToken};
+
     [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self.session saveAccessToken:nil refreshToken:nil expiration:nil];
+        [self.sessionStorage saveAccessToken:nil refreshToken:nil expiration:nil];
         
         if (success) {
             success(nil);
@@ -145,14 +145,14 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 }
 
 -(NSDictionary*) authorizationFields {
-    if (!self.session.accessToken)
+    if (!self.sessionStorage.accessToken)
         return nil;
     
-    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessToken]};
+    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.sessionStorage.accessToken]};
 }
 
 - (BOOL)isAuthorized {
-    return self.session.accessToken != nil && [self.session tokenIsNotExpired];
+    return self.sessionStorage.accessToken != nil && [self.sessionStorage tokenIsNotExpired];
 }
 
 // ==============================================================
@@ -206,14 +206,14 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
                          failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"refresh_token":self.session.refreshToken, @"client_id":_clientId, @"grant_type":@"refresh_token"}];
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"refresh_token":self.sessionStorage.refreshToken, @"client_id":_clientId, @"grant_type":@"refresh_token"}];
     if (_clientSecret) {
         paramDict[@"client_secret"] = _clientSecret;
     }
     
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:self.session.refreshToken expiration:responseObject[@"expires_in"]];
+        [self.sessionStorage saveAccessToken:responseObject[@"access_token"] refreshToken:self.sessionStorage.refreshToken expiration:responseObject[@"expires_in"]];
         
         if (success) {
             success(responseObject[@"access_token"]);
@@ -237,7 +237,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
     
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
     
-            [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+            [self.sessionStorage saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
     
             if (success) {
                 success(responseObject[@"access_token"]);
@@ -276,6 +276,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
                 _clientId];
     }
 }
+
 
 -(NSDictionary *) parametersFromQueryString:(NSString *)queryString {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];

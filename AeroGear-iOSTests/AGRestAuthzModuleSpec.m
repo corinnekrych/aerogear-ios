@@ -90,9 +90,9 @@ describe(@"AGRestAuthzModule", ^{
             void (^callbackSuccess)(id obj) = ^ void (id object) {};
             void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
             
-            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
-            restAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
-            restAuthzModule.session.accessTokenExpirationDate = 0;
+            restAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
+            restAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
+            restAuthzModule.sessionStorage.accessTokenExpirationDate = 0;
             
             // Create a partial mock of restAuthzModule
             id mock = [OCMockObject partialMockForObject:restAuthzModule];
@@ -110,9 +110,9 @@ describe(@"AGRestAuthzModule", ^{
             void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
             void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
             
-            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
-            restAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
-            restAuthzModule.session.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:15000];
+            restAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
+            restAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
+            restAuthzModule.sessionStorage.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:15000];
             
             [restAuthzModule requestAccessSuccess:callbackSuccess failure:callbackFailure];
             [[theValue(wasSuccessCallbackCalled) should] equal:theValue(YES)];
@@ -120,7 +120,7 @@ describe(@"AGRestAuthzModule", ^{
         
         it(@"should run authz access token well formatted for pipe call", ^{
             
-            restAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            restAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
             
             NSDictionary* accessToken = [restAuthzModule authorizationFields];
             
@@ -172,7 +172,7 @@ describe(@"AGRestAuthzModule", ^{
             id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
             
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
-            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
             
             NSDictionary* paramDict = @{@"refresh_token":@"REFRESH_TOKEN", @"client_id":config.clientId, @"grant_type":@"refresh_token"};
             
@@ -192,8 +192,8 @@ describe(@"AGRestAuthzModule", ^{
             id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
             
             AGRestOAuth2Module* myRestAuthzModule = [[AGRestOAuth2Module alloc] initWithConfig:config client:mockAGHTTPClient];
-            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
-            myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            myRestAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
             
             NSDictionary* paramDict = @{@"token":@"ACCESS_TOKEN"};
             
@@ -228,8 +228,8 @@ describe(@"AGRestAuthzModule", ^{
             id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
             
             AGRestOAuth2FacebookModule* myRestAuthzModule = [[AGRestOAuth2FacebookModule alloc] initWithConfig:config client:mockAGHTTPClient];
-            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
-            myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            myRestAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
             
             NSDictionary* paramDict = @{@"access_token":@"ACCESS_TOKEN"};
             

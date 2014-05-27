@@ -477,8 +477,8 @@ SPEC_BEGIN(AGHttpClientSpec)
 
                 authzModule = [[AGRestOAuth2Module alloc] init];
                 
-                authzModule.session.accessToken = @"ACCESS_TOKEN";
-                authzModule.session.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:3600];
+                authzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
+                authzModule.sessionStorage.accessTokenExpirationDate = [[NSDate date] dateByAddingTimeInterval:3600];
                 
                 _restClient = [AGHttpClient clientFor:baseURL timeout:60 sessionConfiguration:nil authModule:nil authzModule:authzModule];
             });
