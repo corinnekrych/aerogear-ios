@@ -34,4 +34,33 @@
     NSDate *now = [NSDate date];
     self.accessTokenExpirationDate = [now dateByAddingTimeInterval:[expiration integerValue]];
 }
+
+
+/**
+ * Serialize into NSDictionary instance an AGOAuth2AuthzSession object.
+ */
+-(NSDictionary*)toDictionary {
+    return @{@"clientId":_clientId,
+             @"accountId": _accountId,
+             @"accessToken": _accessToken,
+             @"accessTokenExpirationDate": _accessTokenExpirationDate,
+             @"refreshToken": _refreshToken};
+}
+
+/**
+ * Deerialize into AGOAuth2AuthzSession object from a NSDictionary.
+ */
+-(instancetype)init:(NSDictionary*)dictionary {
+    self = [self init];
+    if (self) {
+        _clientId = dictionary[@"clientId"];
+        _clientId = dictionary[@"accountId"];
+        _accessToken = dictionary[@"accessToken"];
+        _accessTokenExpirationDate = dictionary[@"accessTokenExpirationDate"];
+        _refreshToken = dictionary[@"refreshToken"];
+        _accountId = dictionary[@"accountId"];
+    }
+    return self;
+}
+
 @end
