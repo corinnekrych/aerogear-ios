@@ -16,13 +16,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AGOAuth2AuthzSession.h"
-#import "AGOAuth2AuthzModuleAdapter.h"
+#import "AGAuthzModule.h"
 #import "AGAuthzConfig.h"
 
 @interface AGAccountManager : NSObject
 
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
+-(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
 
 +(instancetype) manager;
 
