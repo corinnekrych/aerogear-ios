@@ -18,13 +18,18 @@
 #import <Foundation/Foundation.h>
 #import "AGAuthzModule.h"
 #import "AGAuthzConfig.h"
-
+/**
+ * AGAccountManager allows you to store your tokens under an account. When creating AGAccountManager
+ * you need to specify what kind of storage you want. To have the benefit of AGAccountManager, a permanent storage
+ * is preferred. You app will ask for grant permission only when lauched the first time. But be aware, of sensitive 
+ * nature of access and refresh tokens. Choose an encrypted storage for a secured app.
+ */
 @interface AGAccountManager : NSObject
 
 -(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
 
 /**
- * Default initialization of AGAccountMaanger as MEMORY storage
+ * Default initialization of AGAccountManager as MEMORY storage
  */
 +(instancetype) manager;
 
