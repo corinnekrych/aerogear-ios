@@ -19,6 +19,7 @@
 #import "AGStore.h"
 #import "AGAuthorizer.h"
 #import "AGDataManager.h"
+#import "AGOAuth2AuthzModuleAdapter.h"
 
 @implementation AGAccountManager {
     id<AGStore> _oauthAccountStorage;
