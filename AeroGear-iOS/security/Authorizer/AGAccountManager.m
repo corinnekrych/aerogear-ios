@@ -70,8 +70,10 @@
         adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
         adapter.sessionStorage.refreshToken = account.refreshToken;
         
-        // register to ne notifeid when token get refreshed to store them in AccountMgr
+        // register to ne notified when token get refreshed to store them in AccountMgr
         [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
+        [adapter.sessionStorage addObserver:self forKeyPath:@"accessTokenExpirationDate" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
+        [adapter.sessionStorage addObserver:self forKeyPath:@"refreshToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
     }
     return adapter;
 }
@@ -96,6 +98,20 @@
         NSLog(@"NewValue==%@ context=%@", newValue, accountId);
         AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
         account.accessToken = newValue;
+        [self save:account];
+    }
+    if([keyPath isEqualToString:@"accessTokenExpirationDate"]) {
+        NSDate* newValue = [change objectForKey:NSKeyValueChangeNewKey];
+        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
+        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
+        account.accessTokenExpirationDate = newValue;
+        [self save:account];
+    }
+    if([keyPath isEqualToString:@"refreshToken"]) {
+        NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
+        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
+        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
+        account.refreshToken = newValue;
         [self save:account];
     }
 }
