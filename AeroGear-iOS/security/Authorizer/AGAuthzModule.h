@@ -71,6 +71,7 @@ extern NSString * const AGAppDidBecomeActiveNotification;
 @property (nonatomic, readonly) NSArray* scopes;
 @property (nonatomic, readonly) NSString* clientId;
 @property (nonatomic, readonly) NSString* clientSecret;
+@property (nonatomic, readonly) NSString* accountId;
 
 -(void) requestAccessSuccess:(void (^)(id object))success
      failure:(void (^)(NSError *error))failure;

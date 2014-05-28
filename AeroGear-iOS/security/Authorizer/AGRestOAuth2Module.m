@@ -40,6 +40,8 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 @synthesize clientSecret = _clientSecret;
 @synthesize scopes = _scopes;
 @synthesize state = _state;
+@synthesize accountId = _accountId;
+
 
 // ==============================================================
 // ======== internal API (AGAuthzModuleAdapter) ========
@@ -76,7 +78,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
         _clientId = config.clientId;
         _clientSecret = config.clientSecret;
         _scopes = config.scopes;
-        
+        _accountId = config.accountId;
         _restClient = [AGHttpClient clientFor:config.baseURL timeout:config.timeout];
         
         // default to url serialization
