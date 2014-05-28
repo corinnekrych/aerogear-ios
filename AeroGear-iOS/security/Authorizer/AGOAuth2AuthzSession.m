@@ -18,7 +18,6 @@
 #import "AGOAuth2AuthzSession.h"
 
 @implementation AGOAuth2AuthzSession
-@synthesize clientId = _clientId;
 @synthesize accessToken = _accessToken;
 @synthesize accessTokenExpirationDate = _accessTokenExpirationDate;
 @synthesize refreshToken = _refreshToken;
@@ -43,9 +42,6 @@
     if (_accountId) {
         dict[@"id"] = _accountId;
     }
-    if (_clientId) {
-        dict[@"clientId"] = _clientId;
-    }
     if (_accessToken) {
         dict[@"accessToken"] = _accessToken;
     }
@@ -53,7 +49,7 @@
         dict[@"accessTokenExpirationDate"] = _accessTokenExpirationDate;
     }
     if (_refreshToken) {
-        dict[@"_refreshToken"] = _refreshToken;
+        dict[@"refreshToken"] = _refreshToken;
     }
     
     return dict;
@@ -64,7 +60,6 @@
 -(instancetype)init:(NSDictionary*)dictionary {
     self = [self init];
     if (self) {
-        _clientId = dictionary[@"clientId"];
         _accessToken = dictionary[@"accessToken"];
         _accessTokenExpirationDate = dictionary[@"accessTokenExpirationDate"];
         _refreshToken = dictionary[@"refreshToken"];

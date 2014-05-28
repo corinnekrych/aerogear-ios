@@ -65,7 +65,6 @@
         
         // initialize authzModule with stored tokens
         adapter.sessionStorage.accountId = account.accountId;
-        adapter.sessionStorage.clientId = account.clientId;
         adapter.sessionStorage.accessToken = account.accessToken;
         adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
         adapter.sessionStorage.refreshToken = account.refreshToken;
@@ -95,21 +94,18 @@
 {
     if([keyPath isEqualToString:@"accessToken"]) {
         NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
         AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
         account.accessToken = newValue;
         [self save:account];
     }
     if([keyPath isEqualToString:@"accessTokenExpirationDate"]) {
         NSDate* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
         AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
         account.accessTokenExpirationDate = newValue;
         [self save:account];
     }
     if([keyPath isEqualToString:@"refreshToken"]) {
         NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
         AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
         account.refreshToken = newValue;
         [self save:account];
