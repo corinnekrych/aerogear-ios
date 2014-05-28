@@ -47,7 +47,7 @@
     id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[authz authz:config];
     
     // look into storage for existing account with accountId
-    AGOAuth2AuthzSession* account = [_oauthAccountStorage read:adapter.accountId];
+    AGOAuth2AuthzSession* account = [self read:adapter.accountId];
     if (account == nil) {
         // create a new account with a generaed account id
         account = [[AGOAuth2AuthzSession alloc] init];
@@ -70,13 +70,24 @@
     return adapter;
 }
 
+-(AGOAuth2AuthzSession*)read:(NSString*)accountId {
+    NSDictionary* dict = [_oauthAccountStorage read:accountId];
+    return [[[self class] alloc] init:dict];
+}
+
+-(BOOL)save:(AGOAuth2AuthzSession*)account {
+    return [_oauthAccountStorage save:[[account toDictionary] mutableCopy] error:nil];
+}
+
 #pragma mark - implement KVO callback
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)accountId
 {
-    if([keyPath isEqualToString:@"accessToken"]){
-        NSString* oldValue = [change objectForKey:NSKeyValueChangeOldKey];
+    if([keyPath isEqualToString:@"accessToken"]) {
         NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        NSLog(@"NewValue==%@ context=%@", newValue, context);
+        NSLog(@"NewValue==%@ context=%@", newValue, accountId);
+        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
+        account.accessToken = newValue;
+        [self save:account];
     }
 }
 @end

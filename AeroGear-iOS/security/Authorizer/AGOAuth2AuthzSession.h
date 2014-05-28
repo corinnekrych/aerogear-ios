@@ -53,4 +53,15 @@
  * for grant access.
  */
 - (void) saveAccessToken:(NSString*)accessToken refreshToken:(NSString*) refreshToken expiration:(NSString*) expiration;
+
+/**
+ * Serialize into NSDictionary instance an AGOAuth2AuthzSession object.
+ */
+-(NSDictionary*)toDictionary;
+
+/**
+ * Deerialize into AGOAuth2AuthzSession object from a NSDictionary.
+ */
+-(instancetype)init:(NSDictionary*)dictionary;
+
 @end
