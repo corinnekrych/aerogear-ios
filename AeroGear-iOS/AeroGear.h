@@ -44,6 +44,7 @@
 #import "AGAuthzModule.h"
 #import "AGAuthorizer.h"
 #import "AGAuthzConfig.h"
+#import "AGAccountManager.h"
 
 #pragma mark - Encryption
 #import "AGCryptoConfig.h"
