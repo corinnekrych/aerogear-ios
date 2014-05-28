@@ -25,11 +25,12 @@
     id<AGStore> _oauthAccountStorage;
 }
 
--(instancetype)init {
+-(instancetype)init:(NSString*)type {
     self = [super init];
     if(self) {
         _oauthAccountStorage = [[AGDataManager manager] store:^(id<AGStoreConfig> config) {
             config.name = @"AccountManager";
+            config.type = type;
         }];
     }
     return self;
@@ -37,7 +38,10 @@
 
 
 +(instancetype) manager {
-    return [[[self class] alloc] init];
+    return [[AGAccountManager alloc] init:@"MEMORY"];
+}
++(instancetype) manager:(NSString*)type {
+    return [[AGAccountManager alloc] init:type];
 }
 
 -(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config {
@@ -54,11 +58,13 @@
         NSMutableDictionary* accountDictionnary = [NSMutableDictionary dictionary];
         [_oauthAccountStorage save:accountDictionnary error:nil]; //TODO
         account.accountId = accountDictionnary[@"id"];
-        // assign newly created accountId
-        adapter.accountId = account.accountId;
     }
     if (account.accountId != nil) { // an error occured while creating an account
+        // assign newly created accountId
+        adapter.accountId = account.accountId;
+        
         // initialize authzModule with stored tokens
+        adapter.sessionStorage.accountId = account.accountId;
         adapter.sessionStorage.clientId = account.clientId;
         adapter.sessionStorage.accessToken = account.accessToken;
         adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
@@ -71,8 +77,11 @@
 }
 
 -(AGOAuth2AuthzSession*)read:(NSString*)accountId {
+    AGOAuth2AuthzSession* object = nil;
     NSDictionary* dict = [_oauthAccountStorage read:accountId];
-    return [[[self class] alloc] init:dict];
+    if (dict)
+        object =[[AGOAuth2AuthzSession alloc] init:dict];
+    return object;
 }
 
 -(BOOL)save:(AGOAuth2AuthzSession*)account {
