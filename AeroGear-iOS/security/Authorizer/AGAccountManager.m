@@ -39,25 +39,33 @@
     return [[[self class] alloc] init];
 }
 
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config account:(AGOAuth2AuthzSession*)account {
-    AGAuthorizer* authz = [AGAuthorizer authorizer];
+-(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config {
     
+    AGAuthorizer* authz = [AGAuthorizer authorizer];
+    // InitializeauthzModule with config
     id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[authz authz:config];
     
-    adapter.sessionStorage.accountId = account.accountId;
+    // look into storage for existing account with accountId
+    AGOAuth2AuthzSession* account = [_oauthAccountStorage read:adapter.sessionStorage.accountId];
+    if (account == nil) {
+        // create a new account with a generaed account id
+        account = [[AGOAuth2AuthzSession alloc] init];
+        NSMutableDictionary* accountDictionnary = [NSMutableDictionary mutableCopy];
+        [_oauthAccountStorage save:accountDictionnary error:nil]; //TODO
+        account.accountId = accountDictionnary[@"id"];
+    }
+   
+    // initialize authzModule with stored tokens
     adapter.sessionStorage.clientId = account.clientId;
     adapter.sessionStorage.accessToken = account.accessToken;
     adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
     adapter.sessionStorage.refreshToken = account.refreshToken;
     adapter.sessionStorage.type = [adapter class];
-    [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:nil];
-
-    [self addAccount:account error:nil]; //TODO deal with error case
+    
+    // register to ne notifeid when token get refreshed to store them in AccountMgr
+    [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
+    
     return adapter;
-}
-
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config accountId:(NSString*)accountId {
-    return [self authz:config account:[_oauthAccountStorage read:accountId]];
 }
 
 #pragma mark - implement KVO callback
@@ -66,27 +74,8 @@
     if([keyPath isEqualToString:@"accessToken"]){
         NSString* oldValue = [change objectForKey:NSKeyValueChangeOldKey];
         NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        
+        NSLog(@"NewValue==%@ context=%@", newValue, context);
     }
 }
 
-#pragma mark - implement public interface
--(void)addAccount:(AGOAuth2AuthzSession*)account error:(NSError**) error {
-    [_oauthAccountStorage save:account error:error];
-        
-}
-
--(BOOL)hasAccount:(NSString*)searchAccountId {
-    if ([_oauthAccountStorage read:searchAccountId] == nil)
-        return NO;
-    return YES;
-}
-
--(AGOAuth2AuthzSession*)account:(NSString*)accountId {
-    return [_oauthAccountStorage read:accountId];
-}
-
--(NSArray*)accounts {
-    return [_oauthAccountStorage readAll];
-}
 @end

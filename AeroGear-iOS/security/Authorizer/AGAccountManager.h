@@ -22,41 +22,7 @@
 
 @interface AGAccountManager : NSObject
 
-/**
- * Put a session into the store.
- *
- * @param account a new session
-  * @error contains error message
- */
--(void)addAccount:(AGOAuth2AuthzSession*)account error:(NSError**) error;
-
-/**
- * Will check if there is an account which has previously been granted an
- * authorization code and access code
- *
- * @param accountId
- * @return true if there is a session for the account.
- */
--(BOOL)hasAccount:(NSString*) accountId;
-
-/**
- * Returns the OAuth2AuthzSession for accountId if any
- *
- * @param accountId the accountId to look up
- * @return an OAuth2AuthzSession or nil
- */
--(AGOAuth2AuthzSession*)account:(NSString*)accountId;
-
-/**
- * Fetches all OAuth2AuthzSessions in the system.
- *
- * @return all OAuth2AuthzSession's in the system
- */
--(NSArray*)accounts;
-
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf)) config account:(AGOAuth2AuthzSession*)account;
-
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config accountId:(NSString*)accountId ;
+-(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
 
 +(instancetype) manager;
 
