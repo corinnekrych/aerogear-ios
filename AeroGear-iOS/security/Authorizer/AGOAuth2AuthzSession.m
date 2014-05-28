@@ -35,18 +35,29 @@
     self.accessTokenExpirationDate = [now dateByAddingTimeInterval:[expiration integerValue]];
 }
 
-
 /**
  * Serialize into NSDictionary instance an AGOAuth2AuthzSession object.
  */
 -(NSDictionary*)toDictionary {
-    return @{@"clientId":_clientId,
-             @"accountId": _accountId,
-             @"accessToken": _accessToken,
-             @"accessTokenExpirationDate": _accessTokenExpirationDate,
-             @"refreshToken": _refreshToken};
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    if (_accountId) {
+        dict[@"id"] = _accountId;
+    }
+    if (_clientId) {
+        dict[@"clientId"] = _clientId;
+    }
+    if (_accessToken) {
+        dict[@"accessToken"] = _accessToken;
+    }
+    if (_accessTokenExpirationDate) {
+        dict[@"accessTokenExpirationDate"] = _accessTokenExpirationDate;
+    }
+    if (_refreshToken) {
+        dict[@"_refreshToken"] = _refreshToken;
+    }
+    
+    return dict;
 }
-
 /**
  * Deerialize into AGOAuth2AuthzSession object from a NSDictionary.
  */
@@ -54,11 +65,10 @@
     self = [self init];
     if (self) {
         _clientId = dictionary[@"clientId"];
-        _clientId = dictionary[@"accountId"];
         _accessToken = dictionary[@"accessToken"];
         _accessTokenExpirationDate = dictionary[@"accessTokenExpirationDate"];
         _refreshToken = dictionary[@"refreshToken"];
-        _accountId = dictionary[@"accountId"];
+        _accountId = dictionary[@"id"];
     }
     return self;
 }

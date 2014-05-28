@@ -23,6 +23,14 @@
 
 -(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
 
+/**
+ * Default initialization of AGAccountMaanger as MEMORY storage
+ */
 +(instancetype) manager;
 
+/**
+ * Initialization of AGAccountMaanger with a persistence type: PLIST, MEMORY, SQLITE, and its encrypted variants.
+ * Note it is recommanded to store tokens in ecrypted storage.
+ */
++(instancetype) manager:(NSString*)type;
 @end
