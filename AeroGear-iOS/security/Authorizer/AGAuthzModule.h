@@ -68,7 +68,7 @@ _AGAuthenticationModule_ is supported too.
 @property (nonatomic, readonly) NSArray* scopes;
 @property (nonatomic, readonly) NSString* clientId;
 @property (nonatomic, readonly) NSString* clientSecret;
-@property (nonatomic, readonly) NSString* accountId;
+@property (nonatomic, strong) NSString* accountId;
 
 -(void) requestAccessSuccess:(void (^)(id object))success
      failure:(void (^)(NSError *error))failure;
