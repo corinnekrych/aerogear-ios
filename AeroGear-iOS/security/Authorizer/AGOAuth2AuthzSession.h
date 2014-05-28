@@ -24,11 +24,6 @@
 @property (nonatomic, strong) NSString* accountId;
 
 /**
- * The class of authzModule. It can be AGRestOAuth2AuthzModule, AGRestOAuth2AuthzFacebookModule or custom implemention.
- */
-@property (nonatomic, strong) Class type;
-
-/**
  * The client id.
  */
 @property (nonatomic, strong) NSString* clientId;
