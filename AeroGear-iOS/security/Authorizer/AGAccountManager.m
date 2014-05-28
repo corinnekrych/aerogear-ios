@@ -51,22 +51,22 @@
     if (account == nil) {
         // create a new account with a generaed account id
         account = [[AGOAuth2AuthzSession alloc] init];
-        NSMutableDictionary* accountDictionnary = [NSMutableDictionary mutableCopy];
+        NSMutableDictionary* accountDictionnary = [NSMutableDictionary dictionary];
         [_oauthAccountStorage save:accountDictionnary error:nil]; //TODO
         account.accountId = accountDictionnary[@"id"];
         // assign newly created accountId
         adapter.accountId = account.accountId;
     }
-   
-    // initialize authzModule with stored tokens
-    adapter.sessionStorage.clientId = account.clientId;
-    adapter.sessionStorage.accessToken = account.accessToken;
-    adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
-    adapter.sessionStorage.refreshToken = account.refreshToken;
-    
-    // register to ne notifeid when token get refreshed to store them in AccountMgr
-    [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
-    
+    if (account.accountId != nil) { // an error occured while creating an account
+        // initialize authzModule with stored tokens
+        adapter.sessionStorage.clientId = account.clientId;
+        adapter.sessionStorage.accessToken = account.accessToken;
+        adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
+        adapter.sessionStorage.refreshToken = account.refreshToken;
+        
+        // register to ne notifeid when token get refreshed to store them in AccountMgr
+        [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
+    }
     return adapter;
 }
 
@@ -79,24 +79,4 @@
         NSLog(@"NewValue==%@ context=%@", newValue, context);
     }
 }
-
-#pragma mark - implement public interface
-//-(void)addAccount:(AGOAuth2AuthzSession*)account error:(NSError**) error {
-//    [_oauthAccountStorage save:account error:error];
-//        
-//}
-//
-//-(BOOL)hasAccount:(NSString*)searchAccountId {
-//    if ([_oauthAccountStorage read:searchAccountId] == nil)
-//        return NO;
-//    return YES;
-//}
-//
-//-(AGOAuth2AuthzSession*)account:(NSString*)accountId {
-//    return [_oauthAccountStorage read:accountId];
-//}
-//
-//-(NSArray*)accounts {
-//    return [_oauthAccountStorage readAll];
-//}
 @end
