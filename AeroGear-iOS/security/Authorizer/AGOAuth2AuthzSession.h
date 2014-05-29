@@ -21,7 +21,7 @@
 /**
  * The account id. 
  */
-@property (nonatomic, strong) NSString* accountId;
+@property (nonatomic, strong) NSString* serviceIdentifier;
 
 /**
  * The access token which expires.
