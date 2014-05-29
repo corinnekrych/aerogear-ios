@@ -21,7 +21,7 @@
 @synthesize accessToken = _accessToken;
 @synthesize accessTokenExpirationDate = _accessTokenExpirationDate;
 @synthesize refreshToken = _refreshToken;
-@synthesize accountId = _accountId;
+@synthesize serviceIdentifier = _serviceIdentifier;
 
 - (BOOL)tokenIsNotExpired {
     return [_accessTokenExpirationDate timeIntervalSinceDate:[NSDate date]] > 0 ;
@@ -39,8 +39,8 @@
  */
 -(NSDictionary*)toDictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    if (_accountId) {
-        dict[@"id"] = _accountId;
+    if (_serviceIdentifier) {
+        dict[@"id"] = _serviceIdentifier;
     }
     if (_accessToken) {
         dict[@"accessToken"] = _accessToken;
@@ -63,7 +63,7 @@
         _accessToken = dictionary[@"accessToken"];
         _accessTokenExpirationDate = dictionary[@"accessTokenExpirationDate"];
         _refreshToken = dictionary[@"refreshToken"];
-        _accountId = dictionary[@"id"];
+        _serviceIdentifier = dictionary[@"id"];
     }
     return self;
 }

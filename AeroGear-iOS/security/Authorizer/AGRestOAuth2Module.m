@@ -66,7 +66,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     if (self) {
         // set all the things:
         AGAuthzConfiguration* config = (AGAuthzConfiguration*) authzConfig;
-        _baseURL = config.baseURL.absoluteString;
+        _baseURL = config.baseURL;
         _type = config.type;
         _authzEndpoint = config.authzEndpoint;
         _accessTokenEndpoint = config.accessTokenEndpoint;

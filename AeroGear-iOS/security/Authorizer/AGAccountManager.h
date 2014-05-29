@@ -26,7 +26,7 @@
  */
 @interface AGAccountManager : NSObject
 
--(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
+-(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig>)) config;
 
 /**
  * Default initialization of AGAccountManager as MEMORY storage
