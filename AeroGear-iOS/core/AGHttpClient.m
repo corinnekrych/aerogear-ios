@@ -66,6 +66,7 @@
 
 
 @implementation AGHttpClient
+@synthesize authzModule = _authzModule;
 
 + (instancetype)clientFor:(NSURL *)url {
     return [[[self class] alloc] initWithBaseURL:url timeout:60 sessionConfiguration:nil authModule:nil authzModule:nil];
@@ -99,7 +100,9 @@
     AGRequestSerializer *serializer = [AGRequestSerializer serializer];
     serializer.authModule = authModule;
     serializer.authzModule = authzModule;
-
+    
+    self.authzModule = authzModule;
+    
     self.requestSerializer = serializer;
     // apply json response serializer
     self.responseSerializer = [AFJSONResponseSerializer serializer];

@@ -22,6 +22,8 @@
 
 @interface AGHttpClient : AFHTTPSessionManager
 
+@property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
+
 + (instancetype)clientFor:(NSURL *)url;
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval;
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration;

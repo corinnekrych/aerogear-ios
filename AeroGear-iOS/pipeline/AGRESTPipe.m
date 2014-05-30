@@ -113,46 +113,94 @@
     }
 
     NSString* objectKey = [self getStringValue:value];
-    [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (success) {
-            success(responseObject);
+
+    if (_restClient.authzModule) { // when authz is required
+        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
+            
+            [_restClient.authzModule requestAccessSuccess:^(id object) {
+                
+                [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    if (success) {
+                        success(responseObject);
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    if (failure) {
+                        failure(error);
+                    }
+                }];
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    // add error msg to wrap token fetching issue
+                    failure(error);
+                }
+            }];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    } else { // no authz required, just simple pipe call
+        [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (success) {
+                success(responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
+    }
 }
 
 // read all, via HTTP GET
 -(void) read:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure {
 
-    [self readWithParams:nil success:success failure:failure];
+    [self authzReadWithParams:nil success:success failure:failure];
 }
 
 // read, with (filter/query) params. Used for paging, can be used
 // to issue queries as well...
--(void) readWithParams:(NSDictionary*)parameterProvider
+-(void) authzReadWithParams:(NSDictionary*)parameterProvider
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure {
+    
+    if (_restClient.authzModule) { // when authz is required
+        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
+            [_restClient.authzModule requestAccessSuccess:^(id object) {
+              
+                [self readWithParams:parameterProvider success:success failure:failure];
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    // add error msg to wrap token fetching issue
+                    failure(error);
+                }
+            }];
+        }
+    } else { // no authz required, just simple pipe call
+        [self readWithParams:parameterProvider success:success failure:failure];
+    }
+}
 
+// read, with (filter/query) params. Used for paging, can be used
+// to issue queries as well...
+-(void)readWithParams:(NSDictionary*)parameterProvider
+             success:(void (^)(id responseObject))success
+             failure:(void (^)(NSError *error))failure {
     // if none has been passed, we use the "global" setting
     // which can be the default limit/offset OR what has
     // been configured on the PIPE level.....:
     if (!parameterProvider)
         parameterProvider = _pageConfig.parameterProvider;
-
+    
     [_restClient GET:_URL.path parameters:parameterProvider success:^(NSURLSessionDataTask *task, id responseObject) {
-
+        
         NSMutableArray* pagingObject;
-
+        
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             pagingObject = [NSMutableArray arrayWithObject:responseObject];
         } else {
             pagingObject = (NSMutableArray*) [responseObject mutableCopy];
         }
-
+        
         // stash pipe reference:
         pagingObject.pipe = self;
         pagingObject.parameterProvider = [_pageConfig.pageExtractor parse:responseObject
@@ -163,7 +211,7 @@
             success(pagingObject);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        
         if (failure) {
             failure(error);
         }
@@ -200,7 +248,24 @@
     // we need to check if the map representation contains the "recordID" and its value is actually set,
     // to determine whether POST or PUT should be attempted
     if (objectKey == nil || [objectKey isKindOfClass:[NSNull class]]) {
-        [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
+        
+        if (_restClient.authzModule) { // when authz is required
+            if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
+                [_restClient.authzModule requestAccessSuccess:^(id object) {
+                    
+                    [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
+                    
+                } failure:^(NSError *error) {
+                    if (failure) {
+                        // add error msg to wrap token fetching issue
+                        failure(error);
+                    }
+                }];
+            }
+        } else { // no authz required, just simple pipe call
+             [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
+        }
+       
     } else {
 
         // extract object's id
@@ -230,17 +295,45 @@
 
     NSString* deleteKey = [self getStringValue:objectKey];
 
-    [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        if (success) {
-            success(responseObject);
+    if (_restClient.authzModule) { // when authz is required
+        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
+            [_restClient.authzModule requestAccessSuccess:^(id object) {
+                
+                [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    
+                    if (success) {
+                        success(responseObject);
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    if (failure) {
+                        failure(error);
+                    }
+                } ];                
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    // add error msg to wrap token fetching issue
+                    failure(error);
+                }
+            }];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } else { // no authz required, just simple pipe call
+        [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            if (success) {
+                success(responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+            if (failure) {
+                failure(error);
+            }
+        } ];
+        
 
-        if (failure) {
-            failure(error);
-        }
-    } ];
+    }
+    
 }
 
 -(void) cancel {
