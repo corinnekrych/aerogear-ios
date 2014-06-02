@@ -20,6 +20,7 @@
 #import "AGHttpClient.h"
 #import "AGAuthzConfiguration.h"
 #import "AGRestOAuth2Module.h"
+#import "AGRestOAuth2FacebookModule.h"
 #import <OCMock/OCMock.h>
 
 SPEC_BEGIN(AGRestOAuth2ModuleSpec)
@@ -197,6 +198,42 @@ describe(@"AGRestAuthzModule", ^{
             NSDictionary* paramDict = @{@"token":@"ACCESS_TOKEN"};
             
             [[mockAGHTTPClient expect] POST:config.revokeTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
+            
+            [myRestAuthzModule revokeAccessSuccess:callbackSuccess failure:callbackFailure];
+            
+            [mockAGHTTPClient verify];
+            [mockAGHTTPClient stopMocking];
+        });
+        
+        it(@"should issue a request to revoke access/refresh tokens with DELETE for facebook adapter", ^{
+            
+            // setup REST Authenticator
+            config = [[AGAuthzConfiguration alloc] init];
+            config.name = @"restAuthMod";
+            config.baseURL = [[NSURL alloc] init];
+            config.authzEndpoint = @"https://www.facebook.com/dialog/oauth";
+            config.accessTokenEndpoint = @"https://graph.facebook.com/oauth/access_token";
+            config.clientId = @"765891443445434";
+            config.clientSecret = @"e489a7b0a034df9e57bf8c2a9d74fd26";
+            config.redirectURL = @"fb765891443445434://authorize/";
+            config.scopes = @[@"user_friends, photo_upload, publish_actions"];
+            config.type = @"AG_OAUTH2_FACEBOOK";
+            config.revokeTokenEndpoint = @"https://www.facebook.com/me/permissions";
+            restAuthzModule = [AGRestOAuth2Module moduleWithConfig:config];
+            
+            __block BOOL wasSuccessCallbackCalled = NO;
+            void (^callbackSuccess)(id obj) = ^ void (id object) {wasSuccessCallbackCalled = YES;};
+            void (^callbackFailure)(NSError *error) = ^ void (NSError *error) {};
+            
+            id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
+            
+            AGRestOAuth2FacebookModule* myRestAuthzModule = [[AGRestOAuth2FacebookModule alloc] initWithConfig:config client:mockAGHTTPClient];
+            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            
+            NSDictionary* paramDict = @{@"token":@"ACCESS_TOKEN"};
+            
+            [[mockAGHTTPClient expect] DELETE:config.revokeTokenEndpoint parameters:paramDict success:[OCMArg any] failure:[OCMArg any]];
             
             [myRestAuthzModule revokeAccessSuccess:callbackSuccess failure:callbackFailure];
             

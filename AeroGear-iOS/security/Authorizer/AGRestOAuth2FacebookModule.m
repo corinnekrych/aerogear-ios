@@ -68,4 +68,23 @@
         }
     }];
 }
+
+-(void) revokeAccessSuccess:(void (^)(id object))success
+                    failure:(void (^)(NSError *error))failure {
+    NSDictionary* paramDict = @{@"token":self.session.accessToken};
+    
+    [_restClient DELETE:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.session saveAccessToken:nil refreshToken:nil expiration:nil];
+        
+        if (success) {
+            success(nil);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 @end
