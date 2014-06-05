@@ -20,9 +20,9 @@
 
 @interface AGRequestSerializer : AFJSONRequestSerializer
 
-    // auth/autz configuration
-    @property (nonatomic, strong) id<AGAuthenticationModuleAdapter> authModule;
-    @property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
+// auth/autz configuration
+@property (nonatomic, strong) id<AGAuthenticationModuleAdapter> authModule;
+@property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
 
 @end
 
@@ -30,7 +30,7 @@
 
 + (instancetype)serializer {
     AGRequestSerializer *serializer = [[self alloc] init];
-
+    
     return serializer;
 }
 
@@ -39,26 +39,26 @@
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
                                withParameters:(id)parameters
                                         error:(NSError *__autoreleasing *)error {
-
+    
     // call base json serialization
     NSMutableURLRequest *mutableRequest = (NSMutableURLRequest *)[super requestBySerializingRequest:request
                                                                                      withParameters:parameters error:error];
     // finally apply auth/autz (if any) on request
     NSDictionary *headers;
-
+    
     if (self.authModule && [self.authModule isAuthenticated]) {
         headers = [self.authModule authTokens];
     } else if (self.authzModule && [self.authzModule isAuthorized]) {
         headers = [self.authzModule authorizationFields];
     }
-
+    
     // apply them
     if (headers) {
         [headers enumerateKeysAndObjectsUsingBlock:^(id name, id value, BOOL *stop) {
             [mutableRequest setValue:value forHTTPHeaderField:name];
         }];
     }
-
+    
     return mutableRequest;
 }
 
@@ -66,7 +66,6 @@
 
 
 @implementation AGHttpClient
-@synthesize authzModule = _authzModule;
 
 + (instancetype)clientFor:(NSURL *)url {
     return [[[self class] alloc] initWithBaseURL:url timeout:60 sessionConfiguration:nil authModule:nil authzModule:nil];
@@ -89,52 +88,65 @@
 - (instancetype)initWithBaseURL:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration
                      authModule:(id<AGAuthenticationModuleAdapter>) authModule
                     authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule {
-
+    
     self = [super initWithBaseURL:url sessionConfiguration:configuration];
-
+    
     if (!self) {
         return nil;
     }
-
+    
     // apply AG request serializer
     AGRequestSerializer *serializer = [AGRequestSerializer serializer];
     serializer.authModule = authModule;
     serializer.authzModule = authzModule;
     
-    self.authzModule = authzModule;
-    
     self.requestSerializer = serializer;
     // apply json response serializer
     self.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    
     // set the timeout interval
     self.requestSerializer.timeoutInterval = interval;
-
+    
     // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-
+    
     return (self);
 }
 
 #pragma mark - AFHTTPSessionManager override
 
-// override to construct a multipart request if required by the params passed in
+- (NSURLSessionDataTask *)GET:(NSString *)URLString
+                   parameters:(NSDictionary *)parameters
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self processRequestWithMethod:@"GET" URLString:URLString parameters:parameters success:success failure:failure];
+}
+
+
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                     parameters:(NSDictionary *)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-
+    
     return [self processRequestWithMethod:@"POST" URLString:URLString parameters:parameters success:success failure:failure];
-
+    
 }
 
-// override to construct a multipart request if required by the params passed in
 - (NSURLSessionDataTask *)PUT:(NSString *)URLString
                    parameters:(NSDictionary *)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-
+    
     return [self processRequestWithMethod:@"PUT" URLString:URLString parameters:parameters success:success failure:failure];
+}
+
+- (NSURLSessionDataTask *)DELETE:(NSString *)URLString
+                      parameters:(NSDictionary *)parameters
+                         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    
+    return [self processRequestWithMethod:@"DELETE" URLString:URLString parameters:parameters success:success failure:failure];
+    
 }
 
 #pragma mark - utility methods
@@ -145,47 +157,73 @@
                                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     __block NSURLSessionDataTask *task;
-
+    
     // let's define up-front the completion callback since it's common
     id completionCallback = ^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+        
         if (error) {
-            if (failure) {
-                failure(task, error);
+            NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+            if (httpResp.statusCode == 401 /* Unauthorized */
+                || httpResp.statusCode == 400 /* Bad Request */)  {
+                id<AGOAuth2AuthzModuleAdapter> authzModule = ((AGRequestSerializer *)self.requestSerializer).authzModule;
+                
+                if (authzModule && ![authzModule isAuthorized]) { // is an authz module configured?
+                    // try to authorize
+                    [authzModule requestAccessSuccess:^(id object) {
+                        
+                        // retry operation
+                        [self processRequestWithMethod:method URLString:URLString
+                                            parameters:parameters success:success failure:failure];
+                        
+                    } failure:^(NSError *error) {
+                        if (failure) {
+                            failure(task, error);
+                        }
+                    }];
+                } else { // no authz configured can't do much, simpy return error
+                    if (failure) {
+                        failure(task, error);
+                    }
+                }
+            } else { // an error has occured
+                if (failure) {
+                    failure(task, error);
+                }
             }
-        } else {
+        } else { // success
             if (success) {
                 success(task, responseObject);
             }
         }
     };
-
-    if ([self hasMultipartData:parameters]) {
+    
+    if ([@[@"POST", @"PUT"] containsObject:method] && [self hasMultipartData:parameters]) {
         NSError *error = nil;
-
+        
         NSMutableURLRequest *request = [self multipartFormRequestWithMethod:method
                                                                        path:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString]
                                                                  parameters:parameters error:&error];
-
+        
         // if there was an error during multipart processing
         // or in the construction of request
         if (error) {
             failure(nil, error);
             return nil;
         }
-
+        
         task = [self uploadTaskWithStreamedRequest:request progress:nil completionHandler:completionCallback];
-
+        
     } else {
-
+        
         NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method
                                                                        URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString]
                                                                       parameters:parameters error:nil];
-
+        
         task = [self dataTaskWithRequest:request completionHandler:completionCallback];
     }
-
+    
     [task resume];
-
+    
     return task;
 }
 
@@ -194,12 +232,12 @@
                                                    path:(NSString *)path
                                              parameters:(NSDictionary *)parameters
                                                   error:(NSError **) error {
-
+    
     NSMutableURLRequest *req;
-
+    
     // extract multipart data;
     NSMutableDictionary *parts = [[NSMutableDictionary alloc] init];
-
+    
     [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj conformsToProtocol:@protocol(AGMultipart)]) {
             // add it
@@ -209,7 +247,7 @@
             parts[key] = obj;
         }
     }];
-
+    
     // cater for AFNetworking default behaviour to call [object description]
     // for parameters other than NSData and NSNull. We need to filter
     // AGMultipart objects from the request and apply them in the block later on
@@ -218,32 +256,32 @@
     
     // will hold any error that occurs during multipart add
     __block NSError *err;
-
+    
     req = [self.requestSerializer multipartFormRequestWithMethod:method URLString:path parameters:filteredParameters constructingBodyWithBlock:^(id <AFMultipartFormData> formData) {
-
+        
         [parts enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             if ([obj isKindOfClass:[AGFilePart class]]) {
                 AGFilePart *part = (AGFilePart *) obj;
                 [formData appendPartWithFileURL:part.fileURL
                                            name:part.name
                                           error:&err];
-
+                
                 // if there was any error adding the
                 // file stop immediately
                 if (err)
                     *stop = YES;
-
+                
             } else if ([obj isKindOfClass:[AGFileDataPart class]]) {
                 AGFileDataPart *part = (AGFileDataPart *) obj;
-
+                
                 [formData appendPartWithFileData:part.data
                                             name:part.name
                                         fileName:part.fileName
                                         mimeType:part.mimeType];
-
+                
             } else if ([obj isKindOfClass:[AGStreamPart class]]) {
                 AGStreamPart *part = (AGStreamPart *) obj;
-
+                
                 [formData appendPartWithInputStream:part.inputStream
                                                name:part.name
                                            fileName:part.fileName
@@ -252,27 +290,27 @@
             }
         }];
     } error:error];
-
+    
     if (err) { // if there was error adding multipart
         *error = err;
         return nil;
     }
-
+    
     return req;
 }
 
 // check if any file objects(if any) are embedded in the params
 - (BOOL)hasMultipartData:(NSDictionary *)parameters {
     __block BOOL hasMultipart = NO;
-
+    
     [[parameters allValues] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj conformsToProtocol:@protocol(AGMultipart)] ||
-                [obj isKindOfClass:[NSURL class]]) { // TODO: deprecated
+            [obj isKindOfClass:[NSURL class]]) { // TODO: deprecated
             hasMultipart = YES;
             *stop = YES; // no need to continue further
         }
     }];
-
+    
     return hasMultipart;
 }
 

@@ -22,14 +22,12 @@
 
 @interface AGHttpClient : AFHTTPSessionManager
 
-@property (nonatomic, strong) id<AGOAuth2AuthzModuleAdapter> authzModule;
-
 + (instancetype)clientFor:(NSURL *)url;
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval;
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration;
 
 + (instancetype)clientFor:(NSURL *)url timeout:(NSTimeInterval)interval sessionConfiguration:(NSURLSessionConfiguration *)configuration
-                                    authModule:(id<AGAuthenticationModuleAdapter>) authModule
-                                   authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule;
+               authModule:(id<AGAuthenticationModuleAdapter>) authModule
+              authzModule:(id<AGOAuth2AuthzModuleAdapter>)authzModule;
 
 @end

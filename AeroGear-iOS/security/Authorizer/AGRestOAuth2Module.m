@@ -136,6 +136,13 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     }];
 }
 
+-(NSDictionary*) authorizationFields {
+    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessToken]};
+}
+
+- (BOOL)isAuthorized {
+    return self.session.accessToken != nil && [self.session tokenIsNotExpired];
+}
 
 // ==============================================================
 // ======== internal API (AGAuthzModuleAdapter)          ========
@@ -155,47 +162,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     }];
     
     [[UIApplication sharedApplication] openURL:url];
-}
-
--(void)exchangeAuthorizationCodeForAccessToken:(NSString*)code
-                                       success:(void (^)(id object))success
-                                       failure:(void (^)(NSError *error))failure {
-    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": _redirectURL, @"grant_type":@"authorization_code"}];
-
-    if (_clientSecret) {
-        paramDict[@"client_secret"] = _clientSecret;
-    }
-    
-    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
-    
-            [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
-    
-            if (success) {
-                success(responseObject[@"access_token"]);
-            }
-    
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (failure) {
-                failure(error);
-            }
-        }];
-}
-
-- (NSString*) urlAsString {
-    if(self.baseURL) {
-        return [NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
-                self.baseURL,
-                self.authzEndpoint,
-                [self scope],
-                [self urlEncodeString:_redirectURL],
-                _clientId];
-    } else {
-        return [NSString stringWithFormat:@"%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
-                self.authzEndpoint,
-                [self scope],
-                [self urlEncodeString:_redirectURL],
-                _clientId];
-    }
 }
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
@@ -220,8 +186,47 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     }];
 }
 
--(NSDictionary*) authorizationFields {
-    return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessToken]};
+-(void)exchangeAuthorizationCodeForAccessToken:(NSString*)code
+                                       success:(void (^)(id object))success
+                                       failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": _redirectURL, @"grant_type":@"authorization_code"}];
+    
+    if (_clientSecret) {
+        paramDict[@"client_secret"] = _clientSecret;
+    }
+    
+    [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+        
+        if (success) {
+            success(responseObject[@"access_token"]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+#pragma mark - Utility methods
+
+- (NSString*) urlAsString {
+    if(self.baseURL) {
+        return [NSString stringWithFormat:@"%@/%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+                self.baseURL,
+                self.authzEndpoint,
+                [self scope],
+                [self urlEncodeString:_redirectURL],
+                _clientId];
+    } else {
+        return [NSString stringWithFormat:@"%@?scope=%@&redirect_uri=%@&client_id=%@&response_type=code",
+                self.authzEndpoint,
+                [self scope],
+                [self urlEncodeString:_redirectURL],
+                _clientId];
+    }
 }
 
 -(NSDictionary *) parametersFromQueryString:(NSString *)queryString {
@@ -270,11 +275,6 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
                                                                      (__bridge CFStringRef)@"!@#$%&*'();:=+,/?[]",
                                                                      kCFStringEncodingUTF8);
     return (NSString *)CFBridgingRelease(encodedURL);
-}
-
-
-- (BOOL)isAuthorized {
-    return self.session.accessToken != nil && [self.session tokenIsNotExpired];
 }
 
 - (void)deauthorize {

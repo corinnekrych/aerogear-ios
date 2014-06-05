@@ -22,11 +22,11 @@
 
 /**
  An internal AGAuthorization module implementation that uses REST as the authz transport.
-
+ 
  *IMPORTANT:* Users are not required to instantiate this class directly, instead an instance of this class is returned
  automatically when an Authorizer with default configuration is constructed or with the _type_ config option set to
  _"REST"_. See AGAuthorizer and AGAuthzModule class documentation for more information.
-
+ 
  */
 @interface AGRestOAuth2Module : NSObject <AGOAuth2AuthzModuleAdapter> {
     AGHttpClient* _restClient;
@@ -39,7 +39,7 @@
 -(instancetype) initWithConfig:(id<AGAuthzConfig>) authzConfig client:(AGHttpClient*)client;
 
 -(void)requestAuthorizationCodeSuccess:(void (^)(id object))success
-                              failure:(void (^)(NSError *error))failure;
+                               failure:(void (^)(NSError *error))failure;
 
 -(void)refreshAccessTokenSuccess:(void (^)(id object))success
                          failure:(void (^)(NSError *error))failure;
