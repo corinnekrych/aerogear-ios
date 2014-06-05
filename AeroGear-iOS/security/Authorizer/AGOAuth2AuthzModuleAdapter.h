@@ -24,11 +24,23 @@
  */
 @protocol AGOAuth2AuthzModuleAdapter <AGAuthzModule>
 
+/*
+ * The different states of the authz module
+ */
+typedef NS_ENUM(NSUInteger, AGAuthorizationState) {
+    AGAuthorizationStatePendingExternalApproval,
+    AGAuthorizationStateApproved,
+    AGAuthorizationStateUnknown
+};
+
 /**
  *  A key/value store of the authz tokens.
  */
 @property (nonatomic, readonly) AGOAuth2AuthzSession* session;
 
-
+/*
+ * The current state of the authz module.
+ */
+@property (nonatomic, readonly) AGAuthorizationState state;
 
 @end

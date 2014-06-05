@@ -21,11 +21,12 @@
 #import "AGHttpClient.h"
 
 NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotification";
+NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotification";
 
 @implementation AGRestOAuth2Module {
     id _applicationLaunchNotificationObserver;
+    id _applicationDidBecomeActiveNotificationObserver;
 }
-
 // =====================================================
 // ======== public API (AGAuthzModule) ========
 // =====================================================
@@ -38,6 +39,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 @synthesize clientId = _clientId;
 @synthesize clientSecret = _clientSecret;
 @synthesize scopes = _scopes;
+@synthesize state = _state;
 
 // ==============================================================
 // ======== internal API (AGAuthzModuleAdapter) ========
@@ -95,7 +97,8 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 }
 
 -(void)dealloc {
-    _restClient = nil;
+
+    [self stopObserving];
 }
 
 // =====================================================
@@ -119,7 +122,7 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 -(void) revokeAccessSuccess:(void (^)(id object))success
                     failure:(void (^)(NSError *error))failure {
-    
+
     // return if not yet initialized
     if (!self.session.accessToken)
         return;
@@ -160,18 +163,43 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     // Form the URL string.
     NSURL *url = [NSURL URLWithString:[self urlAsString]];
     
-    // register with the notification system in order to be notified when the 'authorisation' process completes in the
+    // register with the notification system in order to be notified when the 'authorization' process completes in the
     // external browser, and the oauth code is available so that we can then proceed to request the 'access_token'
-    // from the server.
-    _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
-        NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+    // from the server.    
+    _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification
+        object:nil queue:nil usingBlock:^(NSNotification *notification) {
         
-        // extract the code from the URL
-        NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
-        // if exists perform the exchange
-        if (code)
-            [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+            NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+        
+            // extract the code from the URL
+            NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
+            // if exists perform the exchange
+            if (code)
+                [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+        
+            // finally, unregister
+            [self stopObserving];
+            // ..and update state
+            _state = AGAuthorizationStateApproved;
     }];
+    
+    // register to receive notification when the application becomes active so we
+    // can clear any pending authorization requests which are not completed properly,
+    // that is a user switched into the app without Accepting or Cancelling the authorization
+    // request in the external browser process.
+    _applicationDidBecomeActiveNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppDidBecomeActiveNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+
+            // check the state
+            if (self.state == AGAuthorizationStatePendingExternalApproval) {
+                // unregister
+                [self stopObserving];
+                // ..and update state
+                _state = AGAuthorizationStateUnknown;
+            }
+    }];
+    
+    // update state to 'Pending'
+    _state = AGAuthorizationStatePendingExternalApproval;
     
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -202,24 +230,32 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
                                        success:(void (^)(id object))success
                                        failure:(void (^)(NSError *error))failure {
     NSMutableDictionary* paramDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"code":code, @"client_id":_clientId, @"redirect_uri": _redirectURL, @"grant_type":@"authorization_code"}];
-    
+
     if (_clientSecret) {
         paramDict[@"client_secret"] = _clientSecret;
     }
     
     [_restClient POST:self.accessTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
-        
-        if (success) {
-            success(responseObject[@"access_token"]);
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+    
+            [self.session saveAccessToken:responseObject[@"access_token"] refreshToken:responseObject[@"refresh_token"] expiration:responseObject[@"expires_in"]];
+    
+            if (success) {
+                success(responseObject[@"access_token"]);
+            }
+    
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
+}
+
+-(void)stopObserving {
+    // clear all observers
+    [[NSNotificationCenter defaultCenter] removeObserver:_applicationLaunchNotificationObserver];
+    _applicationLaunchNotificationObserver = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:_applicationDidBecomeActiveNotificationObserver];
+    _applicationDidBecomeActiveNotificationObserver = nil;
 }
 
 #pragma mark - Utility methods
