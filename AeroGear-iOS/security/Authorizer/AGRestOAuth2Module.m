@@ -119,6 +119,11 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 
 -(void) revokeAccessSuccess:(void (^)(id object))success
                     failure:(void (^)(NSError *error))failure {
+    
+    // return if not yet initialized
+    if (!self.session.accessToken)
+        return;
+    
     NSDictionary* paramDict = @{@"token":self.session.accessToken};
     
     [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -137,6 +142,9 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
 }
 
 -(NSDictionary*) authorizationFields {
+    if (!self.session.accessToken)
+        return nil;
+    
     return @{@"Authorization":[NSString stringWithFormat:@"Bearer %@", self.session.accessToken]};
 }
 
@@ -157,8 +165,12 @@ NSString * const AGAppLaunchedWithURLNotification = @"AGAppLaunchedWithURLNotifi
     // from the server.
     _applicationLaunchNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:AGAppLaunchedWithURLNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
         NSURL *url = [[notification userInfo] valueForKey:UIApplicationLaunchOptionsURLKey];
+        
+        // extract the code from the URL
         NSString* code = [[self parametersFromQueryString:[url query]] valueForKey:@"code"];
-        [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
+        // if exists perform the exchange
+        if (code)
+            [self exchangeAuthorizationCodeForAccessToken:code success:success failure:failure];
     }];
     
     [[UIApplication sharedApplication] openURL:url];
