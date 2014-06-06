@@ -68,6 +68,8 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
     if (self) {
         // set all the things:
         AGAuthzConfiguration* config = (AGAuthzConfiguration*) authzConfig;
+
+        _accountId = config.name;
         _baseURL = config.baseURL;
         _type = config.type;
         _authzEndpoint = config.authzEndpoint;

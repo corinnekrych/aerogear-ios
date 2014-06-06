@@ -38,4 +38,12 @@
  * Note it is recommanded to store tokens in ecrypted storage.
  */
 +(instancetype) manager:(NSString*)type;
+
+/**
+ * Loads a given AGAuthzModule implementation, based on the given moduleName argument.
+ *
+ * @param moduleName The name of the actual authz module object.
+ */
+-(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName;
+
 @end

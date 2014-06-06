@@ -53,19 +53,15 @@
     id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[_authz authz:config];
     
     // check if a stored config exists for this service
-    NSString *serviceIdentifier = [adapter.baseURL host];
-    AGOAuth2AuthzSession* account = [self read:serviceIdentifier];
+    NSString *accountId = adapter.accountId;
+    AGOAuth2AuthzSession *account = [self read:accountId];
     
     if (account == nil) { // nope
-        account = [[AGOAuth2AuthzSession alloc] init];
+        adapter.sessionStorage = [[AGOAuth2AuthzSession alloc] init];
+        adapter.sessionStorage.accountId = accountId;
     } else { // found one
-        // initialize adapter
-        adapter.sessionStorage.accessToken = account.accessToken;
-        adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
-        adapter.sessionStorage.refreshToken = account.refreshToken;
+        adapter.sessionStorage = account;
     }
-    
-    adapter.sessionStorage.serviceIdentifier = serviceIdentifier;
     
     // register to be notified when token get refreshed to store them in AccountMgr
     [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessToken))
@@ -77,6 +73,12 @@
 
     return adapter;
 }
+
+-(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName {
+    return  [_authz authzModuleWithName:moduleName];
+}
+
+#pragma mark - Utility methods
 
 -(AGOAuth2AuthzSession*)read:(NSString*)accountId {
     NSDictionary* dict = [_oauthAccountStorage read:accountId];

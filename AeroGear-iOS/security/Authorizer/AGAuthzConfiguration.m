@@ -29,7 +29,6 @@
 @synthesize clientId = _clientId;
 @synthesize clientSecret = _clienSecret;
 @synthesize timeout = _timeout;
-@synthesize accountId = _accountId;
 
 @synthesize name = _name;
 @synthesize type = _type;

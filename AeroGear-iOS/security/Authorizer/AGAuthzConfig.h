@@ -68,10 +68,4 @@
  */
 @property (assign, nonatomic) NSTimeInterval timeout;
 
-/**
- * Account id is used with AGAccountManager to store tokens. If AGAccountManager is not used,
- * this field is optional.
- */
-@property (copy, nonatomic) NSString* accountId;
-
 @end
