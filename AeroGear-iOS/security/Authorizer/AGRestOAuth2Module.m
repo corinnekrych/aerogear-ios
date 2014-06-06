@@ -325,9 +325,4 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
     return (NSString *)CFBridgingRelease(encodedURL);
 }
 
-- (void)deauthorize {
-    //TODO AGIOS-146
-    //_accessToken = nil;
-}
-
 @end
