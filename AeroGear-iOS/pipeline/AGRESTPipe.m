@@ -26,7 +26,7 @@
 #import "AGNSMutableArray+Paging.h"
 
 @implementation AGRESTPipe {
-
+    
     NSString* _recordId;
     
     AGPageConfiguration* _pageConfig;
@@ -56,17 +56,17 @@
         
         _URL = finalURL;
         _recordId = _config.recordId;
-
+        
         _restClient = [AGHttpClient clientFor:finalURL timeout:_config.timeout
                          sessionConfiguration:_config.sessionConfiguration
                                    authModule:(id <AGAuthenticationModuleAdapter>) _config.authModule
                                   authzModule:(id <AGOAuth2AuthzModuleAdapter>) _config.authzModule];
-
-
+        
+        
         // if NSURLCredential object is set on the config
         if (_config.credential) {
             // apply it
-
+            
             // capture the value to avoid strong reference cycle
             NSURLCredential *credential = _config.credential;
             // set it
@@ -79,7 +79,7 @@
                 }
             }];
         }
-
+        
         // set up paging config from the user supplied block
         _pageConfig = [[AGPageConfiguration alloc] init];
         
@@ -105,86 +105,38 @@
 -(void) read:(id)value
      success:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure {
-
+    
     if (value == nil || [value isKindOfClass:[NSNull class]]) {
         [self raiseError:@"read" msg:@"read id value was nil" failure:failure];
         // do nothing
         return;
     }
-
+    
     NSString* objectKey = [self getStringValue:value];
-
-    if (_restClient.authzModule) { // when authz is required
-        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
-            
-            [_restClient.authzModule requestAccessSuccess:^(id object) {
-                
-                [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                    if (success) {
-                        success(responseObject);
-                    }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    if (failure) {
-                        failure(error);
-                    }
-                }];
-                
-            } failure:^(NSError *error) {
-                if (failure) {
-                    // add error msg to wrap token fetching issue
-                    failure(error);
-                }
-            }];
+    [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (success) {
+            success(responseObject);
         }
-    } else { // no authz required, just simple pipe call
-        [_restClient GET:[self appendObjectPath:objectKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (success) {
-                success(responseObject);
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (failure) {
-                failure(error);
-            }
-        }];
-    }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 // read all, via HTTP GET
 -(void) read:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure {
-
-    [self authzReadWithParams:nil success:success failure:failure];
+    
+    [self readWithParams:nil success:success failure:failure];
 }
 
 // read, with (filter/query) params. Used for paging, can be used
 // to issue queries as well...
--(void) authzReadWithParams:(NSDictionary*)parameterProvider
+-(void) readWithParams:(NSDictionary*)parameterProvider
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure {
     
-    if (_restClient.authzModule) { // when authz is required
-        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
-            [_restClient.authzModule requestAccessSuccess:^(id object) {
-              
-                [self readWithParams:parameterProvider success:success failure:failure];
-                
-            } failure:^(NSError *error) {
-                if (failure) {
-                    // add error msg to wrap token fetching issue
-                    failure(error);
-                }
-            }];
-        }
-    } else { // no authz required, just simple pipe call
-        [self readWithParams:parameterProvider success:success failure:failure];
-    }
-}
-
-// read, with (filter/query) params. Used for paging, can be used
-// to issue queries as well...
--(void)readWithParams:(NSDictionary*)parameterProvider
-             success:(void (^)(id responseObject))success
-             failure:(void (^)(NSError *error))failure {
     // if none has been passed, we use the "global" setting
     // which can be the default limit/offset OR what has
     // been configured on the PIPE level.....:
@@ -222,69 +174,52 @@
 -(void) save:(NSDictionary*) object
      success:(void (^)(id responseObject))success
      failure:(void (^)(NSError *error))failure {
-
+    
     // when null is provided we try to invoke the failure block
     if (object == nil || [object isKindOfClass:[NSNull class]]) {
         [self raiseError:@"save" msg:@"object was nil" failure:failure];
         // do nothing
         return;
     }
-
+    
     // the blocks are unique to PUT and POST, so let's define them up-front:
     id successCallback = ^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
             success(responseObject);
         }
     };
-
+    
     id failureCallback = ^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
             failure(error);
         }
     };
-
+    
     id objectKey = object[_recordId];
-
+    
     // we need to check if the map representation contains the "recordID" and its value is actually set,
     // to determine whether POST or PUT should be attempted
     if (objectKey == nil || [objectKey isKindOfClass:[NSNull class]]) {
-        
-        if (_restClient.authzModule) { // when authz is required
-            if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
-                [_restClient.authzModule requestAccessSuccess:^(id object) {
-                    
-                    [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
-                    
-                } failure:^(NSError *error) {
-                    if (failure) {
-                        // add error msg to wrap token fetching issue
-                        failure(error);
-                    }
-                }];
-            }
-        } else { // no authz required, just simple pipe call
-             [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
-        }
-       
+        [_restClient POST:_URL.path parameters:object success:successCallback failure:failureCallback];
     } else {
-
+        
         // extract object's id
         NSString* updateId = [self getStringValue:objectKey];
-       [_restClient PUT:[self appendObjectPath:updateId] parameters:object success:successCallback failure:failureCallback];
+        [_restClient PUT:[self appendObjectPath:updateId] parameters:object success:successCallback failure:failureCallback];
     }
 }
 
 -(void) remove:(NSDictionary*) object
        success:(void (^)(id responseObject))success
        failure:(void (^)(NSError *error))failure {
-
+    
     // when null is provided we try to invoke the failure block
     if (object == nil || [object isKindOfClass:[NSNull class]]) {
         [self raiseError:@"remove" msg:@"object was nil" failure:failure];
         // do nothing
         return;
     }
-
+    
     id objectKey = object[_recordId];
     // we need to check if the map representation contains the "recordID" and its value is actually set:
     if (objectKey == nil || [objectKey isKindOfClass:[NSNull class]]) {
@@ -292,48 +227,20 @@
         // do nothing
         return;
     }
-
-    NSString* deleteKey = [self getStringValue:objectKey];
-
-    if (_restClient.authzModule) { // when authz is required
-        if(![_restClient.authzModule isAuthorized]) { // deal with asking tokens (authzModule will check if accessToken are expired or not
-            [_restClient.authzModule requestAccessSuccess:^(id object) {
-                
-                [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                    
-                    if (success) {
-                        success(responseObject);
-                    }
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    
-                    if (failure) {
-                        failure(error);
-                    }
-                } ];                
-                
-            } failure:^(NSError *error) {
-                if (failure) {
-                    // add error msg to wrap token fetching issue
-                    failure(error);
-                }
-            }];
-        }
-    } else { // no authz required, just simple pipe call
-        [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            
-            if (success) {
-                success(responseObject);
-            }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            
-            if (failure) {
-                failure(error);
-            }
-        } ];
-        
-
-    }
     
+    NSString* deleteKey = [self getStringValue:objectKey];
+    
+    [_restClient DELETE:[self appendObjectPath:deleteKey] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if (failure) {
+            failure(error);
+        }
+    } ];
 }
 
 -(void) cancel {
@@ -370,14 +277,14 @@
 -(void) raiseError:(NSString*) domain
                msg:(NSString*) msg
            failure:(void (^)(NSError *error))failure {
-
+    
     if (!failure)
         return;
-
+    
     NSError* error = [NSError errorWithDomain:[NSString stringWithFormat:@"org.aerogear.pipes.%@", domain]
                                          code:0
                                      userInfo:@{NSLocalizedDescriptionKey: msg}];
-
+    
     failure(error);
 }
 
@@ -390,7 +297,7 @@
     if (endpoint == nil) {
         endpoint = @"";
     }
-
+    
     // append the endpoint name and use it as the final URL
     return [baseURL URLByAppendingPathComponent:endpoint];
 }

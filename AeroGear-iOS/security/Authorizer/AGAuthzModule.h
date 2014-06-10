@@ -56,8 +56,11 @@ the AeroGear uses URL scheme. Schema should be carefully defined in you plist ap
 As with the case of Pipe, configured timeout interval (in the config object) and cancel operation in
 _AGAuthenticationModule_ is supported too.
  */
-@protocol AGAuthzModule <NSObject>
 
+extern NSString * const AGAppLaunchedWithURLNotification;
+extern NSString * const AGAppDidBecomeActiveNotification;
+
+@protocol AGAuthzModule <NSObject>
 
 @property (nonatomic, readonly) NSString* type;
 @property (nonatomic, readonly) NSString* baseURL;
