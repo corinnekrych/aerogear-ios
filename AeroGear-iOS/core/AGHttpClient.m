@@ -180,7 +180,7 @@
                             failure(task, error);
                         }
                     }];
-                } else { // no authz configured can't do much, simpy return error
+                } else { // no authz configured can't do much, simply return error
                     if (failure) {
                         failure(task, error);
                     }
