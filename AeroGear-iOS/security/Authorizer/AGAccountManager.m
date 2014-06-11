@@ -26,14 +26,10 @@
     AGAuthorizer *_authz;
 }
 
--(instancetype)init:(NSString*)type {
+-(instancetype)init:(id<AGStore>)store {
     self = [super init];
     if(self) {
-        _oauthAccountStorage = [[AGDataManager manager] store:^(id<AGStoreConfig> config) {
-            config.name = @"AccountManager";
-            config.type = type;
-        }];
-        
+        _oauthAccountStorage = store;
         _authz = [AGAuthorizer authorizer];
     }
     
@@ -41,10 +37,16 @@
 }
 
 +(instancetype) manager {
-    return [[AGAccountManager alloc] init:@"MEMORY"];
+    id<AGStore> memStore = [[AGDataManager manager] store:^(id<AGStoreConfig> config) {
+        config.name = @"AccountManager";
+        config.type = @"MEMORY";
+    }];
+    
+    return [[AGAccountManager alloc] init:memStore];
 }
-+(instancetype) manager:(NSString*)type {
-    return [[AGAccountManager alloc] init:type];
+
++(instancetype) manager:(id<AGStore>)store {
+    return [[AGAccountManager alloc] init:store];
 }
 
 -(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig>))config {
