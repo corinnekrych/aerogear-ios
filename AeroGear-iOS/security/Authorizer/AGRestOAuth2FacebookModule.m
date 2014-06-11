@@ -72,12 +72,12 @@
 -(void) revokeAccessSuccess:(void (^)(id object))success
                     failure:(void (^)(NSError *error))failure {
     // return if not yet initialized
-    if (!self.session.accessToken)
+    if (!self.sessionStorage.accessToken)
         return;
-    NSDictionary* paramDict = @{@"access_token":self.session.accessToken};
+    NSDictionary* paramDict = @{@"access_token":self.sessionStorage.accessToken};
     [_restClient DELETE:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self.session saveAccessToken:nil refreshToken:nil expiration:nil];
+        [self.sessionStorage saveAccessToken:nil refreshToken:nil expiration:nil];
         
         if (success) {
             success(nil);

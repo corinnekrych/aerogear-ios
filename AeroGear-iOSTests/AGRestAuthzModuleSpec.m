@@ -228,8 +228,8 @@ describe(@"AGRestAuthzModule", ^{
             id mockAGHTTPClient = [OCMockObject mockForClass:[AGHttpClient class]];
             
             AGRestOAuth2FacebookModule* myRestAuthzModule = [[AGRestOAuth2FacebookModule alloc] initWithConfig:config client:mockAGHTTPClient];
-            myRestAuthzModule.session.refreshToken = @"REFRESH_TOKEN";
-            myRestAuthzModule.session.accessToken = @"ACCESS_TOKEN";
+            myRestAuthzModule.sessionStorage.refreshToken = @"REFRESH_TOKEN";
+            myRestAuthzModule.sessionStorage.accessToken = @"ACCESS_TOKEN";
             
             NSDictionary* paramDict = @{@"access_token":@"ACCESS_TOKEN"};
             
