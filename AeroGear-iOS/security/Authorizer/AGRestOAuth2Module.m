@@ -39,14 +39,13 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
 @synthesize clientId = _clientId;
 @synthesize clientSecret = _clientSecret;
 @synthesize scopes = _scopes;
-@synthesize state = _state;
 @synthesize accountId = _accountId;
-
 
 // ==============================================================
 // ======== internal API (AGAuthzModuleAdapter) ========
 // ==============================================================
 @synthesize sessionStorage = _sessionStorage;
+@synthesize state = _state;
 
 // ==============================================
 // ======== 'factory' and 'init' section ========
@@ -69,7 +68,9 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
     if (self) {
         // set all the things:
         AGAuthzConfiguration* config = (AGAuthzConfiguration*) authzConfig;
-        _baseURL = config.baseURL.absoluteString;
+
+        _accountId = config.name;
+        _baseURL = config.baseURL;
         _type = config.type;
         _authzEndpoint = config.authzEndpoint;
         _accessTokenEndpoint = config.accessTokenEndpoint;
@@ -78,7 +79,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
         _clientId = config.clientId;
         _clientSecret = config.clientSecret;
         _scopes = config.scopes;
-        _accountId = config.accountId;
+
         _restClient = [AGHttpClient clientFor:config.baseURL timeout:config.timeout];
         
         // default to url serialization
@@ -130,7 +131,7 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
         return;
     
     NSDictionary* paramDict = @{@"token":self.sessionStorage.accessToken};
-
+    
     [_restClient POST:self.revokeTokenEndpoint parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self.sessionStorage saveAccessToken:nil refreshToken:nil expiration:nil];
@@ -278,7 +279,6 @@ NSString * const AGAppDidBecomeActiveNotification = @"AGAppDidBecomeActiveNotifi
                 _clientId];
     }
 }
-
 
 -(NSDictionary *) parametersFromQueryString:(NSString *)queryString {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];

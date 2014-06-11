@@ -16,8 +16,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "AGStore.h"
 #import "AGAuthzModule.h"
 #import "AGAuthzConfig.h"
+
 /**
  * AGAccountManager allows you to store your tokens under an account. When creating AGAccountManager
  * you need to specify what kind of storage you want. To have the benefit of AGAccountManager, a permanent storage
@@ -26,16 +28,39 @@
  */
 @interface AGAccountManager : NSObject
 
--(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig> conf)) config;
-
 /**
- * Default initialization of AGAccountManager as MEMORY storage
+ * A factory method to instantiate the AGAccountManager object.
+ * Note: the AccountManager will use an in-memory store for storing accounts.
+ *
+ * @return the AGAccountManager object.
  */
 +(instancetype) manager;
 
 /**
- * Initialization of AGAccountMaanger with a persistence type: PLIST, MEMORY, SQLITE, and its encrypted variants.
- * Note it is recommanded to store tokens in ecrypted storage.
+ * Initialization of AGAccountManager with a persistence type: PLIST, MEMORY, SQLITE, and its encrypted variants.
+ * Note it is recommended to store tokens in ecrypted storage.
+ *
+ * @param store the permanent store that this AccountManager will use for storing accounts.
+ *
+ * @return the AGAccountManager object.
  */
-+(instancetype) manager:(NSString*)type;
++(instancetype) manager:(id<AGStore>)store;
+
+/**
+ * Adds a new AGAuthzModule object, based on the given configuration object.
+ *
+ * @param config A block object which passes in an implementation of the AGAuthzConfig protocol.
+ * the object is used to configure the AGAuthzModule object.
+ *
+ * @return the newly created AGAuthzModule object.
+ */
+-(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig>)) config;
+
+/**
+ * Loads a given AGAuthzModule implementation, based on the given moduleName argument.
+ *
+ * @param moduleName The name of the actual authz module object.
+ */
+-(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName;
+
 @end

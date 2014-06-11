@@ -63,7 +63,7 @@ extern NSString * const AGAppDidBecomeActiveNotification;
 @protocol AGAuthzModule <NSObject>
 
 @property (nonatomic, readonly) NSString* type;
-@property (nonatomic, readonly) NSString* baseURL;
+@property (nonatomic, readonly) NSURL* baseURL;
 @property (nonatomic, readonly) NSString* authzEndpoint;
 @property (nonatomic, readonly) NSString* accessTokenEndpoint;
 @property (nonatomic, readonly) NSString* revokeTokenEndpoint;

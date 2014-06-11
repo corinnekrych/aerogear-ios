@@ -23,66 +23,72 @@
 
 @implementation AGAccountManager {
     id<AGStore> _oauthAccountStorage;
+    AGAuthorizer *_authz;
 }
 
--(instancetype)init:(NSString*)type {
+-(instancetype)init:(id<AGStore>)store {
     self = [super init];
     if(self) {
-        _oauthAccountStorage = [[AGDataManager manager] store:^(id<AGStoreConfig> config) {
-            config.name = @"AccountManager";
-            config.type = type;
-        }];
+        _oauthAccountStorage = store;
+        _authz = [AGAuthorizer authorizer];
     }
+    
     return self;
 }
 
-
 +(instancetype) manager {
-    return [[AGAccountManager alloc] init:@"MEMORY"];
-}
-+(instancetype) manager:(NSString*)type {
-    return [[AGAccountManager alloc] init:type];
+    id<AGStore> memStore = [[AGDataManager manager] store:^(id<AGStoreConfig> config) {
+        config.name = @"AccountManager";
+        config.type = @"MEMORY";
+    }];
+    
+    return [[AGAccountManager alloc] init:memStore];
 }
 
--(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig> conf))config {
++(instancetype) manager:(id<AGStore>)store {
+    return [[AGAccountManager alloc] init:store];
+}
+
+-(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig>))config {
     
-    AGAuthorizer* authz = [AGAuthorizer authorizer];
-    // InitializeauthzModule with config
-    id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[authz authz:config];
+    // Initialize authzModule with config
+    id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[_authz authz:config];
     
-    // look into storage for existing account with accountId
-    AGOAuth2AuthzSession* account = [self read:adapter.accountId];
-    if (account == nil) {
-        // create a new account with a generaed account id
-        account = [[AGOAuth2AuthzSession alloc] init];
-        NSMutableDictionary* accountDictionnary = [NSMutableDictionary dictionary];
-        [_oauthAccountStorage save:accountDictionnary error:nil]; //TODO
-        account.accountId = accountDictionnary[@"id"];
+    // check if a stored config exists for this service
+    NSString *accountId = adapter.accountId;
+    AGOAuth2AuthzSession *account = [self read:accountId];
+    
+    if (account == nil) { // nope
+        adapter.sessionStorage = [[AGOAuth2AuthzSession alloc] init];
+        adapter.sessionStorage.accountId = accountId;
+    } else { // found one
+        adapter.sessionStorage = account;
     }
-    if (account.accountId != nil) { // an error occured while creating an account
-        // assign newly created accountId
-        adapter.accountId = account.accountId;
-        
-        // initialize authzModule with stored tokens
-        adapter.sessionStorage.accountId = account.accountId;
-        adapter.sessionStorage.accessToken = account.accessToken;
-        adapter.sessionStorage.accessTokenExpirationDate = account.accessTokenExpirationDate;
-        adapter.sessionStorage.refreshToken = account.refreshToken;
-        
-        // register to ne notified when token get refreshed to store them in AccountMgr
-        [adapter.sessionStorage addObserver:self forKeyPath:@"accessToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
-        [adapter.sessionStorage addObserver:self forKeyPath:@"accessTokenExpirationDate" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
-        [adapter.sessionStorage addObserver:self forKeyPath:@"refreshToken" options:NSKeyValueObservingOptionNew context:(__bridge void *)(account.accountId)];
-    }
+    
+    // register to be notified when token get refreshed to store them in AccountMgr
+    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessToken))
+                                options:NSKeyValueObservingOptionNew context:NULL];
+    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessTokenExpirationDate))
+                                options:NSKeyValueObservingOptionNew context:NULL];
+    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(refreshToken))
+                                options:NSKeyValueObservingOptionNew context:NULL];
+
     return adapter;
 }
 
+-(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName {
+    return  [_authz authzModuleWithName:moduleName];
+}
+
+#pragma mark - Utility methods
+
 -(AGOAuth2AuthzSession*)read:(NSString*)accountId {
-    AGOAuth2AuthzSession* object = nil;
     NSDictionary* dict = [_oauthAccountStorage read:accountId];
-    if (dict)
-        object =[[AGOAuth2AuthzSession alloc] init:dict];
-    return object;
+    if (dict) { // found
+        return [[AGOAuth2AuthzSession alloc] init:dict];
+    }
+    
+    return nil;
 }
 
 -(BOOL)save:(AGOAuth2AuthzSession*)account {
@@ -90,25 +96,9 @@
 }
 
 #pragma mark - implement KVO callback
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)accountId
-{
-    if([keyPath isEqualToString:@"accessToken"]) {
-        NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
-        account.accessToken = newValue;
-        [self save:account];
-    }
-    if([keyPath isEqualToString:@"accessTokenExpirationDate"]) {
-        NSDate* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
-        account.accessTokenExpirationDate = newValue;
-        [self save:account];
-    }
-    if([keyPath isEqualToString:@"refreshToken"]) {
-        NSString* newValue = [change objectForKey:NSKeyValueChangeNewKey];
-        AGOAuth2AuthzSession* account = [self read:(__bridge NSString *)(accountId)];
-        account.refreshToken = newValue;
-        [self save:account];
-    }
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    // update local store
+    [self save:object];
 }
+
 @end
