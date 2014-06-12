@@ -50,34 +50,31 @@
 }
 
 -(id<AGOAuth2AuthzModuleAdapter>) authz:(void (^)(id<AGAuthzConfig>))config {
-    
-    // Initialize authzModule with config
+    // initialize authzModule with config
     id<AGOAuth2AuthzModuleAdapter> adapter = (id<AGOAuth2AuthzModuleAdapter>)[_authz authz:config];
     
-    // check if a stored config exists for this service
+    // check if a stored config exists for this account
     NSString *accountId = adapter.accountId;
-    AGOAuth2AuthzSession *account = [self read:accountId];
+    if (accountId) {
+        AGOAuth2AuthzSession *account = [self read:accountId];
     
-    if (account == nil) { // nope
-        adapter.sessionStorage = [[AGOAuth2AuthzSession alloc] init];
-        adapter.sessionStorage.accountId = accountId;
-    } else { // found one
-        adapter.sessionStorage = account;
+        if (account) { // found one, replace with stored session
+            adapter.sessionStorage = account;
+        } else {
+            // set the accountId, so it will be saved alongside with the other session params
+            adapter.sessionStorage.accountId = accountId;
+        }
+        
+        // register to be notified when token get refreshed to store them in AccountMgr
+        [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessToken))
+                                    options:NSKeyValueObservingOptionNew context:NULL];
+        [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessTokenExpirationDate))
+                                    options:NSKeyValueObservingOptionNew context:NULL];
+        [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(refreshToken))
+                                    options:NSKeyValueObservingOptionNew context:NULL];
     }
-    
-    // register to be notified when token get refreshed to store them in AccountMgr
-    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessToken))
-                                options:NSKeyValueObservingOptionNew context:NULL];
-    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(accessTokenExpirationDate))
-                                options:NSKeyValueObservingOptionNew context:NULL];
-    [adapter.sessionStorage addObserver:self forKeyPath:NSStringFromSelector(@selector(refreshToken))
-                                options:NSKeyValueObservingOptionNew context:NULL];
 
     return adapter;
-}
-
--(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName {
-    return  [_authz authzModuleWithName:moduleName];
 }
 
 #pragma mark - Utility methods

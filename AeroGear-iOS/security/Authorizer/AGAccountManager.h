@@ -56,11 +56,4 @@
  */
 -(id<AGAuthzModule>) authz:(void (^)(id<AGAuthzConfig>)) config;
 
-/**
- * Loads a given AGAuthzModule implementation, based on the given moduleName argument.
- *
- * @param moduleName The name of the actual authz module object.
- */
--(id<AGAuthzModule>)authzModuleWithName:(NSString*) moduleName;
-
 @end
