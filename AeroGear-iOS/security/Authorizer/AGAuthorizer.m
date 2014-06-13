@@ -76,7 +76,7 @@
 }
 
 - (NSString*)oauth2Type:(AGAuthzConfiguration*)config {
-    if ([config.authzEndpoint rangeOfString:@"facebook"].location != NSNotFound) {
+    if ([[config.baseURL host] rangeOfString:@"facebook"].location != NSNotFound) {
         return @"AG_OAUTH2_FACEBOOK";
     }
     return @"AG_OAUTH2";

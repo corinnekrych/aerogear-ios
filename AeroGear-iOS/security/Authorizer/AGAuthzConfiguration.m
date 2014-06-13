@@ -57,6 +57,7 @@
         _type = @"AG_OAUTH2";
         _authzEndpoint = @"oauth2/auth";
         _accessTokenEndpoint = @"oauth2/access/codes";
+        _revokeTokenEndpoint =@"oauth2/revoke";
         _redirectURL = @"myURL";
         _scopes = @[@"email"];
         _timeout = 60; // the default timeout interval of NSMutableURLRequest (60 secs)
