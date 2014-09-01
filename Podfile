@@ -8,6 +8,6 @@ pod 'AeroGear-Crypto', '0.2.3'
 
 target 'AeroGear-iOSTests', :exclusive => true do
     pod 'OCMock', '2.2.3'
-    pod 'OHHTTPStubs', '3.1.0'
+    pod 'OHHTTPStubs', '3.1.5'
     pod 'Kiwi', '2.3.0'
 end
