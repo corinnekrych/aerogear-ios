@@ -1,3 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
 xcodeproj 'AeroGear-iOS.xcodeproj'
 
 platform :ios, '7.0'

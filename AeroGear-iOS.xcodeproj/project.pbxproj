@@ -1,1067 +1,3866 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		08D43362329A46488E585071 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D1DA06FAB24A18AB6A5963 /* libPods.a */; };
-		1D0A1358119648AFB949959A /* libPods-AeroGear-iOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E065C8DDD305422BBB3237D5 /* libPods-AeroGear-iOSTests.a */; };
-		38EAB6DDCEDC350EEEB294DF /* AGRestOAuth2Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */; };
-		38EAB9B564447C63EDA4F3BD /* AGAuthzConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EABA4C6581856F7241CB57 /* AGAuthzConfiguration.m */; };
-		38EABEA20822C924B3E36AED /* AGAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAB9A5AFB633EF9E1DFD6C /* AGAuthorizer.m */; };
-		3A3FA0F7DE3FD6E3C9B77946 /* AGPageBaseExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */; };
-		3A3FA1B99E5E1EBF301778DA /* AGPageWebLinkingExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA7B7F632A59A9D4C53F1 /* AGPageWebLinkingExtractorSpec.m */; };
-		3A3FA2A2DD7A17FFCE0B9510 /* AGPageHeaderExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA907DCCCFBA82B64DE9D /* AGPageHeaderExtractorSpec.m */; };
-		3A3FA4389A8490B5D7049667 /* AGAuthenticatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */; };
-		3A3FA56A5AAB22B9B7FC779E /* AGRestAuthenticationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FAD425C7D92793D443079 /* AGRestAuthenticationSpec.m */; };
-		3A3FA6DEFAAE4B15941A6D48 /* AGPageBodyExtractorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA5F4C5D127CFCD4C15D9 /* AGPageBodyExtractorSpec.m */; };
-		3A3FAC066A74B0FBA243D661 /* AGHttpClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA925D72453AC929348F1 /* AGHttpClientSpec.m */; };
-		3A3FAC6A723867E94FB16341 /* AGPaginationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FA81DD1CD6812526D0D6A /* AGPaginationSpec.m */; };
-		3A3FAD31FC7EE80261D43F28 /* AGDataManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */; };
-		3A3FAF2C1A2BCEACF5DFC256 /* AGPropertyListStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */; };
-		4802A9FA192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */; };
-		480FD4DB185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */; };
-		480FD4DD185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */; };
-		480FD4E0185B08ED00D8CAD3 /* AGSQLiteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */; };
-		483609CB18EED02300FD73B6 /* AGAuthorizerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */; };
-		483E6D3B188F1F61004AFA1F /* AGRestAuthzModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */; };
-		48462E21193399C400698A5A /* AGAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48462E20193399C400698A5A /* AGAccountManager.m */; };
-		487C2719191CC8F800C43B49 /* AGOAuth2AuthzSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */; };
-		489BC1A017E0C1F80008DAEF /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */; };
-		489F47B817DDFF110072DE0F /* AGSQLiteStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */; };
-		489F47BB17DDFFF40072DE0F /* AGSQLiteStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 489F47BA17DDFFF40072DE0F /* AGSQLiteStorage.m */; };
-		48B5C59118521C7000FF7108 /* AGEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B5C59018521C7000FF7108 /* AGEncoder.m */; };
-		571DBACB1610715800A0A3A6 /* AGMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 571DBACA1610715800A0A3A6 /* AGMemoryStorage.m */; };
-		571DBACF161071BF00A0A3A6 /* AGBaseStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 571DBACE161071BF00A0A3A6 /* AGBaseStorage.m */; };
-		571DBAD51610C3D700A0A3A6 /* AGMemoryStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 571DBAD41610C3D700A0A3A6 /* AGMemoryStorageSpec.m */; };
-		57277DFF164131FA00C50DC5 /* AGStoreConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 57277DFE164131FA00C50DC5 /* AGStoreConfiguration.m */; };
-		57277E111641364300C50DC5 /* AGAuthConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 57277E101641364300C50DC5 /* AGAuthConfiguration.m */; };
-		5732142B16451B5E00836D8E /* AGConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57C2616116402B2D00793C0F /* AGConfig.h */; };
-		5732142C16451B6400836D8E /* AGStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57ED1453160B566200881924 /* AGStore.h */; };
-		5732142D16451B6800836D8E /* AGDataManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57ED144C160B490F00881924 /* AGDataManager.h */; };
-		5732142E16451B7300836D8E /* AGStoreConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57277DF51641317100C50DC5 /* AGStoreConfig.h */; };
-		5732142F16451B7C00836D8E /* AGPipe.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 573CBD9615E3ECA80071E7A6 /* AGPipe.h */; };
-		5732143016451B8100836D8E /* AGPipeline.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 573CBD9815E3ECB60071E7A6 /* AGPipeline.h */; };
-		5732143116451B8700836D8E /* AGPipeConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57C2616216402B3C00793C0F /* AGPipeConfig.h */; };
-		5732143216451B8F00836D8E /* AGAuthenticator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 573B709B161DA2AE009F0452 /* AGAuthenticator.h */; };
-		5732143316451B9600836D8E /* AGAuthenticationModule.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 573B709A161DA29A009F0452 /* AGAuthenticationModule.h */; };
-		5732143416451BA200836D8E /* AGAuthConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 57277E0D1641362D00C50DC5 /* AGAuthConfig.h */; };
-		5732143516451BB400836D8E /* AeroGear.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 573CBD9E15E3EE1F0071E7A6 /* AeroGear.h */; };
-		57345BD815E3D18600B74FEB /* AGHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 57345BD715E3D18600B74FEB /* AGHttpClient.m */; };
-		573B709D161DA2AE009F0452 /* AGAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 573B709C161DA2AE009F0452 /* AGAuthenticator.m */; };
-		573B70A1161DDD1C009F0452 /* AGRestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 573B70A0161DDD1C009F0452 /* AGRestAuthentication.m */; };
-		573CBD9A15E3ECB60071E7A6 /* AGPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 573CBD9915E3ECB60071E7A6 /* AGPipeline.m */; };
-		573CBD9D15E3ED7F0071E7A6 /* AGRESTPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 573CBD9C15E3ED7F0071E7A6 /* AGRESTPipe.m */; };
-		573CBDA415E4F31B0071E7A6 /* AGPipelineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 573CBDA315E4F31B0071E7A6 /* AGPipelineSpec.m */; };
-		573CBDAD15E546B70071E7A6 /* AGRestAdapterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 573CBDAC15E546B70071E7A6 /* AGRestAdapterSpec.m */; };
-		57737FDD15E3D01D006B97BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57737FDC15E3D01D006B97BB /* Foundation.framework */; };
-		57737FEF15E3D01D006B97BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57737FDC15E3D01D006B97BB /* Foundation.framework */; };
-		57737FF215E3D01D006B97BB /* libAeroGear-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57737FD915E3D01D006B97BB /* libAeroGear-iOS.a */; };
-		57737FF815E3D01D006B97BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 57737FF615E3D01D006B97BB /* InfoPlist.strings */; };
-		57C2616516402B8900793C0F /* AGPipeConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C2616416402B8900793C0F /* AGPipeConfiguration.m */; };
-		57DCDB8415F20E4800289EA4 /* AGBaseAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DCDB8315F20E4800289EA4 /* AGBaseAdapter.m */; };
-		57ED144E160B490F00881924 /* AGDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57ED144D160B490F00881924 /* AGDataManager.m */; };
-		6F14F191170EDA02001E14BA /* AGPageBodyExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F14F18B170EDA02001E14BA /* AGPageBodyExtractor.m */; };
-		6F14F192170EDA02001E14BA /* AGPageHeaderExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F14F18D170EDA02001E14BA /* AGPageHeaderExtractor.m */; };
-		6F14F193170EDA02001E14BA /* AGPageWebLinkingExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F14F190170EDA02001E14BA /* AGPageWebLinkingExtractor.m */; };
-		6F393F081834100B00FFB44D /* AGEncryptedMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F393F051834100B00FFB44D /* AGEncryptedMemoryStorage.m */; };
-		6F393F091834100B00FFB44D /* AGEncryptedPropertyListStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F393F071834100B00FFB44D /* AGEncryptedPropertyListStorage.m */; };
-		6F573BBE1863080C000F4076 /* AGMultipart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F573BBD1863080C000F4076 /* AGMultipart.m */; };
-		6F6C39BF1771996B009B3A57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39BE1771996B009B3A57 /* SystemConfiguration.framework */; };
-		6F6C39C117719970009B3A57 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39C017719970009B3A57 /* MobileCoreServices.framework */; };
-		6F6C39C217719986009B3A57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39BE1771996B009B3A57 /* SystemConfiguration.framework */; };
-		6F6C39C31771998B009B3A57 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39C017719970009B3A57 /* MobileCoreServices.framework */; };
-		6F6C39C517719990009B3A57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39C417719990009B3A57 /* Security.framework */; };
-		6F6C39C617719995009B3A57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39C417719990009B3A57 /* Security.framework */; };
-		6F6C39D017719A1E009B3A57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39CF17719A1E009B3A57 /* CoreGraphics.framework */; };
-		6F6C39D117719A24009B3A57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39CF17719A1E009B3A57 /* CoreGraphics.framework */; };
-		6F6C39D517719B98009B3A57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F6C39D417719B98009B3A57 /* UIKit.framework */; };
-		6F7B5EED17325A7D00ED4F83 /* AGPageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B5EEC17325A7D00ED4F83 /* AGPageConfiguration.m */; };
-		6F7B5EF017326E0A00ED4F83 /* AGPageConfigSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */; };
-		6F7C9A1B17CFBB6900058365 /* AGBaseAdapterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */; };
-		6FC6C6BF18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */; };
-		6FC6C6C118E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */; };
-		6FC6C6C418E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */; };
-		6FC6C6C518E06234008571A3 /* AGPasswordEncryptionServicesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */; };
-		6FC8F192172FC84F00905C2F /* AGPageBaseExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC8F191172FC84F00905C2F /* AGPageBaseExtractor.m */; };
-		6FE3D1381834E3F100C3A09A /* AGBaseEncryptionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D12B1834E3F100C3A09A /* AGBaseEncryptionService.m */; };
-		6FE3D1391834E3F100C3A09A /* AGKeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D12F1834E3F100C3A09A /* AGKeyManager.m */; };
-		6FE3D13A1834E3F100C3A09A /* AGKeyStoreCryptoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1311834E3F100C3A09A /* AGKeyStoreCryptoConfig.m */; };
-		6FE3D13B1834E3F100C3A09A /* AGPassphraseCryptoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */; };
-		6FE3D13C1834E3F100C3A09A /* AGPassphraseEncryptionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1351834E3F100C3A09A /* AGPassphraseEncryptionServices.m */; };
-		6FE3D13D1834E3F100C3A09A /* AGPasswordEncryptionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1371834E3F100C3A09A /* AGPasswordEncryptionServices.m */; };
-		6FE3D1431834E44200C3A09A /* AGKeyManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D13F1834E44200C3A09A /* AGKeyManagerSpec.m */; };
-		6FE3D1471834E4C300C3A09A /* AGBaseStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3D1461834E4C300C3A09A /* AGBaseStorageSpec.m */; };
-		6FE55675169DE7C800E6188E /* AGPropertyListStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE55674169DE7C800E6188E /* AGPropertyListStorage.m */; };
-		6FFF85381760EE060044B5DE /* AGHTTPMockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FFF85371760EE060044B5DE /* AGHTTPMockHelper.m */; };
-		833BB20A1886C696007760EC /* AGCodeCoverageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 833BB2091886C696007760EC /* AGCodeCoverageHelper.m */; };
-		833BB20C1886C6B1007760EC /* AGTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 833BB20B1886C6B1007760EC /* AGTestObserver.m */; };
-		83716D01189AC424005D5B1D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83716D00189AC424005D5B1D /* XCTest.framework */; };
-		A0A37AD316AE905F00979868 /* AGPipeConfigSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A37AD216AE905F00979868 /* AGPipeConfigSpec.m */; };
-		A0A37ADA16AEAEDE00979868 /* AGNSMutableArray+Paging.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A37AD916AEAEDE00979868 /* AGNSMutableArray+Paging.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		57737FF015E3D01D006B97BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 57737FD015E3D01D006B97BB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 57737FD815E3D01D006B97BB;
-			remoteInfo = "AeroGear-iOS";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		57737FD715E3D01D006B97BB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-				5732143516451BB400836D8E /* AeroGear.h in CopyFiles */,
-				5732143416451BA200836D8E /* AGAuthConfig.h in CopyFiles */,
-				5732143316451B9600836D8E /* AGAuthenticationModule.h in CopyFiles */,
-				5732143216451B8F00836D8E /* AGAuthenticator.h in CopyFiles */,
-				5732143116451B8700836D8E /* AGPipeConfig.h in CopyFiles */,
-				5732143016451B8100836D8E /* AGPipeline.h in CopyFiles */,
-				5732142F16451B7C00836D8E /* AGPipe.h in CopyFiles */,
-				5732142E16451B7300836D8E /* AGStoreConfig.h in CopyFiles */,
-				5732142D16451B6800836D8E /* AGDataManager.h in CopyFiles */,
-				5732142C16451B6400836D8E /* AGStore.h in CopyFiles */,
-				5732142B16451B5E00836D8E /* AGConfig.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
-/* Begin PBXFileReference section */
-		38EAB0A7B277164A8D63F747 /* AGAuthorizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAuthorizer.h; sourceTree = "<group>"; };
-		38EAB406473CD49D16965D21 /* AGOAuth2AuthzModuleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOAuth2AuthzModuleAdapter.h; sourceTree = "<group>"; };
-		38EAB5ADD30E415FE3231321 /* AGAuthzConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAuthzConfig.h; sourceTree = "<group>"; };
-		38EAB725EDD875FE3054B456 /* AGAuthzModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAuthzModule.h; sourceTree = "<group>"; };
-		38EAB75EEDE516BF6B6EAEE7 /* AGAuthzConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAuthzConfiguration.h; sourceTree = "<group>"; };
-		38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestOAuth2Module.m; sourceTree = "<group>"; };
-		38EAB9A5AFB633EF9E1DFD6C /* AGAuthorizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthorizer.m; sourceTree = "<group>"; };
-		38EABA4C6581856F7241CB57 /* AGAuthzConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthzConfiguration.m; sourceTree = "<group>"; };
-		38EABEBAA0F7D219BD79AC96 /* AGRestOAuth2Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGRestOAuth2Module.h; sourceTree = "<group>"; };
-		3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthenticatorSpec.m; sourceTree = "<group>"; };
-		3A3FA5F4C5D127CFCD4C15D9 /* AGPageBodyExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageBodyExtractorSpec.m; sourceTree = "<group>"; };
-		3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageBaseExtractorSpec.m; sourceTree = "<group>"; };
-		3A3FA7B7F632A59A9D4C53F1 /* AGPageWebLinkingExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageWebLinkingExtractorSpec.m; sourceTree = "<group>"; };
-		3A3FA81DD1CD6812526D0D6A /* AGPaginationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPaginationSpec.m; sourceTree = "<group>"; };
-		3A3FA907DCCCFBA82B64DE9D /* AGPageHeaderExtractorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageHeaderExtractorSpec.m; sourceTree = "<group>"; };
-		3A3FA925D72453AC929348F1 /* AGHttpClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGHttpClientSpec.m; sourceTree = "<group>"; };
-		3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPropertyListStorageSpec.m; sourceTree = "<group>"; };
-		3A3FAD425C7D92793D443079 /* AGRestAuthenticationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAuthenticationSpec.m; sourceTree = "<group>"; };
-		3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGDataManagerSpec.m; sourceTree = "<group>"; };
-		4802A9F8192CAB000019ABE1 /* AGRestOAuth2FacebookModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGRestOAuth2FacebookModule.h; sourceTree = "<group>"; };
-		4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestOAuth2FacebookModule.m; sourceTree = "<group>"; };
-		480FD4D9185B088500D8CAD3 /* AGEncryptedSQLiteStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncryptedSQLiteStorage.h; path = datamanager/AGEncryptedSQLiteStorage.h; sourceTree = "<group>"; };
-		480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGEncryptedSQLiteStorage.m; path = datamanager/AGEncryptedSQLiteStorage.m; sourceTree = "<group>"; };
-		480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedSQLiteStorageSpec.m; sourceTree = "<group>"; };
-		480FD4DE185B08ED00D8CAD3 /* AGSQLiteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGSQLiteCommand.h; path = datamanager/AGSQLiteCommand.h; sourceTree = "<group>"; };
-		480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSQLiteCommand.m; path = datamanager/AGSQLiteCommand.m; sourceTree = "<group>"; };
-		483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAuthorizerSpec.m; sourceTree = "<group>"; };
-		483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAuthzModuleSpec.m; sourceTree = "<group>"; };
-		48462E1F193399C400698A5A /* AGAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGAccountManager.h; sourceTree = "<group>"; };
-		48462E20193399C400698A5A /* AGAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGAccountManager.m; sourceTree = "<group>"; };
-		487C2717191CC8F800C43B49 /* AGOAuth2AuthzSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGOAuth2AuthzSession.h; sourceTree = "<group>"; };
-		487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGOAuth2AuthzSession.m; sourceTree = "<group>"; };
-		489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGSQLiteStorageSpec.m; sourceTree = "<group>"; };
-		489F47B917DDFFF40072DE0F /* AGSQLiteStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGSQLiteStorage.h; path = datamanager/AGSQLiteStorage.h; sourceTree = "<group>"; };
-		489F47BA17DDFFF40072DE0F /* AGSQLiteStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSQLiteStorage.m; path = datamanager/AGSQLiteStorage.m; sourceTree = "<group>"; };
-		48B5C58F18521C7000FF7108 /* AGEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncoder.h; path = datamanager/AGEncoder.h; sourceTree = "<group>"; };
-		48B5C59018521C7000FF7108 /* AGEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGEncoder.m; path = datamanager/AGEncoder.m; sourceTree = "<group>"; };
-		571DBAC91610715800A0A3A6 /* AGMemoryStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGMemoryStorage.h; path = datamanager/AGMemoryStorage.h; sourceTree = "<group>"; };
-		571DBACA1610715800A0A3A6 /* AGMemoryStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGMemoryStorage.m; path = datamanager/AGMemoryStorage.m; sourceTree = "<group>"; };
-		571DBACD161071BF00A0A3A6 /* AGBaseStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGBaseStorage.h; path = datamanager/AGBaseStorage.h; sourceTree = "<group>"; };
-		571DBACE161071BF00A0A3A6 /* AGBaseStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGBaseStorage.m; path = datamanager/AGBaseStorage.m; sourceTree = "<group>"; };
-		571DBAD41610C3D700A0A3A6 /* AGMemoryStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGMemoryStorageSpec.m; sourceTree = "<group>"; };
-		57277DF51641317100C50DC5 /* AGStoreConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AGStoreConfig.h; path = datamanager/AGStoreConfig.h; sourceTree = "<group>"; };
-		57277DFD164131FA00C50DC5 /* AGStoreConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGStoreConfiguration.h; path = datamanager/AGStoreConfiguration.h; sourceTree = "<group>"; };
-		57277DFE164131FA00C50DC5 /* AGStoreConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGStoreConfiguration.m; path = datamanager/AGStoreConfiguration.m; sourceTree = "<group>"; };
-		57277E0D1641362D00C50DC5 /* AGAuthConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AGAuthConfig.h; path = security/AGAuthConfig.h; sourceTree = "<group>"; };
-		57277E0F1641364300C50DC5 /* AGAuthConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthConfiguration.h; path = security/AGAuthConfiguration.h; sourceTree = "<group>"; };
-		57277E101641364300C50DC5 /* AGAuthConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGAuthConfiguration.m; path = security/AGAuthConfiguration.m; sourceTree = "<group>"; };
-		57345BD615E3D18600B74FEB /* AGHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGHttpClient.h; path = core/AGHttpClient.h; sourceTree = "<group>"; };
-		57345BD715E3D18600B74FEB /* AGHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGHttpClient.m; path = core/AGHttpClient.m; sourceTree = "<group>"; };
-		573B709A161DA29A009F0452 /* AGAuthenticationModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticationModule.h; path = security/AGAuthenticationModule.h; sourceTree = "<group>"; };
-		573B709B161DA2AE009F0452 /* AGAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticator.h; path = security/AGAuthenticator.h; sourceTree = "<group>"; };
-		573B709C161DA2AE009F0452 /* AGAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGAuthenticator.m; path = security/AGAuthenticator.m; sourceTree = "<group>"; };
-		573B709E161DDB5E009F0452 /* AGAuthenticationModuleAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAuthenticationModuleAdapter.h; path = security/AGAuthenticationModuleAdapter.h; sourceTree = "<group>"; };
-		573B709F161DDD1C009F0452 /* AGRestAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGRestAuthentication.h; path = security/AGRestAuthentication.h; sourceTree = "<group>"; };
-		573B70A0161DDD1C009F0452 /* AGRestAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGRestAuthentication.m; path = security/AGRestAuthentication.m; sourceTree = "<group>"; };
-		573CBD9615E3ECA80071E7A6 /* AGPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPipe.h; path = pipeline/AGPipe.h; sourceTree = "<group>"; };
-		573CBD9815E3ECB60071E7A6 /* AGPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPipeline.h; path = pipeline/AGPipeline.h; sourceTree = "<group>"; };
-		573CBD9915E3ECB60071E7A6 /* AGPipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPipeline.m; path = pipeline/AGPipeline.m; sourceTree = "<group>"; };
-		573CBD9B15E3ED7F0071E7A6 /* AGRESTPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGRESTPipe.h; path = pipeline/AGRESTPipe.h; sourceTree = "<group>"; };
-		573CBD9C15E3ED7F0071E7A6 /* AGRESTPipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGRESTPipe.m; path = pipeline/AGRESTPipe.m; sourceTree = "<group>"; };
-		573CBD9E15E3EE1F0071E7A6 /* AeroGear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AeroGear.h; sourceTree = "<group>"; };
-		573CBDA315E4F31B0071E7A6 /* AGPipelineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPipelineSpec.m; sourceTree = "<group>"; };
-		573CBDA715E51C120071E7A6 /* AGAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGAdapter.h; path = utils/AGAdapter.h; sourceTree = "<group>"; };
-		573CBDAC15E546B70071E7A6 /* AGRestAdapterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGRestAdapterSpec.m; sourceTree = "<group>"; };
-		57737FD915E3D01D006B97BB /* libAeroGear-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAeroGear-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57737FDC15E3D01D006B97BB /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		57737FE015E3D01D006B97BB /* AeroGear-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AeroGear-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		57737FEA15E3D01D006B97BB /* AeroGear-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AeroGear-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57737FF515E3D01D006B97BB /* AeroGear-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AeroGear-iOSTests-Info.plist"; sourceTree = "<group>"; };
-		57737FF715E3D01D006B97BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		57C2616116402B2D00793C0F /* AGConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGConfig.h; path = config/AGConfig.h; sourceTree = "<group>"; };
-		57C2616216402B3C00793C0F /* AGPipeConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AGPipeConfig.h; path = pipeline/AGPipeConfig.h; sourceTree = "<group>"; };
-		57C2616316402B8900793C0F /* AGPipeConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPipeConfiguration.h; path = pipeline/AGPipeConfiguration.h; sourceTree = "<group>"; };
-		57C2616416402B8900793C0F /* AGPipeConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPipeConfiguration.m; path = pipeline/AGPipeConfiguration.m; sourceTree = "<group>"; };
-		57DCDB8215F20E4800289EA4 /* AGBaseAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGBaseAdapter.h; path = utils/AGBaseAdapter.h; sourceTree = "<group>"; };
-		57DCDB8315F20E4800289EA4 /* AGBaseAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGBaseAdapter.m; path = utils/AGBaseAdapter.m; sourceTree = "<group>"; };
-		57ED144C160B490F00881924 /* AGDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGDataManager.h; path = datamanager/AGDataManager.h; sourceTree = "<group>"; };
-		57ED144D160B490F00881924 /* AGDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGDataManager.m; path = datamanager/AGDataManager.m; sourceTree = "<group>"; };
-		57ED1453160B566200881924 /* AGStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGStore.h; path = datamanager/AGStore.h; sourceTree = "<group>"; };
-		65D1DA06FAB24A18AB6A5963 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F14F18A170EDA02001E14BA /* AGPageBodyExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageBodyExtractor.h; path = pipeline/paging/AGPageBodyExtractor.h; sourceTree = "<group>"; };
-		6F14F18B170EDA02001E14BA /* AGPageBodyExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageBodyExtractor.m; path = pipeline/paging/AGPageBodyExtractor.m; sourceTree = "<group>"; };
-		6F14F18C170EDA02001E14BA /* AGPageHeaderExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageHeaderExtractor.h; path = pipeline/paging/AGPageHeaderExtractor.h; sourceTree = "<group>"; };
-		6F14F18D170EDA02001E14BA /* AGPageHeaderExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageHeaderExtractor.m; path = pipeline/paging/AGPageHeaderExtractor.m; sourceTree = "<group>"; };
-		6F14F18E170EDA02001E14BA /* AGPageParameterExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageParameterExtractor.h; path = pipeline/paging/AGPageParameterExtractor.h; sourceTree = "<group>"; };
-		6F14F18F170EDA02001E14BA /* AGPageWebLinkingExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageWebLinkingExtractor.h; path = pipeline/paging/AGPageWebLinkingExtractor.h; sourceTree = "<group>"; };
-		6F14F190170EDA02001E14BA /* AGPageWebLinkingExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageWebLinkingExtractor.m; path = pipeline/paging/AGPageWebLinkingExtractor.m; sourceTree = "<group>"; };
-		6F393F041834100B00FFB44D /* AGEncryptedMemoryStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncryptedMemoryStorage.h; path = datamanager/AGEncryptedMemoryStorage.h; sourceTree = "<group>"; };
-		6F393F051834100B00FFB44D /* AGEncryptedMemoryStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGEncryptedMemoryStorage.m; path = datamanager/AGEncryptedMemoryStorage.m; sourceTree = "<group>"; };
-		6F393F061834100B00FFB44D /* AGEncryptedPropertyListStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncryptedPropertyListStorage.h; path = datamanager/AGEncryptedPropertyListStorage.h; sourceTree = "<group>"; };
-		6F393F071834100B00FFB44D /* AGEncryptedPropertyListStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGEncryptedPropertyListStorage.m; path = datamanager/AGEncryptedPropertyListStorage.m; sourceTree = "<group>"; };
-		6F573BBC1863080C000F4076 /* AGMultipart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGMultipart.h; path = core/AGMultipart.h; sourceTree = "<group>"; };
-		6F573BBD1863080C000F4076 /* AGMultipart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGMultipart.m; path = core/AGMultipart.m; sourceTree = "<group>"; };
-		6F6C39BE1771996B009B3A57 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6F6C39C017719970009B3A57 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		6F6C39C417719990009B3A57 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		6F6C39CF17719A1E009B3A57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6F6C39D417719B98009B3A57 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6F7B5EE8173259AA00ED4F83 /* AGPageConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageConfig.h; path = pipeline/paging/AGPageConfig.h; sourceTree = "<group>"; };
-		6F7B5EEB17325A7D00ED4F83 /* AGPageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageConfiguration.h; path = pipeline/paging/AGPageConfiguration.h; sourceTree = "<group>"; };
-		6F7B5EEC17325A7D00ED4F83 /* AGPageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageConfiguration.m; path = pipeline/paging/AGPageConfiguration.m; sourceTree = "<group>"; };
-		6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPageConfigSpec.m; sourceTree = "<group>"; };
-		6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBaseAdapterSpec.m; sourceTree = "<group>"; };
-		6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedMemoryStorageSpec.m; sourceTree = "<group>"; };
-		6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEncryptedPropertyListStorageSpec.m; sourceTree = "<group>"; };
-		6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPassphraseEncryptionServicesSpec.m; sourceTree = "<group>"; };
-		6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPasswordEncryptionServicesSpec.m; sourceTree = "<group>"; };
-		6FC8F190172FC84F00905C2F /* AGPageBaseExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPageBaseExtractor.h; path = pipeline/paging/AGPageBaseExtractor.h; sourceTree = "<group>"; };
-		6FC8F191172FC84F00905C2F /* AGPageBaseExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPageBaseExtractor.m; path = pipeline/paging/AGPageBaseExtractor.m; sourceTree = "<group>"; };
-		6FE3D12A1834E3F100C3A09A /* AGBaseEncryptionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGBaseEncryptionService.h; path = security/AGBaseEncryptionService.h; sourceTree = "<group>"; };
-		6FE3D12B1834E3F100C3A09A /* AGBaseEncryptionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGBaseEncryptionService.m; path = security/AGBaseEncryptionService.m; sourceTree = "<group>"; };
-		6FE3D12C1834E3F100C3A09A /* AGCryptoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGCryptoConfig.h; path = security/AGCryptoConfig.h; sourceTree = "<group>"; };
-		6FE3D12D1834E3F100C3A09A /* AGEncryptionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGEncryptionService.h; path = security/AGEncryptionService.h; sourceTree = "<group>"; };
-		6FE3D12E1834E3F100C3A09A /* AGKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGKeyManager.h; path = security/AGKeyManager.h; sourceTree = "<group>"; };
-		6FE3D12F1834E3F100C3A09A /* AGKeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGKeyManager.m; path = security/AGKeyManager.m; sourceTree = "<group>"; };
-		6FE3D1301834E3F100C3A09A /* AGKeyStoreCryptoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGKeyStoreCryptoConfig.h; path = security/AGKeyStoreCryptoConfig.h; sourceTree = "<group>"; };
-		6FE3D1311834E3F100C3A09A /* AGKeyStoreCryptoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGKeyStoreCryptoConfig.m; path = security/AGKeyStoreCryptoConfig.m; sourceTree = "<group>"; };
-		6FE3D1321834E3F100C3A09A /* AGPassphraseCryptoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPassphraseCryptoConfig.h; path = security/AGPassphraseCryptoConfig.h; sourceTree = "<group>"; };
-		6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPassphraseCryptoConfig.m; path = security/AGPassphraseCryptoConfig.m; sourceTree = "<group>"; };
-		6FE3D1341834E3F100C3A09A /* AGPassphraseEncryptionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPassphraseEncryptionServices.h; path = security/AGPassphraseEncryptionServices.h; sourceTree = "<group>"; };
-		6FE3D1351834E3F100C3A09A /* AGPassphraseEncryptionServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPassphraseEncryptionServices.m; path = security/AGPassphraseEncryptionServices.m; sourceTree = "<group>"; };
-		6FE3D1361834E3F100C3A09A /* AGPasswordEncryptionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPasswordEncryptionServices.h; path = security/AGPasswordEncryptionServices.h; sourceTree = "<group>"; };
-		6FE3D1371834E3F100C3A09A /* AGPasswordEncryptionServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPasswordEncryptionServices.m; path = security/AGPasswordEncryptionServices.m; sourceTree = "<group>"; };
-		6FE3D13F1834E44200C3A09A /* AGKeyManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGKeyManagerSpec.m; sourceTree = "<group>"; };
-		6FE3D1461834E4C300C3A09A /* AGBaseStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGBaseStorageSpec.m; sourceTree = "<group>"; };
-		6FE55673169DE5D900E6188E /* AGPropertyListStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGPropertyListStorage.h; path = datamanager/AGPropertyListStorage.h; sourceTree = "<group>"; };
-		6FE55674169DE7C800E6188E /* AGPropertyListStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGPropertyListStorage.m; path = datamanager/AGPropertyListStorage.m; sourceTree = "<group>"; };
-		6FFF85361760EE060044B5DE /* AGHTTPMockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGHTTPMockHelper.h; path = utils/AGHTTPMockHelper.h; sourceTree = "<group>"; };
-		6FFF85371760EE060044B5DE /* AGHTTPMockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGHTTPMockHelper.m; path = utils/AGHTTPMockHelper.m; sourceTree = "<group>"; };
-		833BB2091886C696007760EC /* AGCodeCoverageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGCodeCoverageHelper.m; sourceTree = "<group>"; };
-		833BB20B1886C6B1007760EC /* AGTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTestObserver.m; sourceTree = "<group>"; };
-		83716D00189AC424005D5B1D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A0A37AD216AE905F00979868 /* AGPipeConfigSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPipeConfigSpec.m; sourceTree = "<group>"; };
-		A0A37AD816AEAEDE00979868 /* AGNSMutableArray+Paging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AGNSMutableArray+Paging.h"; path = "pipeline/AGNSMutableArray+Paging.h"; sourceTree = "<group>"; };
-		A0A37AD916AEAEDE00979868 /* AGNSMutableArray+Paging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AGNSMutableArray+Paging.m"; path = "pipeline/AGNSMutableArray+Paging.m"; sourceTree = "<group>"; };
-		B8AB37EC1AA3464892D758C1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		D6A7A8124B23447DA65BC0DE /* Pods-AeroGear-iOSTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AeroGear-iOSTests.xcconfig"; path = "Pods/Pods-AeroGear-iOSTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		E065C8DDD305422BBB3237D5 /* libPods-AeroGear-iOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AeroGear-iOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		57737FD615E3D01D006B97BB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6F6C39D117719A24009B3A57 /* CoreGraphics.framework in Frameworks */,
-				6F6C39C617719995009B3A57 /* Security.framework in Frameworks */,
-				6F6C39C117719970009B3A57 /* MobileCoreServices.framework in Frameworks */,
-				6F6C39BF1771996B009B3A57 /* SystemConfiguration.framework in Frameworks */,
-				57737FDD15E3D01D006B97BB /* Foundation.framework in Frameworks */,
-				08D43362329A46488E585071 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57737FE615E3D01D006B97BB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83716D01189AC424005D5B1D /* XCTest.framework in Frameworks */,
-				489BC1A017E0C1F80008DAEF /* libsqlite3.0.dylib in Frameworks */,
-				6F6C39D517719B98009B3A57 /* UIKit.framework in Frameworks */,
-				6F6C39D017719A1E009B3A57 /* CoreGraphics.framework in Frameworks */,
-				6F6C39C517719990009B3A57 /* Security.framework in Frameworks */,
-				6F6C39C31771998B009B3A57 /* MobileCoreServices.framework in Frameworks */,
-				6F6C39C217719986009B3A57 /* SystemConfiguration.framework in Frameworks */,
-				57737FEF15E3D01D006B97BB /* Foundation.framework in Frameworks */,
-				57737FF215E3D01D006B97BB /* libAeroGear-iOS.a in Frameworks */,
-				1D0A1358119648AFB949959A /* libPods-AeroGear-iOSTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		38EAB91D6CFFEDC2CAD696A4 /* Authorizer */ = {
-			isa = PBXGroup;
-			children = (
-				38EAB406473CD49D16965D21 /* AGOAuth2AuthzModuleAdapter.h */,
-				38EAB9A5AFB633EF9E1DFD6C /* AGAuthorizer.m */,
-				38EAB5ADD30E415FE3231321 /* AGAuthzConfig.h */,
-				38EAB0A7B277164A8D63F747 /* AGAuthorizer.h */,
-				38EAB725EDD875FE3054B456 /* AGAuthzModule.h */,
-				38EAB75EEDE516BF6B6EAEE7 /* AGAuthzConfiguration.h */,
-				38EABA4C6581856F7241CB57 /* AGAuthzConfiguration.m */,
-				487C2717191CC8F800C43B49 /* AGOAuth2AuthzSession.h */,
-				487C2718191CC8F800C43B49 /* AGOAuth2AuthzSession.m */,
-				48462E1F193399C400698A5A /* AGAccountManager.h */,
-				48462E20193399C400698A5A /* AGAccountManager.m */,
-				38EAB8B515B16A800D9ACAC2 /* AGRestOAuth2Module.m */,
-				38EABEBAA0F7D219BD79AC96 /* AGRestOAuth2Module.h */,
-				4802A9F8192CAB000019ABE1 /* AGRestOAuth2FacebookModule.h */,
-				4802A9F9192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m */,
-			);
-			name = Authorizer;
-			path = security/Authorizer;
-			sourceTree = "<group>";
-		};
-		573B7099161D9D51009F0452 /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				573B709B161DA2AE009F0452 /* AGAuthenticator.h */,
-				573B709C161DA2AE009F0452 /* AGAuthenticator.m */,
-				573B709A161DA29A009F0452 /* AGAuthenticationModule.h */,
-				573B709E161DDB5E009F0452 /* AGAuthenticationModuleAdapter.h */,
-				573B709F161DDD1C009F0452 /* AGRestAuthentication.h */,
-				573B70A0161DDD1C009F0452 /* AGRestAuthentication.m */,
-				57277E0D1641362D00C50DC5 /* AGAuthConfig.h */,
-				57277E0F1641364300C50DC5 /* AGAuthConfiguration.h */,
-				57277E101641364300C50DC5 /* AGAuthConfiguration.m */,
-				6FE3D12A1834E3F100C3A09A /* AGBaseEncryptionService.h */,
-				6FE3D12B1834E3F100C3A09A /* AGBaseEncryptionService.m */,
-				6FE3D12C1834E3F100C3A09A /* AGCryptoConfig.h */,
-				6FE3D12D1834E3F100C3A09A /* AGEncryptionService.h */,
-				6FE3D12E1834E3F100C3A09A /* AGKeyManager.h */,
-				6FE3D12F1834E3F100C3A09A /* AGKeyManager.m */,
-				6FE3D1301834E3F100C3A09A /* AGKeyStoreCryptoConfig.h */,
-				6FE3D1311834E3F100C3A09A /* AGKeyStoreCryptoConfig.m */,
-				6FE3D1321834E3F100C3A09A /* AGPassphraseCryptoConfig.h */,
-				6FE3D1331834E3F100C3A09A /* AGPassphraseCryptoConfig.m */,
-				6FE3D1341834E3F100C3A09A /* AGPassphraseEncryptionServices.h */,
-				6FE3D1351834E3F100C3A09A /* AGPassphraseEncryptionServices.m */,
-				6FE3D1361834E3F100C3A09A /* AGPasswordEncryptionServices.h */,
-				6FE3D1371834E3F100C3A09A /* AGPasswordEncryptionServices.m */,
-				38EAB91D6CFFEDC2CAD696A4 /* Authorizer */,
-			);
-			name = Security;
-			sourceTree = "<group>";
-		};
-		573CBDA515E4F9000071E7A6 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				6F6F239F1664D16200006155 /* Utils */,
-				573CBDA315E4F31B0071E7A6 /* AGPipelineSpec.m */,
-				573CBDAC15E546B70071E7A6 /* AGRestAdapterSpec.m */,
-				571DBAD41610C3D700A0A3A6 /* AGMemoryStorageSpec.m */,
-				6FC6C6BE18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m */,
-				489F47B717DDFF110072DE0F /* AGSQLiteStorageSpec.m */,
-				480FD4DC185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m */,
-				3A3FABBA99D20FF6EDAEB888 /* AGPropertyListStorageSpec.m */,
-				6FC6C6C018E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m */,
-				6FC6C6C218E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m */,
-				6FC6C6C318E06234008571A3 /* AGPasswordEncryptionServicesSpec.m */,
-				A0A37AD216AE905F00979868 /* AGPipeConfigSpec.m */,
-				6F7B5EEF17326E0A00ED4F83 /* AGPageConfigSpec.m */,
-				3A3FA042B2FA52968D0AA580 /* AGAuthenticatorSpec.m */,
-				483609CA18EED02300FD73B6 /* AGAuthorizerSpec.m */,
-				3A3FAFA30EC799853C34BF60 /* AGDataManagerSpec.m */,
-				3A3FA925D72453AC929348F1 /* AGHttpClientSpec.m */,
-				3A3FA74285D05B5DFF014629 /* AGPageBaseExtractorSpec.m */,
-				3A3FA5F4C5D127CFCD4C15D9 /* AGPageBodyExtractorSpec.m */,
-				3A3FA907DCCCFBA82B64DE9D /* AGPageHeaderExtractorSpec.m */,
-				3A3FA7B7F632A59A9D4C53F1 /* AGPageWebLinkingExtractorSpec.m */,
-				3A3FA81DD1CD6812526D0D6A /* AGPaginationSpec.m */,
-				3A3FAD425C7D92793D443079 /* AGRestAuthenticationSpec.m */,
-				483E6D3A188F1F61004AFA1F /* AGRestAuthzModuleSpec.m */,
-				6F7C9A1A17CFBB6900058365 /* AGBaseAdapterSpec.m */,
-				6FE3D13F1834E44200C3A09A /* AGKeyManagerSpec.m */,
-				6FE3D1461834E4C300C3A09A /* AGBaseStorageSpec.m */,
-			);
-			name = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		57737FCE15E3D01D006B97BB = {
-			isa = PBXGroup;
-			children = (
-				57737FDE15E3D01D006B97BB /* AeroGear-iOS */,
-				57737FF315E3D01D006B97BB /* AeroGear-iOSTests */,
-				57737FDB15E3D01D006B97BB /* Frameworks */,
-				57737FDA15E3D01D006B97BB /* Products */,
-				B8AB37EC1AA3464892D758C1 /* Pods.xcconfig */,
-				D6A7A8124B23447DA65BC0DE /* Pods-AeroGear-iOSTests.xcconfig */,
-			);
-			sourceTree = "<group>";
-		};
-		57737FDA15E3D01D006B97BB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				57737FD915E3D01D006B97BB /* libAeroGear-iOS.a */,
-				57737FEA15E3D01D006B97BB /* AeroGear-iOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		57737FDB15E3D01D006B97BB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				489BC19F17E0C1F80008DAEF /* libsqlite3.0.dylib */,
-				83716D00189AC424005D5B1D /* XCTest.framework */,
-				6F6C39D417719B98009B3A57 /* UIKit.framework */,
-				57737FDC15E3D01D006B97BB /* Foundation.framework */,
-				6F6C39CF17719A1E009B3A57 /* CoreGraphics.framework */,
-				6F6C39C417719990009B3A57 /* Security.framework */,
-				6F6C39C017719970009B3A57 /* MobileCoreServices.framework */,
-				6F6C39BE1771996B009B3A57 /* SystemConfiguration.framework */,
-				65D1DA06FAB24A18AB6A5963 /* libPods.a */,
-				E065C8DDD305422BBB3237D5 /* libPods-AeroGear-iOSTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		57737FDE15E3D01D006B97BB /* AeroGear-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				57737FDF15E3D01D006B97BB /* Supporting Files */,
-				57C2615F16402B0E00793C0F /* Config */,
-				57ED1456160B569500881924 /* Core */,
-				57ED1455160B568800881924 /* DataManager */,
-				57ED1454160B568000881924 /* Pipeline */,
-				573B7099161D9D51009F0452 /* Security */,
-				57F428C6163E770F00832D75 /* Utils */,
-				573CBD9E15E3EE1F0071E7A6 /* AeroGear.h */,
-			);
-			path = "AeroGear-iOS";
-			sourceTree = "<group>";
-		};
-		57737FDF15E3D01D006B97BB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				833BB2091886C696007760EC /* AGCodeCoverageHelper.m */,
-				57737FE015E3D01D006B97BB /* AeroGear-iOS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		57737FF315E3D01D006B97BB /* AeroGear-iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				57737FF415E3D01D006B97BB /* Supporting Files */,
-				573CBDA515E4F9000071E7A6 /* Unit Tests */,
-			);
-			path = "AeroGear-iOSTests";
-			sourceTree = "<group>";
-		};
-		57737FF415E3D01D006B97BB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				833BB20B1886C6B1007760EC /* AGTestObserver.m */,
-				57737FF515E3D01D006B97BB /* AeroGear-iOSTests-Info.plist */,
-				57737FF615E3D01D006B97BB /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		57C2615F16402B0E00793C0F /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				57C2616116402B2D00793C0F /* AGConfig.h */,
-			);
-			name = Config;
-			sourceTree = "<group>";
-		};
-		57ED1454160B568000881924 /* Pipeline */ = {
-			isa = PBXGroup;
-			children = (
-				6F14F189170ED9F4001E14BA /* paging */,
-				573CBD9615E3ECA80071E7A6 /* AGPipe.h */,
-				573CBD9815E3ECB60071E7A6 /* AGPipeline.h */,
-				573CBD9915E3ECB60071E7A6 /* AGPipeline.m */,
-				573CBD9B15E3ED7F0071E7A6 /* AGRESTPipe.h */,
-				573CBD9C15E3ED7F0071E7A6 /* AGRESTPipe.m */,
-				57C2616216402B3C00793C0F /* AGPipeConfig.h */,
-				57C2616316402B8900793C0F /* AGPipeConfiguration.h */,
-				57C2616416402B8900793C0F /* AGPipeConfiguration.m */,
-				A0A37AD816AEAEDE00979868 /* AGNSMutableArray+Paging.h */,
-				A0A37AD916AEAEDE00979868 /* AGNSMutableArray+Paging.m */,
-			);
-			name = Pipeline;
-			sourceTree = "<group>";
-		};
-		57ED1455160B568800881924 /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-				57ED144C160B490F00881924 /* AGDataManager.h */,
-				57ED144D160B490F00881924 /* AGDataManager.m */,
-				57ED1453160B566200881924 /* AGStore.h */,
-				571DBAC91610715800A0A3A6 /* AGMemoryStorage.h */,
-				571DBACA1610715800A0A3A6 /* AGMemoryStorage.m */,
-				480FD4D9185B088500D8CAD3 /* AGEncryptedSQLiteStorage.h */,
-				480FD4DA185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m */,
-				6F393F041834100B00FFB44D /* AGEncryptedMemoryStorage.h */,
-				6F393F051834100B00FFB44D /* AGEncryptedMemoryStorage.m */,
-				6FE55673169DE5D900E6188E /* AGPropertyListStorage.h */,
-				6FE55674169DE7C800E6188E /* AGPropertyListStorage.m */,
-				6F393F061834100B00FFB44D /* AGEncryptedPropertyListStorage.h */,
-				6F393F071834100B00FFB44D /* AGEncryptedPropertyListStorage.m */,
-				480FD4DE185B08ED00D8CAD3 /* AGSQLiteCommand.h */,
-				480FD4DF185B08ED00D8CAD3 /* AGSQLiteCommand.m */,
-				489F47B917DDFFF40072DE0F /* AGSQLiteStorage.h */,
-				489F47BA17DDFFF40072DE0F /* AGSQLiteStorage.m */,
-				571DBACD161071BF00A0A3A6 /* AGBaseStorage.h */,
-				571DBACE161071BF00A0A3A6 /* AGBaseStorage.m */,
-				57277DF51641317100C50DC5 /* AGStoreConfig.h */,
-				57277DFD164131FA00C50DC5 /* AGStoreConfiguration.h */,
-				57277DFE164131FA00C50DC5 /* AGStoreConfiguration.m */,
-				48B5C58F18521C7000FF7108 /* AGEncoder.h */,
-				48B5C59018521C7000FF7108 /* AGEncoder.m */,
-			);
-			name = DataManager;
-			sourceTree = "<group>";
-		};
-		57ED1456160B569500881924 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				57345BD615E3D18600B74FEB /* AGHttpClient.h */,
-				57345BD715E3D18600B74FEB /* AGHttpClient.m */,
-				6F573BBC1863080C000F4076 /* AGMultipart.h */,
-				6F573BBD1863080C000F4076 /* AGMultipart.m */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		57F428C6163E770F00832D75 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				573CBDA715E51C120071E7A6 /* AGAdapter.h */,
-				57DCDB8215F20E4800289EA4 /* AGBaseAdapter.h */,
-				57DCDB8315F20E4800289EA4 /* AGBaseAdapter.m */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		6F14F189170ED9F4001E14BA /* paging */ = {
-			isa = PBXGroup;
-			children = (
-				6F14F18E170EDA02001E14BA /* AGPageParameterExtractor.h */,
-				6FC8F190172FC84F00905C2F /* AGPageBaseExtractor.h */,
-				6FC8F191172FC84F00905C2F /* AGPageBaseExtractor.m */,
-				6F14F18A170EDA02001E14BA /* AGPageBodyExtractor.h */,
-				6F14F18B170EDA02001E14BA /* AGPageBodyExtractor.m */,
-				6F14F18C170EDA02001E14BA /* AGPageHeaderExtractor.h */,
-				6F14F18D170EDA02001E14BA /* AGPageHeaderExtractor.m */,
-				6F14F18F170EDA02001E14BA /* AGPageWebLinkingExtractor.h */,
-				6F14F190170EDA02001E14BA /* AGPageWebLinkingExtractor.m */,
-				6F7B5EE8173259AA00ED4F83 /* AGPageConfig.h */,
-				6F7B5EEB17325A7D00ED4F83 /* AGPageConfiguration.h */,
-				6F7B5EEC17325A7D00ED4F83 /* AGPageConfiguration.m */,
-			);
-			name = paging;
-			sourceTree = "<group>";
-		};
-		6F6F239F1664D16200006155 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				6FFF85361760EE060044B5DE /* AGHTTPMockHelper.h */,
-				6FFF85371760EE060044B5DE /* AGHTTPMockHelper.m */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		57737FD815E3D01D006B97BB /* AeroGear-iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 57737FFE15E3D01D006B97BB /* Build configuration list for PBXNativeTarget "AeroGear-iOS" */;
-			buildPhases = (
-				57737FD515E3D01D006B97BB /* Sources */,
-				57737FD615E3D01D006B97BB /* Frameworks */,
-				57737FD715E3D01D006B97BB /* CopyFiles */,
-				AB043696C28242AAB34681EC /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "AeroGear-iOS";
-			productName = "AeroGear-iOS";
-			productReference = 57737FD915E3D01D006B97BB /* libAeroGear-iOS.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		57737FE915E3D01D006B97BB /* AeroGear-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5773800115E3D01D006B97BB /* Build configuration list for PBXNativeTarget "AeroGear-iOSTests" */;
-			buildPhases = (
-				57737FE515E3D01D006B97BB /* Sources */,
-				57737FE615E3D01D006B97BB /* Frameworks */,
-				57737FE715E3D01D006B97BB /* Resources */,
-				93D7F386A5174719A232F1D0 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				57737FF115E3D01D006B97BB /* PBXTargetDependency */,
-			);
-			name = "AeroGear-iOSTests";
-			productName = "AeroGear-iOSTests";
-			productReference = 57737FEA15E3D01D006B97BB /* AeroGear-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		57737FD015E3D01D006B97BB /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = JBoss;
-			};
-			buildConfigurationList = 57737FD315E3D01D006B97BB /* Build configuration list for PBXProject "AeroGear-iOS" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 57737FCE15E3D01D006B97BB;
-			productRefGroup = 57737FDA15E3D01D006B97BB /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				57737FD815E3D01D006B97BB /* AeroGear-iOS */,
-				57737FE915E3D01D006B97BB /* AeroGear-iOSTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		57737FE715E3D01D006B97BB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57737FF815E3D01D006B97BB /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		93D7F386A5174719A232F1D0 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AeroGear-iOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AB043696C28242AAB34681EC /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		57737FD515E3D01D006B97BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				57345BD815E3D18600B74FEB /* AGHttpClient.m in Sources */,
-				573CBD9A15E3ECB60071E7A6 /* AGPipeline.m in Sources */,
-				573CBD9D15E3ED7F0071E7A6 /* AGRESTPipe.m in Sources */,
-				57DCDB8415F20E4800289EA4 /* AGBaseAdapter.m in Sources */,
-				57ED144E160B490F00881924 /* AGDataManager.m in Sources */,
-				6F393F081834100B00FFB44D /* AGEncryptedMemoryStorage.m in Sources */,
-				571DBACB1610715800A0A3A6 /* AGMemoryStorage.m in Sources */,
-				571DBACF161071BF00A0A3A6 /* AGBaseStorage.m in Sources */,
-				573B709D161DA2AE009F0452 /* AGAuthenticator.m in Sources */,
-				573B70A1161DDD1C009F0452 /* AGRestAuthentication.m in Sources */,
-				480FD4E0185B08ED00D8CAD3 /* AGSQLiteCommand.m in Sources */,
-				57C2616516402B8900793C0F /* AGPipeConfiguration.m in Sources */,
-				57277DFF164131FA00C50DC5 /* AGStoreConfiguration.m in Sources */,
-				57277E111641364300C50DC5 /* AGAuthConfiguration.m in Sources */,
-				6FE55675169DE7C800E6188E /* AGPropertyListStorage.m in Sources */,
-				480FD4DB185B088500D8CAD3 /* AGEncryptedSQLiteStorage.m in Sources */,
-				4802A9FA192CAB000019ABE1 /* AGRestOAuth2FacebookModule.m in Sources */,
-				48B5C59118521C7000FF7108 /* AGEncoder.m in Sources */,
-				A0A37ADA16AEAEDE00979868 /* AGNSMutableArray+Paging.m in Sources */,
-				6F573BBE1863080C000F4076 /* AGMultipart.m in Sources */,
-				6FE3D1391834E3F100C3A09A /* AGKeyManager.m in Sources */,
-				6F14F191170EDA02001E14BA /* AGPageBodyExtractor.m in Sources */,
-				6F14F192170EDA02001E14BA /* AGPageHeaderExtractor.m in Sources */,
-				6FE3D13D1834E3F100C3A09A /* AGPasswordEncryptionServices.m in Sources */,
-				6FE3D13A1834E3F100C3A09A /* AGKeyStoreCryptoConfig.m in Sources */,
-				6FE3D13B1834E3F100C3A09A /* AGPassphraseCryptoConfig.m in Sources */,
-				6F14F193170EDA02001E14BA /* AGPageWebLinkingExtractor.m in Sources */,
-				6F393F091834100B00FFB44D /* AGEncryptedPropertyListStorage.m in Sources */,
-				6FE3D1381834E3F100C3A09A /* AGBaseEncryptionService.m in Sources */,
-				6FE3D13C1834E3F100C3A09A /* AGPassphraseEncryptionServices.m in Sources */,
-				6FC8F192172FC84F00905C2F /* AGPageBaseExtractor.m in Sources */,
-				833BB20A1886C696007760EC /* AGCodeCoverageHelper.m in Sources */,
-				6F7B5EED17325A7D00ED4F83 /* AGPageConfiguration.m in Sources */,
-				489F47BB17DDFFF40072DE0F /* AGSQLiteStorage.m in Sources */,
-				38EABEA20822C924B3E36AED /* AGAuthorizer.m in Sources */,
-				38EAB9B564447C63EDA4F3BD /* AGAuthzConfiguration.m in Sources */,
-				48462E21193399C400698A5A /* AGAccountManager.m in Sources */,
-				487C2719191CC8F800C43B49 /* AGOAuth2AuthzSession.m in Sources */,
-				38EAB6DDCEDC350EEEB294DF /* AGRestOAuth2Module.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57737FE515E3D01D006B97BB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				573CBDA415E4F31B0071E7A6 /* AGPipelineSpec.m in Sources */,
-				483609CB18EED02300FD73B6 /* AGAuthorizerSpec.m in Sources */,
-				573CBDAD15E546B70071E7A6 /* AGRestAdapterSpec.m in Sources */,
-				571DBAD51610C3D700A0A3A6 /* AGMemoryStorageSpec.m in Sources */,
-				A0A37AD316AE905F00979868 /* AGPipeConfigSpec.m in Sources */,
-				6F7B5EF017326E0A00ED4F83 /* AGPageConfigSpec.m in Sources */,
-				6FFF85381760EE060044B5DE /* AGHTTPMockHelper.m in Sources */,
-				3A3FA4389A8490B5D7049667 /* AGAuthenticatorSpec.m in Sources */,
-				3A3FAD31FC7EE80261D43F28 /* AGDataManagerSpec.m in Sources */,
-				6FC6C6BF18E06216008571A3 /* AGEncryptedMemoryStorageSpec.m in Sources */,
-				3A3FAC066A74B0FBA243D661 /* AGHttpClientSpec.m in Sources */,
-				833BB20C1886C6B1007760EC /* AGTestObserver.m in Sources */,
-				6FE3D1431834E44200C3A09A /* AGKeyManagerSpec.m in Sources */,
-				6FC6C6C518E06234008571A3 /* AGPasswordEncryptionServicesSpec.m in Sources */,
-				480FD4DD185B08B000D8CAD3 /* AGEncryptedSQLiteStorageSpec.m in Sources */,
-				3A3FA0F7DE3FD6E3C9B77946 /* AGPageBaseExtractorSpec.m in Sources */,
-				3A3FA6DEFAAE4B15941A6D48 /* AGPageBodyExtractorSpec.m in Sources */,
-				3A3FA2A2DD7A17FFCE0B9510 /* AGPageHeaderExtractorSpec.m in Sources */,
-				3A3FA1B99E5E1EBF301778DA /* AGPageWebLinkingExtractorSpec.m in Sources */,
-				3A3FAC6A723867E94FB16341 /* AGPaginationSpec.m in Sources */,
-				3A3FAF2C1A2BCEACF5DFC256 /* AGPropertyListStorageSpec.m in Sources */,
-				3A3FA56A5AAB22B9B7FC779E /* AGRestAuthenticationSpec.m in Sources */,
-				6F7C9A1B17CFBB6900058365 /* AGBaseAdapterSpec.m in Sources */,
-				483E6D3B188F1F61004AFA1F /* AGRestAuthzModuleSpec.m in Sources */,
-				6FC6C6C118E06221008571A3 /* AGEncryptedPropertyListStorageSpec.m in Sources */,
-				489F47B817DDFF110072DE0F /* AGSQLiteStorageSpec.m in Sources */,
-				6FC6C6C418E06234008571A3 /* AGPassphraseEncryptionServicesSpec.m in Sources */,
-				6FE3D1471834E4C300C3A09A /* AGBaseStorageSpec.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		57737FF115E3D01D006B97BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 57737FD815E3D01D006B97BB /* AeroGear-iOS */;
-			targetProxy = 57737FF015E3D01D006B97BB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		57737FF615E3D01D006B97BB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				57737FF715E3D01D006B97BB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		57737FFC15E3D01D006B97BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		57737FFD15E3D01D006B97BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		57737FFF15E3D01D006B97BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8AB37EC1AA3464892D758C1 /* Pods.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "";
-				DSTROOT = /tmp/AeroGear_iOS.dst;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TEST_HOST = "";
-			};
-			name = Debug;
-		};
-		5773800015E3D01D006B97BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8AB37EC1AA3464892D758C1 /* Pods.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "";
-				DSTROOT = /tmp/AeroGear_iOS.dst;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TEST_HOST = "";
-			};
-			name = Release;
-		};
-		5773800215E3D01D006B97BB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6A7A8124B23447DA65BC0DE /* Pods-AeroGear-iOSTests.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				INFOPLIST_FILE = "AeroGear-iOSTests/AeroGear-iOSTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					XCTest,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
-			};
-			name = Debug;
-		};
-		5773800315E3D01D006B97BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6A7A8124B23447DA65BC0DE /* Pods-AeroGear-iOSTests.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				INFOPLIST_FILE = "AeroGear-iOSTests/AeroGear-iOSTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					XCTest,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
-			};
-			name = Release;
-		};
-		83EB45E51886BABF0074ED68 /* CodeCoverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"CCBUILD=1",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_PROFILING_CODE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = CodeCoverage;
-		};
-		83EB45E61886BABF0074ED68 /* CodeCoverage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8AB37EC1AA3464892D758C1 /* Pods.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "";
-				DSTROOT = /tmp/AeroGear_iOS.dst;
-				EXCLUDED_SOURCE_FILE_NAMES = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TEST_HOST = "";
-			};
-			name = CodeCoverage;
-		};
-		83EB45E71886BABF0074ED68 /* CodeCoverage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6A7A8124B23447DA65BC0DE /* Pods-AeroGear-iOSTests.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AeroGear-iOS/AeroGear-iOS-Prefix.pch";
-				INFOPLIST_FILE = "AeroGear-iOSTests/AeroGear-iOSTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					XCTest,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
-			};
-			name = CodeCoverage;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		57737FD315E3D01D006B97BB /* Build configuration list for PBXProject "AeroGear-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				57737FFC15E3D01D006B97BB /* Debug */,
-				83EB45E51886BABF0074ED68 /* CodeCoverage */,
-				57737FFD15E3D01D006B97BB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		57737FFE15E3D01D006B97BB /* Build configuration list for PBXNativeTarget "AeroGear-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				57737FFF15E3D01D006B97BB /* Debug */,
-				83EB45E61886BABF0074ED68 /* CodeCoverage */,
-				5773800015E3D01D006B97BB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5773800115E3D01D006B97BB /* Build configuration list for PBXNativeTarget "AeroGear-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5773800215E3D01D006B97BB /* Debug */,
-				83EB45E71886BABF0074ED68 /* CodeCoverage */,
-				5773800315E3D01D006B97BB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 57737FD015E3D01D006B97BB /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>08D43362329A46488E585071</key>
+		<dict>
+			<key>fileRef</key>
+			<string>65D1DA06FAB24A18AB6A5963</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1D0A1358119648AFB949959A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E065C8DDD305422BBB3237D5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>38EAB0A7B277164A8D63F747</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGAuthorizer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB406473CD49D16965D21</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGOAuth2AuthzModuleAdapter.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB5ADD30E415FE3231321</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGAuthzConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB6DDCEDC350EEEB294DF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>38EAB8B515B16A800D9ACAC2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>38EAB725EDD875FE3054B456</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGAuthzModule.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB75EEDE516BF6B6EAEE7</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGAuthzConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB8B515B16A800D9ACAC2</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGRestOAuth2Module.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB91D6CFFEDC2CAD696A4</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>38EAB406473CD49D16965D21</string>
+				<string>38EAB9A5AFB633EF9E1DFD6C</string>
+				<string>38EAB5ADD30E415FE3231321</string>
+				<string>38EAB0A7B277164A8D63F747</string>
+				<string>38EAB725EDD875FE3054B456</string>
+				<string>38EAB75EEDE516BF6B6EAEE7</string>
+				<string>38EABA4C6581856F7241CB57</string>
+				<string>487C2717191CC8F800C43B49</string>
+				<string>487C2718191CC8F800C43B49</string>
+				<string>48462E1F193399C400698A5A</string>
+				<string>48462E20193399C400698A5A</string>
+				<string>38EAB8B515B16A800D9ACAC2</string>
+				<string>38EABEBAA0F7D219BD79AC96</string>
+				<string>4802A9F8192CAB000019ABE1</string>
+				<string>4802A9F9192CAB000019ABE1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Authorizer</string>
+			<key>path</key>
+			<string>security/Authorizer</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB9A5AFB633EF9E1DFD6C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGAuthorizer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EAB9B564447C63EDA4F3BD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>38EABA4C6581856F7241CB57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>38EABA4C6581856F7241CB57</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGAuthzConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>38EABEA20822C924B3E36AED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>38EAB9A5AFB633EF9E1DFD6C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>38EABEBAA0F7D219BD79AC96</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGRestOAuth2Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA042B2FA52968D0AA580</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGAuthenticatorSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA0F7DE3FD6E3C9B77946</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA74285D05B5DFF014629</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA1B99E5E1EBF301778DA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA7B7F632A59A9D4C53F1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA2A2DD7A17FFCE0B9510</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA907DCCCFBA82B64DE9D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA4389A8490B5D7049667</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA042B2FA52968D0AA580</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA56A5AAB22B9B7FC779E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FAD425C7D92793D443079</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA5F4C5D127CFCD4C15D9</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPageBodyExtractorSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA6DEFAAE4B15941A6D48</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA5F4C5D127CFCD4C15D9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FA74285D05B5DFF014629</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPageBaseExtractorSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA7B7F632A59A9D4C53F1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPageWebLinkingExtractorSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA81DD1CD6812526D0D6A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPaginationSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA907DCCCFBA82B64DE9D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPageHeaderExtractorSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FA925D72453AC929348F1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGHttpClientSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FABBA99D20FF6EDAEB888</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPropertyListStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FAC066A74B0FBA243D661</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA925D72453AC929348F1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FAC6A723867E94FB16341</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FA81DD1CD6812526D0D6A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FAD31FC7EE80261D43F28</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FAFA30EC799853C34BF60</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FAD425C7D92793D443079</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGRestAuthenticationSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3A3FAF2C1A2BCEACF5DFC256</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A3FABBA99D20FF6EDAEB888</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3A3FAFA30EC799853C34BF60</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGDataManagerSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4802A9F8192CAB000019ABE1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGRestOAuth2FacebookModule.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4802A9F9192CAB000019ABE1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGRestOAuth2FacebookModule.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4802A9FA192CAB000019ABE1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4802A9F9192CAB000019ABE1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>480FD4D9185B088500D8CAD3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGEncryptedSQLiteStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedSQLiteStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>480FD4DA185B088500D8CAD3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGEncryptedSQLiteStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedSQLiteStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>480FD4DB185B088500D8CAD3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>480FD4DA185B088500D8CAD3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>480FD4DC185B08B000D8CAD3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGEncryptedSQLiteStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>480FD4DD185B08B000D8CAD3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>480FD4DC185B08B000D8CAD3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>480FD4DE185B08ED00D8CAD3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGSQLiteCommand.h</string>
+			<key>path</key>
+			<string>datamanager/AGSQLiteCommand.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>480FD4DF185B08ED00D8CAD3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGSQLiteCommand.m</string>
+			<key>path</key>
+			<string>datamanager/AGSQLiteCommand.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>480FD4E0185B08ED00D8CAD3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>480FD4DF185B08ED00D8CAD3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>483609CA18EED02300FD73B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGAuthorizerSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>483609CB18EED02300FD73B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>483609CA18EED02300FD73B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>483E6D3A188F1F61004AFA1F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGRestAuthzModuleSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>483E6D3B188F1F61004AFA1F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>483E6D3A188F1F61004AFA1F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>48462E1F193399C400698A5A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGAccountManager.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>48462E20193399C400698A5A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGAccountManager.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>48462E21193399C400698A5A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>48462E20193399C400698A5A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>487C2717191CC8F800C43B49</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AGOAuth2AuthzSession.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>487C2718191CC8F800C43B49</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGOAuth2AuthzSession.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>487C2719191CC8F800C43B49</key>
+		<dict>
+			<key>fileRef</key>
+			<string>487C2718191CC8F800C43B49</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>489BC19F17E0C1F80008DAEF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>compiled.mach-o.dylib</string>
+			<key>name</key>
+			<string>libsqlite3.0.dylib</string>
+			<key>path</key>
+			<string>usr/lib/libsqlite3.0.dylib</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>489BC1A017E0C1F80008DAEF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>489BC19F17E0C1F80008DAEF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>489F47B717DDFF110072DE0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGSQLiteStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>489F47B817DDFF110072DE0F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>489F47B717DDFF110072DE0F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>489F47B917DDFFF40072DE0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGSQLiteStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGSQLiteStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>489F47BA17DDFFF40072DE0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGSQLiteStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGSQLiteStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>489F47BB17DDFFF40072DE0F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>489F47BA17DDFFF40072DE0F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>48B5C58F18521C7000FF7108</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGEncoder.h</string>
+			<key>path</key>
+			<string>datamanager/AGEncoder.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>48B5C59018521C7000FF7108</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGEncoder.m</string>
+			<key>path</key>
+			<string>datamanager/AGEncoder.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>48B5C59118521C7000FF7108</key>
+		<dict>
+			<key>fileRef</key>
+			<string>48B5C59018521C7000FF7108</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4BCAF1DC2EB65F1E02AF1B54</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.codecoverage.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.codecoverage.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>507AA10D30F51CAE7BB1E22A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AeroGear-iOSTests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-AeroGear-iOSTests/Pods-AeroGear-iOSTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBAC91610715800A0A3A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGMemoryStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGMemoryStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBACA1610715800A0A3A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGMemoryStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGMemoryStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBACB1610715800A0A3A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>571DBACA1610715800A0A3A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>571DBACD161071BF00A0A3A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGBaseStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGBaseStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBACE161071BF00A0A3A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGBaseStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGBaseStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBACF161071BF00A0A3A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>571DBACE161071BF00A0A3A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>571DBAD41610C3D700A0A3A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGMemoryStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>571DBAD51610C3D700A0A3A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>571DBAD41610C3D700A0A3A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57277DF51641317100C50DC5</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGStoreConfig.h</string>
+			<key>path</key>
+			<string>datamanager/AGStoreConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277DFD164131FA00C50DC5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGStoreConfiguration.h</string>
+			<key>path</key>
+			<string>datamanager/AGStoreConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277DFE164131FA00C50DC5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGStoreConfiguration.m</string>
+			<key>path</key>
+			<string>datamanager/AGStoreConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277DFF164131FA00C50DC5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57277DFE164131FA00C50DC5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57277E0D1641362D00C50DC5</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAuthConfig.h</string>
+			<key>path</key>
+			<string>security/AGAuthConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277E0F1641364300C50DC5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAuthConfiguration.h</string>
+			<key>path</key>
+			<string>security/AGAuthConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277E101641364300C50DC5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGAuthConfiguration.m</string>
+			<key>path</key>
+			<string>security/AGAuthConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57277E111641364300C50DC5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57277E101641364300C50DC5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732142B16451B5E00836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57C2616116402B2D00793C0F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732142C16451B6400836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57ED1453160B566200881924</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732142D16451B6800836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57ED144C160B490F00881924</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732142E16451B7300836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57277DF51641317100C50DC5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732142F16451B7C00836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBD9615E3ECA80071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143016451B8100836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBD9815E3ECB60071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143116451B8700836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57C2616216402B3C00793C0F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143216451B8F00836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573B709B161DA2AE009F0452</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143316451B9600836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573B709A161DA29A009F0452</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143416451BA200836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57277E0D1641362D00C50DC5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5732143516451BB400836D8E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBD9E15E3EE1F0071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57345BD615E3D18600B74FEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGHttpClient.h</string>
+			<key>path</key>
+			<string>core/AGHttpClient.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57345BD715E3D18600B74FEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGHttpClient.m</string>
+			<key>path</key>
+			<string>core/AGHttpClient.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57345BD815E3D18600B74FEB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57345BD715E3D18600B74FEB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573B7099161D9D51009F0452</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>573B709B161DA2AE009F0452</string>
+				<string>573B709C161DA2AE009F0452</string>
+				<string>573B709A161DA29A009F0452</string>
+				<string>573B709E161DDB5E009F0452</string>
+				<string>573B709F161DDD1C009F0452</string>
+				<string>573B70A0161DDD1C009F0452</string>
+				<string>57277E0D1641362D00C50DC5</string>
+				<string>57277E0F1641364300C50DC5</string>
+				<string>57277E101641364300C50DC5</string>
+				<string>6FE3D12A1834E3F100C3A09A</string>
+				<string>6FE3D12B1834E3F100C3A09A</string>
+				<string>6FE3D12C1834E3F100C3A09A</string>
+				<string>6FE3D12D1834E3F100C3A09A</string>
+				<string>6FE3D12E1834E3F100C3A09A</string>
+				<string>6FE3D12F1834E3F100C3A09A</string>
+				<string>6FE3D1301834E3F100C3A09A</string>
+				<string>6FE3D1311834E3F100C3A09A</string>
+				<string>6FE3D1321834E3F100C3A09A</string>
+				<string>6FE3D1331834E3F100C3A09A</string>
+				<string>6FE3D1341834E3F100C3A09A</string>
+				<string>6FE3D1351834E3F100C3A09A</string>
+				<string>6FE3D1361834E3F100C3A09A</string>
+				<string>6FE3D1371834E3F100C3A09A</string>
+				<string>38EAB91D6CFFEDC2CAD696A4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Security</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B709A161DA29A009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAuthenticationModule.h</string>
+			<key>path</key>
+			<string>security/AGAuthenticationModule.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B709B161DA2AE009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAuthenticator.h</string>
+			<key>path</key>
+			<string>security/AGAuthenticator.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B709C161DA2AE009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGAuthenticator.m</string>
+			<key>path</key>
+			<string>security/AGAuthenticator.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B709D161DA2AE009F0452</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573B709C161DA2AE009F0452</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573B709E161DDB5E009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAuthenticationModuleAdapter.h</string>
+			<key>path</key>
+			<string>security/AGAuthenticationModuleAdapter.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B709F161DDD1C009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGRestAuthentication.h</string>
+			<key>path</key>
+			<string>security/AGRestAuthentication.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B70A0161DDD1C009F0452</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGRestAuthentication.m</string>
+			<key>path</key>
+			<string>security/AGRestAuthentication.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573B70A1161DDD1C009F0452</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573B70A0161DDD1C009F0452</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573CBD9615E3ECA80071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPipe.h</string>
+			<key>path</key>
+			<string>pipeline/AGPipe.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBD9815E3ECB60071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPipeline.h</string>
+			<key>path</key>
+			<string>pipeline/AGPipeline.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBD9915E3ECB60071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPipeline.m</string>
+			<key>path</key>
+			<string>pipeline/AGPipeline.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBD9A15E3ECB60071E7A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBD9915E3ECB60071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573CBD9B15E3ED7F0071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGRESTPipe.h</string>
+			<key>path</key>
+			<string>pipeline/AGRESTPipe.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBD9C15E3ED7F0071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGRESTPipe.m</string>
+			<key>path</key>
+			<string>pipeline/AGRESTPipe.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBD9D15E3ED7F0071E7A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBD9C15E3ED7F0071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573CBD9E15E3EE1F0071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AeroGear.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBDA315E4F31B0071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPipelineSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBDA415E4F31B0071E7A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBDA315E4F31B0071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>573CBDA515E4F9000071E7A6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6F6F239F1664D16200006155</string>
+				<string>573CBDA315E4F31B0071E7A6</string>
+				<string>573CBDAC15E546B70071E7A6</string>
+				<string>571DBAD41610C3D700A0A3A6</string>
+				<string>6FC6C6BE18E06216008571A3</string>
+				<string>489F47B717DDFF110072DE0F</string>
+				<string>480FD4DC185B08B000D8CAD3</string>
+				<string>3A3FABBA99D20FF6EDAEB888</string>
+				<string>6FC6C6C018E06221008571A3</string>
+				<string>6FC6C6C218E06234008571A3</string>
+				<string>6FC6C6C318E06234008571A3</string>
+				<string>A0A37AD216AE905F00979868</string>
+				<string>6F7B5EEF17326E0A00ED4F83</string>
+				<string>3A3FA042B2FA52968D0AA580</string>
+				<string>483609CA18EED02300FD73B6</string>
+				<string>3A3FAFA30EC799853C34BF60</string>
+				<string>3A3FA925D72453AC929348F1</string>
+				<string>3A3FA74285D05B5DFF014629</string>
+				<string>3A3FA5F4C5D127CFCD4C15D9</string>
+				<string>3A3FA907DCCCFBA82B64DE9D</string>
+				<string>3A3FA7B7F632A59A9D4C53F1</string>
+				<string>3A3FA81DD1CD6812526D0D6A</string>
+				<string>3A3FAD425C7D92793D443079</string>
+				<string>483E6D3A188F1F61004AFA1F</string>
+				<string>6F7C9A1A17CFBB6900058365</string>
+				<string>6FE3D13F1834E44200C3A09A</string>
+				<string>6FE3D1461834E4C300C3A09A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Unit Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBDA715E51C120071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGAdapter.h</string>
+			<key>path</key>
+			<string>utils/AGAdapter.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBDAC15E546B70071E7A6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGRestAdapterSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>573CBDAD15E546B70071E7A6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>573CBDAC15E546B70071E7A6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57737FCE15E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57737FDE15E3D01D006B97BB</string>
+				<string>57737FF315E3D01D006B97BB</string>
+				<string>57737FDB15E3D01D006B97BB</string>
+				<string>57737FDA15E3D01D006B97BB</string>
+				<string>76A4405F7942AF0686A39FA9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FD015E3D01D006B97BB</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>JBoss</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>57737FD315E3D01D006B97BB</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>57737FCE15E3D01D006B97BB</string>
+			<key>productRefGroup</key>
+			<string>57737FDA15E3D01D006B97BB</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>57737FD815E3D01D006B97BB</string>
+				<string>57737FE915E3D01D006B97BB</string>
+			</array>
+		</dict>
+		<key>57737FD315E3D01D006B97BB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>57737FFC15E3D01D006B97BB</string>
+				<string>83EB45E51886BABF0074ED68</string>
+				<string>57737FFD15E3D01D006B97BB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>57737FD515E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>57345BD815E3D18600B74FEB</string>
+				<string>573CBD9A15E3ECB60071E7A6</string>
+				<string>573CBD9D15E3ED7F0071E7A6</string>
+				<string>57DCDB8415F20E4800289EA4</string>
+				<string>57ED144E160B490F00881924</string>
+				<string>6F393F081834100B00FFB44D</string>
+				<string>571DBACB1610715800A0A3A6</string>
+				<string>571DBACF161071BF00A0A3A6</string>
+				<string>573B709D161DA2AE009F0452</string>
+				<string>573B70A1161DDD1C009F0452</string>
+				<string>480FD4E0185B08ED00D8CAD3</string>
+				<string>57C2616516402B8900793C0F</string>
+				<string>57277DFF164131FA00C50DC5</string>
+				<string>57277E111641364300C50DC5</string>
+				<string>6FE55675169DE7C800E6188E</string>
+				<string>480FD4DB185B088500D8CAD3</string>
+				<string>4802A9FA192CAB000019ABE1</string>
+				<string>48B5C59118521C7000FF7108</string>
+				<string>A0A37ADA16AEAEDE00979868</string>
+				<string>6F573BBE1863080C000F4076</string>
+				<string>6FE3D1391834E3F100C3A09A</string>
+				<string>6F14F191170EDA02001E14BA</string>
+				<string>6F14F192170EDA02001E14BA</string>
+				<string>6FE3D13D1834E3F100C3A09A</string>
+				<string>6FE3D13A1834E3F100C3A09A</string>
+				<string>6FE3D13B1834E3F100C3A09A</string>
+				<string>6F14F193170EDA02001E14BA</string>
+				<string>6F393F091834100B00FFB44D</string>
+				<string>6FE3D1381834E3F100C3A09A</string>
+				<string>6FE3D13C1834E3F100C3A09A</string>
+				<string>6FC8F192172FC84F00905C2F</string>
+				<string>833BB20A1886C696007760EC</string>
+				<string>6F7B5EED17325A7D00ED4F83</string>
+				<string>489F47BB17DDFFF40072DE0F</string>
+				<string>38EABEA20822C924B3E36AED</string>
+				<string>38EAB9B564447C63EDA4F3BD</string>
+				<string>48462E21193399C400698A5A</string>
+				<string>487C2719191CC8F800C43B49</string>
+				<string>38EAB6DDCEDC350EEEB294DF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FD615E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>6F6C39D117719A24009B3A57</string>
+				<string>6F6C39C617719995009B3A57</string>
+				<string>6F6C39C117719970009B3A57</string>
+				<string>6F6C39BF1771996B009B3A57</string>
+				<string>57737FDD15E3D01D006B97BB</string>
+				<string>08D43362329A46488E585071</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FD715E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>dstPath</key>
+			<string>include/${PRODUCT_NAME}</string>
+			<key>dstSubfolderSpec</key>
+			<string>16</string>
+			<key>files</key>
+			<array>
+				<string>5732143516451BB400836D8E</string>
+				<string>5732143416451BA200836D8E</string>
+				<string>5732143316451B9600836D8E</string>
+				<string>5732143216451B8F00836D8E</string>
+				<string>5732143116451B8700836D8E</string>
+				<string>5732143016451B8100836D8E</string>
+				<string>5732142F16451B7C00836D8E</string>
+				<string>5732142E16451B7300836D8E</string>
+				<string>5732142D16451B6800836D8E</string>
+				<string>5732142C16451B6400836D8E</string>
+				<string>5732142B16451B5E00836D8E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXCopyFilesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FD815E3D01D006B97BB</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>57737FFE15E3D01D006B97BB</string>
+			<key>buildPhases</key>
+			<array>
+				<string>57737FD515E3D01D006B97BB</string>
+				<string>57737FD615E3D01D006B97BB</string>
+				<string>57737FD715E3D01D006B97BB</string>
+				<string>AB043696C28242AAB34681EC</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>AeroGear-iOS</string>
+			<key>productName</key>
+			<string>AeroGear-iOS</string>
+			<key>productReference</key>
+			<string>57737FD915E3D01D006B97BB</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>57737FD915E3D01D006B97BB</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libAeroGear-iOS.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>57737FDA15E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57737FD915E3D01D006B97BB</string>
+				<string>57737FEA15E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FDB15E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>489BC19F17E0C1F80008DAEF</string>
+				<string>83716D00189AC424005D5B1D</string>
+				<string>6F6C39D417719B98009B3A57</string>
+				<string>57737FDC15E3D01D006B97BB</string>
+				<string>6F6C39CF17719A1E009B3A57</string>
+				<string>6F6C39C417719990009B3A57</string>
+				<string>6F6C39C017719970009B3A57</string>
+				<string>6F6C39BE1771996B009B3A57</string>
+				<string>65D1DA06FAB24A18AB6A5963</string>
+				<string>E065C8DDD305422BBB3237D5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FDC15E3D01D006B97BB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>57737FDD15E3D01D006B97BB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57737FDC15E3D01D006B97BB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57737FDE15E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57737FDF15E3D01D006B97BB</string>
+				<string>57C2615F16402B0E00793C0F</string>
+				<string>57ED1456160B569500881924</string>
+				<string>57ED1455160B568800881924</string>
+				<string>57ED1454160B568000881924</string>
+				<string>573B7099161D9D51009F0452</string>
+				<string>57F428C6163E770F00832D75</string>
+				<string>573CBD9E15E3EE1F0071E7A6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>AeroGear-iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FDF15E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>833BB2091886C696007760EC</string>
+				<string>57737FE015E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FE015E3D01D006B97BB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AeroGear-iOS-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FE515E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>573CBDA415E4F31B0071E7A6</string>
+				<string>483609CB18EED02300FD73B6</string>
+				<string>573CBDAD15E546B70071E7A6</string>
+				<string>571DBAD51610C3D700A0A3A6</string>
+				<string>A0A37AD316AE905F00979868</string>
+				<string>6F7B5EF017326E0A00ED4F83</string>
+				<string>6FFF85381760EE060044B5DE</string>
+				<string>3A3FA4389A8490B5D7049667</string>
+				<string>3A3FAD31FC7EE80261D43F28</string>
+				<string>6FC6C6BF18E06216008571A3</string>
+				<string>3A3FAC066A74B0FBA243D661</string>
+				<string>833BB20C1886C6B1007760EC</string>
+				<string>6FE3D1431834E44200C3A09A</string>
+				<string>6FC6C6C518E06234008571A3</string>
+				<string>480FD4DD185B08B000D8CAD3</string>
+				<string>3A3FA0F7DE3FD6E3C9B77946</string>
+				<string>3A3FA6DEFAAE4B15941A6D48</string>
+				<string>3A3FA2A2DD7A17FFCE0B9510</string>
+				<string>3A3FA1B99E5E1EBF301778DA</string>
+				<string>3A3FAC6A723867E94FB16341</string>
+				<string>3A3FAF2C1A2BCEACF5DFC256</string>
+				<string>3A3FA56A5AAB22B9B7FC779E</string>
+				<string>6F7C9A1B17CFBB6900058365</string>
+				<string>483E6D3B188F1F61004AFA1F</string>
+				<string>6FC6C6C118E06221008571A3</string>
+				<string>489F47B817DDFF110072DE0F</string>
+				<string>6FC6C6C418E06234008571A3</string>
+				<string>6FE3D1471834E4C300C3A09A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FE615E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>83716D01189AC424005D5B1D</string>
+				<string>489BC1A017E0C1F80008DAEF</string>
+				<string>6F6C39D517719B98009B3A57</string>
+				<string>6F6C39D017719A1E009B3A57</string>
+				<string>6F6C39C517719990009B3A57</string>
+				<string>6F6C39C31771998B009B3A57</string>
+				<string>6F6C39C217719986009B3A57</string>
+				<string>57737FEF15E3D01D006B97BB</string>
+				<string>57737FF215E3D01D006B97BB</string>
+				<string>1D0A1358119648AFB949959A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FE715E3D01D006B97BB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>57737FF815E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>57737FE915E3D01D006B97BB</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>5773800115E3D01D006B97BB</string>
+			<key>buildPhases</key>
+			<array>
+				<string>57737FE515E3D01D006B97BB</string>
+				<string>57737FE615E3D01D006B97BB</string>
+				<string>57737FE715E3D01D006B97BB</string>
+				<string>93D7F386A5174719A232F1D0</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>57737FF115E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>AeroGear-iOSTests</string>
+			<key>productName</key>
+			<string>AeroGear-iOSTests</string>
+			<key>productReference</key>
+			<string>57737FEA15E3D01D006B97BB</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>57737FEA15E3D01D006B97BB</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>AeroGear-iOSTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>57737FEF15E3D01D006B97BB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57737FDC15E3D01D006B97BB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57737FF015E3D01D006B97BB</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>57737FD015E3D01D006B97BB</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>57737FD815E3D01D006B97BB</string>
+			<key>remoteInfo</key>
+			<string>AeroGear-iOS</string>
+		</dict>
+		<key>57737FF115E3D01D006B97BB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>57737FD815E3D01D006B97BB</string>
+			<key>targetProxy</key>
+			<string>57737FF015E3D01D006B97BB</string>
+		</dict>
+		<key>57737FF215E3D01D006B97BB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57737FD915E3D01D006B97BB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57737FF315E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57737FF415E3D01D006B97BB</string>
+				<string>573CBDA515E4F9000071E7A6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>AeroGear-iOSTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FF415E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>833BB20B1886C6B1007760EC</string>
+				<string>57737FF515E3D01D006B97BB</string>
+				<string>57737FF615E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FF515E3D01D006B97BB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>AeroGear-iOSTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FF615E3D01D006B97BB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57737FF715E3D01D006B97BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FF715E3D01D006B97BB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57737FF815E3D01D006B97BB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57737FF615E3D01D006B97BB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57737FFC15E3D01D006B97BB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>57737FFD15E3D01D006B97BB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>57737FFE15E3D01D006B97BB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>57737FFF15E3D01D006B97BB</string>
+				<string>83EB45E61886BABF0074ED68</string>
+				<string>5773800015E3D01D006B97BB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>57737FFF15E3D01D006B97BB</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F55685489A2A13C39AF64DD5</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string></string>
+				<key>DSTROOT</key>
+				<string>/tmp/AeroGear_iOS.dst</string>
+				<key>EXCLUDED_SOURCE_FILE_NAMES</key>
+				<string></string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TEST_HOST</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>5773800015E3D01D006B97BB</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>FE14EB8630399C0F66D564D4</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string></string>
+				<key>DSTROOT</key>
+				<string>/tmp/AeroGear_iOS.dst</string>
+				<key>EXCLUDED_SOURCE_FILE_NAMES</key>
+				<string></string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TEST_HOST</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>5773800115E3D01D006B97BB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>5773800215E3D01D006B97BB</string>
+				<string>83EB45E71886BABF0074ED68</string>
+				<string>5773800315E3D01D006B97BB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>5773800215E3D01D006B97BB</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>507AA10D30F51CAE7BB1E22A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>AeroGear-iOSTests/AeroGear-iOSTests-Info.plist</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string></string>
+				<key>USER_HEADER_SEARCH_PATHS</key>
+				<string>"${PROJECT_DIR}/Pods"/**</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>5773800315E3D01D006B97BB</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E0961CD8097B855609AB1485</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>AeroGear-iOSTests/AeroGear-iOSTests-Info.plist</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string></string>
+				<key>USER_HEADER_SEARCH_PATHS</key>
+				<string>"${PROJECT_DIR}/Pods"/**</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>57C2615F16402B0E00793C0F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57C2616116402B2D00793C0F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Config</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C2616116402B2D00793C0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGConfig.h</string>
+			<key>path</key>
+			<string>config/AGConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C2616216402B3C00793C0F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPipeConfig.h</string>
+			<key>path</key>
+			<string>pipeline/AGPipeConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C2616316402B8900793C0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPipeConfiguration.h</string>
+			<key>path</key>
+			<string>pipeline/AGPipeConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C2616416402B8900793C0F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPipeConfiguration.m</string>
+			<key>path</key>
+			<string>pipeline/AGPipeConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57C2616516402B8900793C0F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57C2616416402B8900793C0F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57DCDB8215F20E4800289EA4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGBaseAdapter.h</string>
+			<key>path</key>
+			<string>utils/AGBaseAdapter.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57DCDB8315F20E4800289EA4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGBaseAdapter.m</string>
+			<key>path</key>
+			<string>utils/AGBaseAdapter.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57DCDB8415F20E4800289EA4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57DCDB8315F20E4800289EA4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57ED144C160B490F00881924</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGDataManager.h</string>
+			<key>path</key>
+			<string>datamanager/AGDataManager.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57ED144D160B490F00881924</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGDataManager.m</string>
+			<key>path</key>
+			<string>datamanager/AGDataManager.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57ED144E160B490F00881924</key>
+		<dict>
+			<key>fileRef</key>
+			<string>57ED144D160B490F00881924</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>57ED1453160B566200881924</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGStore.h</string>
+			<key>path</key>
+			<string>datamanager/AGStore.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57ED1454160B568000881924</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6F14F189170ED9F4001E14BA</string>
+				<string>573CBD9615E3ECA80071E7A6</string>
+				<string>573CBD9815E3ECB60071E7A6</string>
+				<string>573CBD9915E3ECB60071E7A6</string>
+				<string>573CBD9B15E3ED7F0071E7A6</string>
+				<string>573CBD9C15E3ED7F0071E7A6</string>
+				<string>57C2616216402B3C00793C0F</string>
+				<string>57C2616316402B8900793C0F</string>
+				<string>57C2616416402B8900793C0F</string>
+				<string>A0A37AD816AEAEDE00979868</string>
+				<string>A0A37AD916AEAEDE00979868</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pipeline</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57ED1455160B568800881924</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57ED144C160B490F00881924</string>
+				<string>57ED144D160B490F00881924</string>
+				<string>57ED1453160B566200881924</string>
+				<string>571DBAC91610715800A0A3A6</string>
+				<string>571DBACA1610715800A0A3A6</string>
+				<string>480FD4D9185B088500D8CAD3</string>
+				<string>480FD4DA185B088500D8CAD3</string>
+				<string>6F393F041834100B00FFB44D</string>
+				<string>6F393F051834100B00FFB44D</string>
+				<string>6FE55673169DE5D900E6188E</string>
+				<string>6FE55674169DE7C800E6188E</string>
+				<string>6F393F061834100B00FFB44D</string>
+				<string>6F393F071834100B00FFB44D</string>
+				<string>480FD4DE185B08ED00D8CAD3</string>
+				<string>480FD4DF185B08ED00D8CAD3</string>
+				<string>489F47B917DDFFF40072DE0F</string>
+				<string>489F47BA17DDFFF40072DE0F</string>
+				<string>571DBACD161071BF00A0A3A6</string>
+				<string>571DBACE161071BF00A0A3A6</string>
+				<string>57277DF51641317100C50DC5</string>
+				<string>57277DFD164131FA00C50DC5</string>
+				<string>57277DFE164131FA00C50DC5</string>
+				<string>48B5C58F18521C7000FF7108</string>
+				<string>48B5C59018521C7000FF7108</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>DataManager</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57ED1456160B569500881924</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>57345BD615E3D18600B74FEB</string>
+				<string>57345BD715E3D18600B74FEB</string>
+				<string>6F573BBC1863080C000F4076</string>
+				<string>6F573BBD1863080C000F4076</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Core</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>57F428C6163E770F00832D75</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>573CBDA715E51C120071E7A6</string>
+				<string>57DCDB8215F20E4800289EA4</string>
+				<string>57DCDB8315F20E4800289EA4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Utils</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>65D1DA06FAB24A18AB6A5963</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>6F14F189170ED9F4001E14BA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6F14F18E170EDA02001E14BA</string>
+				<string>6FC8F190172FC84F00905C2F</string>
+				<string>6FC8F191172FC84F00905C2F</string>
+				<string>6F14F18A170EDA02001E14BA</string>
+				<string>6F14F18B170EDA02001E14BA</string>
+				<string>6F14F18C170EDA02001E14BA</string>
+				<string>6F14F18D170EDA02001E14BA</string>
+				<string>6F14F18F170EDA02001E14BA</string>
+				<string>6F14F190170EDA02001E14BA</string>
+				<string>6F7B5EE8173259AA00ED4F83</string>
+				<string>6F7B5EEB17325A7D00ED4F83</string>
+				<string>6F7B5EEC17325A7D00ED4F83</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>paging</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18A170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageBodyExtractor.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageBodyExtractor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18B170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPageBodyExtractor.m</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageBodyExtractor.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18C170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageHeaderExtractor.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageHeaderExtractor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18D170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPageHeaderExtractor.m</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageHeaderExtractor.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18E170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageParameterExtractor.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageParameterExtractor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F18F170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageWebLinkingExtractor.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageWebLinkingExtractor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F190170EDA02001E14BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPageWebLinkingExtractor.m</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageWebLinkingExtractor.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F14F191170EDA02001E14BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F14F18B170EDA02001E14BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F14F192170EDA02001E14BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F14F18D170EDA02001E14BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F14F193170EDA02001E14BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F14F190170EDA02001E14BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F393F041834100B00FFB44D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGEncryptedMemoryStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedMemoryStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F393F051834100B00FFB44D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGEncryptedMemoryStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedMemoryStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F393F061834100B00FFB44D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGEncryptedPropertyListStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedPropertyListStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F393F071834100B00FFB44D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGEncryptedPropertyListStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGEncryptedPropertyListStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F393F081834100B00FFB44D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F393F051834100B00FFB44D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F393F091834100B00FFB44D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F393F071834100B00FFB44D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F573BBC1863080C000F4076</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGMultipart.h</string>
+			<key>path</key>
+			<string>core/AGMultipart.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F573BBD1863080C000F4076</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGMultipart.m</string>
+			<key>path</key>
+			<string>core/AGMultipart.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F573BBE1863080C000F4076</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F573BBD1863080C000F4076</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39BE1771996B009B3A57</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>SystemConfiguration.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/SystemConfiguration.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>6F6C39BF1771996B009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39BE1771996B009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39C017719970009B3A57</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>MobileCoreServices.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/MobileCoreServices.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>6F6C39C117719970009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39C017719970009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39C217719986009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39BE1771996B009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39C31771998B009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39C017719970009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39C417719990009B3A57</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Security.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Security.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>6F6C39C517719990009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39C417719990009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39C617719995009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39C417719990009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39CF17719A1E009B3A57</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>6F6C39D017719A1E009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39CF17719A1E009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39D117719A24009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39CF17719A1E009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6C39D417719B98009B3A57</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>6F6C39D517719B98009B3A57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F6C39D417719B98009B3A57</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F6F239F1664D16200006155</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6FFF85361760EE060044B5DE</string>
+				<string>6FFF85371760EE060044B5DE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Utils</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7B5EE8173259AA00ED4F83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageConfig.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7B5EEB17325A7D00ED4F83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageConfiguration.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageConfiguration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7B5EEC17325A7D00ED4F83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPageConfiguration.m</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageConfiguration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7B5EED17325A7D00ED4F83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F7B5EEC17325A7D00ED4F83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F7B5EEF17326E0A00ED4F83</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPageConfigSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7B5EF017326E0A00ED4F83</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F7B5EEF17326E0A00ED4F83</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6F7C9A1A17CFBB6900058365</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGBaseAdapterSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F7C9A1B17CFBB6900058365</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F7C9A1A17CFBB6900058365</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FC6C6BE18E06216008571A3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGEncryptedMemoryStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC6C6BF18E06216008571A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FC6C6BE18E06216008571A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FC6C6C018E06221008571A3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGEncryptedPropertyListStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC6C6C118E06221008571A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FC6C6C018E06221008571A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FC6C6C218E06234008571A3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPassphraseEncryptionServicesSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC6C6C318E06234008571A3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPasswordEncryptionServicesSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC6C6C418E06234008571A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FC6C6C218E06234008571A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FC6C6C518E06234008571A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FC6C6C318E06234008571A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FC8F190172FC84F00905C2F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPageBaseExtractor.h</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageBaseExtractor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC8F191172FC84F00905C2F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPageBaseExtractor.m</string>
+			<key>path</key>
+			<string>pipeline/paging/AGPageBaseExtractor.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FC8F192172FC84F00905C2F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FC8F191172FC84F00905C2F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D12A1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGBaseEncryptionService.h</string>
+			<key>path</key>
+			<string>security/AGBaseEncryptionService.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D12B1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGBaseEncryptionService.m</string>
+			<key>path</key>
+			<string>security/AGBaseEncryptionService.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D12C1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGCryptoConfig.h</string>
+			<key>path</key>
+			<string>security/AGCryptoConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D12D1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGEncryptionService.h</string>
+			<key>path</key>
+			<string>security/AGEncryptionService.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D12E1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGKeyManager.h</string>
+			<key>path</key>
+			<string>security/AGKeyManager.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D12F1834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGKeyManager.m</string>
+			<key>path</key>
+			<string>security/AGKeyManager.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1301834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGKeyStoreCryptoConfig.h</string>
+			<key>path</key>
+			<string>security/AGKeyStoreCryptoConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1311834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGKeyStoreCryptoConfig.m</string>
+			<key>path</key>
+			<string>security/AGKeyStoreCryptoConfig.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1321834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPassphraseCryptoConfig.h</string>
+			<key>path</key>
+			<string>security/AGPassphraseCryptoConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1331834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPassphraseCryptoConfig.m</string>
+			<key>path</key>
+			<string>security/AGPassphraseCryptoConfig.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1341834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPassphraseEncryptionServices.h</string>
+			<key>path</key>
+			<string>security/AGPassphraseEncryptionServices.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1351834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPassphraseEncryptionServices.m</string>
+			<key>path</key>
+			<string>security/AGPassphraseEncryptionServices.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1361834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPasswordEncryptionServices.h</string>
+			<key>path</key>
+			<string>security/AGPasswordEncryptionServices.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1371834E3F100C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPasswordEncryptionServices.m</string>
+			<key>path</key>
+			<string>security/AGPasswordEncryptionServices.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1381834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D12B1834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D1391834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D12F1834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D13A1834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D1311834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D13B1834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D1331834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D13C1834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D1351834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D13D1834E3F100C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D1371834E3F100C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D13F1834E44200C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGKeyManagerSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1431834E44200C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D13F1834E44200C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE3D1461834E4C300C3A09A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGBaseStorageSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE3D1471834E4C300C3A09A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE3D1461834E4C300C3A09A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FE55673169DE5D900E6188E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGPropertyListStorage.h</string>
+			<key>path</key>
+			<string>datamanager/AGPropertyListStorage.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE55674169DE7C800E6188E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGPropertyListStorage.m</string>
+			<key>path</key>
+			<string>datamanager/AGPropertyListStorage.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FE55675169DE7C800E6188E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FE55674169DE7C800E6188E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6FFF85361760EE060044B5DE</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGHTTPMockHelper.h</string>
+			<key>path</key>
+			<string>utils/AGHTTPMockHelper.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FFF85371760EE060044B5DE</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGHTTPMockHelper.m</string>
+			<key>path</key>
+			<string>utils/AGHTTPMockHelper.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6FFF85381760EE060044B5DE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6FFF85371760EE060044B5DE</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>76A4405F7942AF0686A39FA9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F55685489A2A13C39AF64DD5</string>
+				<string>4BCAF1DC2EB65F1E02AF1B54</string>
+				<string>FE14EB8630399C0F66D564D4</string>
+				<string>507AA10D30F51CAE7BB1E22A</string>
+				<string>7F007F651CD5786197146DFC</string>
+				<string>E0961CD8097B855609AB1485</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7F007F651CD5786197146DFC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AeroGear-iOSTests.codecoverage.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-AeroGear-iOSTests/Pods-AeroGear-iOSTests.codecoverage.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>833BB2091886C696007760EC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGCodeCoverageHelper.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>833BB20A1886C696007760EC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>833BB2091886C696007760EC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>833BB20B1886C6B1007760EC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGTestObserver.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>833BB20C1886C6B1007760EC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>833BB20B1886C6B1007760EC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>83716D00189AC424005D5B1D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>83716D01189AC424005D5B1D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>83716D00189AC424005D5B1D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>83EB45E51886BABF0074ED68</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_GENERATE_TEST_COVERAGE_FILES</key>
+				<string>YES</string>
+				<key>GCC_INSTRUMENT_PROGRAM_FLOW_ARCS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+					<string>CCBUILD=1</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>GENERATE_PROFILING_CODE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>CodeCoverage</string>
+		</dict>
+		<key>83EB45E61886BABF0074ED68</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>4BCAF1DC2EB65F1E02AF1B54</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string></string>
+				<key>DSTROOT</key>
+				<string>/tmp/AeroGear_iOS.dst</string>
+				<key>EXCLUDED_SOURCE_FILE_NAMES</key>
+				<string></string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TEST_HOST</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>CodeCoverage</string>
+		</dict>
+		<key>83EB45E71886BABF0074ED68</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7F007F651CD5786197146DFC</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AeroGear-iOS/AeroGear-iOS-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>AeroGear-iOSTests/AeroGear-iOSTests-Info.plist</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string></string>
+				<key>USER_HEADER_SEARCH_PATHS</key>
+				<string>"${PROJECT_DIR}/Pods"/**</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>CodeCoverage</string>
+		</dict>
+		<key>93D7F386A5174719A232F1D0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-AeroGear-iOSTests/Pods-AeroGear-iOSTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>A0A37AD216AE905F00979868</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AGPipeConfigSpec.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0A37AD316AE905F00979868</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A0A37AD216AE905F00979868</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A0A37AD816AEAEDE00979868</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AGNSMutableArray+Paging.h</string>
+			<key>path</key>
+			<string>pipeline/AGNSMutableArray+Paging.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0A37AD916AEAEDE00979868</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AGNSMutableArray+Paging.m</string>
+			<key>path</key>
+			<string>pipeline/AGNSMutableArray+Paging.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0A37ADA16AEAEDE00979868</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A0A37AD916AEAEDE00979868</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AB043696C28242AAB34681EC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
+</string>
+		</dict>
+		<key>E065C8DDD305422BBB3237D5</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-AeroGear-iOSTests.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E0961CD8097B855609AB1485</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AeroGear-iOSTests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-AeroGear-iOSTests/Pods-AeroGear-iOSTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F55685489A2A13C39AF64DD5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE14EB8630399C0F66D564D4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>57737FD015E3D01D006B97BB</string>
+</dict>
+</plist>
